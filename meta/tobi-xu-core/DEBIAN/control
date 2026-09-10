@@ -1,0 +1,18 @@
+Package: tobi-xu-core
+Version: 0.1.0
+Architecture: all
+Maintainer: Manuel López Mateos <mlmateos@users.noreply.github.com>
+Depends: linux-image-amd64 (>= 7.2.4), linux-headers-amd64, btrfs-progs, snapper, grub-btrfs, firmware-linux, firmware-linux-nonfree, networkmanager, pipewire, wireplumber, nano, neovim, git, nala, curl, ca-certificates, gnupg, fonts-noto-core, fonts-stix, systemd-zram-generator, plymouth
+Recommends: tobixu-iguana
+Suggests: btrfs-assistant, timeshift
+Section: metapackages
+Priority: optional
+Homepage: https://mlmateos.github.io/tobixu/
+Description: Tobi Xu base: Debian Sid + kernel 7.2.4 + Btrfs con snapshots
+ Tobi Xu ("Uno Temblor", zapoteco) es una distribucion rolling-release
+ STEM & ARTS para el cientifico, el artista, el pensador y el poeta.
+ Este metapaquete instala la base motherna: kernel serie 7.2.x,
+ Btrfs con snapshots de snapper asomados al menu de GRUB, firmware
+ para hardware de ultima generacion, audio PipeWire y arranque
+ Plymouth obscuro. El escritorio (Plasma 6 o LXQt, ambos Qt6) se
+ elige en el instalador; la marca Iguana dia/noche va en Recommends.

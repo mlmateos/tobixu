@@ -1,0 +1,16 @@
+Package: tobixu-iguana
+Version: 0.1.0
+Architecture: all
+Maintainer: Manuel López Mateos <mlmateos@users.noreply.github.com>
+Depends: plymouth
+Section: graphics
+Priority: optional
+Homepage: https://mlmateos.github.io/tobixu/
+Description: Iguana day/night theme for Tobi Xu
+ Paleta oficial de Tobi Xu en sus cuatro pieles: esquema de
+ colores de Plasma, perfil de Konsole, tema de Plymouth y
+ variables CSS. La noche es el estado natural; el dia se elige.
+ Siete tonos (esmeralda honda, selva, jade, jacaranda honda,
+ jacaranda, bruma, niebla) mas rojo piedra y ambar brasa como
+ semaforos. Nacida el 9 de septiembre de 2026; migrara a
+ mlmateos/iguana cuando este salga de preliminares.

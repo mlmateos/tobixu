@@ -1,0 +1,8 @@
+Origin: TobiXu
+Label: Tobi Xu
+Codename: sid
+Suite: unstable
+Architectures: amd64 arm64 i386 source
+Components: main
+Description: Repositorio oficial de Tobi Xu - la distro STEM & ARTS
+SignWith: 783C12B9E7463154

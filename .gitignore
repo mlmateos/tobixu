@@ -1,0 +1,4 @@
+build/
+*.deb
+apt/db/
+meta/*/usr/

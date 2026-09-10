@@ -1,0 +1,8 @@
+[Plymouth Theme]
+Name=Tobi Xu Iguana Noche
+Description=La noche de Tobi Xu: esmeralda honda y selva antes del alba
+ModuleName=script
+
+[script]
+ImageDir=/usr/share/plymouth/themes/tobixu/
+ScriptFile=/usr/share/plymouth/themes/tobixu/tobixu.script

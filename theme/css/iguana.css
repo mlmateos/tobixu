@@ -1,0 +1,67 @@
+/* =========================================================
+   Iguana — paleta oficial de Tobi Xu (v1.0-candidata)
+   Nacida para Tobi Xu el 9 de septiembre de 2026; migrara
+   al repositorio mlmateos/iguana cuando salga de preliminares.
+   Siete tonos de noche + dos derivados de semaforo:
+     0 #06281E esmeralda honda   4 #7E5AA2 jacaranda
+     1 #0E4D3A selva             5 #22303A bruma
+     2 #2E8B6A jade              6 #C9D6D3 niebla
+     3 #3B2A4D jacaranda honda   + #BE6464 rojo piedra
+                                 + #D9A05B ambar brasa
+   La noche es el estado natural; el dia se elige.
+   ========================================================= */
+
+:root {
+  /* Tonos puros */
+  --ig-0-esmeralda-honda: #06281E;
+  --ig-1-selva:           #0E4D3A;
+  --ig-2-jade:            #2E8B6A;
+  --ig-3-jacaranda-honda: #3B2A4D;
+  --ig-4-jacaranda:       #7E5AA2;
+  --ig-5-bruma:           #22303A;
+  --ig-6-niebla:          #C9D6D3;
+  --ig-rojo-piedra:       #BE6464;
+  --ig-ambar-brasa:       #D9A05B;
+
+  /* Semantica nocturna (estado natural) */
+  --bg:               var(--ig-0-esmeralda-honda);
+  --bg-elevado:       var(--ig-1-selva);
+  --superficie:       var(--ig-5-bruma);
+  --borde:            var(--ig-1-selva);
+  --texto:            var(--ig-6-niebla);
+  --texto-suave:      #9FB3AE;
+  --acento:           var(--ig-4-jacaranda);
+  --acento-vivo:      var(--ig-2-jade);
+  --exito:            var(--ig-2-jade);
+  --error:            var(--ig-rojo-piedra);
+  --aviso:            var(--ig-ambar-brasa);
+  --seleccion-fondo:  var(--ig-3-jacaranda-honda);
+  --seleccion-texto:  var(--ig-6-niebla);
+  --enlace:           var(--ig-2-jade);
+  --enlace-visitado:  var(--ig-4-jacaranda);
+}
+
+/* El dia se elige: marca terracota sobre crema */
+[data-theme="dia"] {
+  --bg:               #F4EEE2;
+  --bg-elevado:       #FBF7EE;
+  --superficie:       #EDE4D3;
+  --borde:            #D8CBB4;
+  --texto:            #22303A;
+  --texto-suave:      #5C6B66;
+  --acento:           #7E5AA2;
+  --acento-vivo:      #3B2A4D;
+  --exito:            #2E8B6A;
+  --error:            #BE6464;
+  --aviso:            #8A5A2B;
+  --seleccion-fondo:  #7E5AA2;
+  --seleccion-texto:  #FBF7EE;
+  --enlace:           #0E4D3A;
+  --enlace-visitado:  #3B2A4D;
+}
+
+/* Base minima de demostracion */
+body        { background: var(--bg); color: var(--texto); }
+a           { color: var(--enlace); }
+a:visited   { color: var(--enlace-visitado); }
+::selection { background: var(--seleccion-fondo); color: var(--seleccion-texto); }
