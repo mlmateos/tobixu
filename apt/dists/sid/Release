@@ -2,45 +2,45 @@ Origin: TobiXu
 Label: Tobi Xu
 Suite: unstable
 Codename: sid
-Date: Thu, 10 Sep 2026 04:47:50 UTC
+Date: Fri, 11 Sep 2026 00:18:59 UTC
 Architectures: amd64 arm64 i386
 Components: main
 Description: Repositorio oficial de Tobi Xu - la distro STEM & ARTS
 MD5Sum:
- 07cbebfdca3b9e2f12337218e665d97e 2265 main/binary-amd64/Packages
- 66fbf32ba71d9a0a45da116cebefdca1 1256 main/binary-amd64/Packages.gz
+ b2e003e1e187c9a8fab8779ffd11f854 2053 main/binary-amd64/Packages
+ df0ab32e4a05b49e032a98240ee62995 1154 main/binary-amd64/Packages.gz
  d973692f9f54f51736e5aafc3a243119 152 main/binary-amd64/Release
- 07cbebfdca3b9e2f12337218e665d97e 2265 main/binary-arm64/Packages
- 66fbf32ba71d9a0a45da116cebefdca1 1256 main/binary-arm64/Packages.gz
+ b2e003e1e187c9a8fab8779ffd11f854 2053 main/binary-arm64/Packages
+ df0ab32e4a05b49e032a98240ee62995 1154 main/binary-arm64/Packages.gz
  0780bf9d73e493657cddf52a2060509c 152 main/binary-arm64/Release
- 07cbebfdca3b9e2f12337218e665d97e 2265 main/binary-i386/Packages
- 66fbf32ba71d9a0a45da116cebefdca1 1256 main/binary-i386/Packages.gz
+ b2e003e1e187c9a8fab8779ffd11f854 2053 main/binary-i386/Packages
+ df0ab32e4a05b49e032a98240ee62995 1154 main/binary-i386/Packages.gz
  1dc188eae99351b4aa8b909a26842dd1 151 main/binary-i386/Release
  d41d8cd98f00b204e9800998ecf8427e 0 main/source/Sources
  7029066c27ac6f5ef18d660d5741979a 20 main/source/Sources.gz
  36f000e8147ef7aa5853a256cd1eec5d 153 main/source/Release
 SHA1:
- cc84987cc4ac3d4d6b0a4ffd421d7d6e1b2940cc 2265 main/binary-amd64/Packages
- 6d93b73db0ae43cc525afdd27d481aa899486adf 1256 main/binary-amd64/Packages.gz
+ 19c3d3207f0883bc133149db46005c77c8b58dd0 2053 main/binary-amd64/Packages
+ 6afff7c2fce33ae9b1cada30a8739d623440ddf4 1154 main/binary-amd64/Packages.gz
  bad6a678f80a258ecc1e9c9d52b0327755fb1b43 152 main/binary-amd64/Release
- cc84987cc4ac3d4d6b0a4ffd421d7d6e1b2940cc 2265 main/binary-arm64/Packages
- 6d93b73db0ae43cc525afdd27d481aa899486adf 1256 main/binary-arm64/Packages.gz
+ 19c3d3207f0883bc133149db46005c77c8b58dd0 2053 main/binary-arm64/Packages
+ 6afff7c2fce33ae9b1cada30a8739d623440ddf4 1154 main/binary-arm64/Packages.gz
  f44a4151d89c8ff8b560dc60235530940dbc3f1b 152 main/binary-arm64/Release
- cc84987cc4ac3d4d6b0a4ffd421d7d6e1b2940cc 2265 main/binary-i386/Packages
- 6d93b73db0ae43cc525afdd27d481aa899486adf 1256 main/binary-i386/Packages.gz
+ 19c3d3207f0883bc133149db46005c77c8b58dd0 2053 main/binary-i386/Packages
+ 6afff7c2fce33ae9b1cada30a8739d623440ddf4 1154 main/binary-i386/Packages.gz
  1ad8942acc02d25b802fdcf1692e9243f6fee39a 151 main/binary-i386/Release
  da39a3ee5e6b4b0d3255bfef95601890afd80709 0 main/source/Sources
  46c6643f07aa7f6bfe7118de926b86defc5087c4 20 main/source/Sources.gz
  2c663b85f1abea7c32a8b78865ea5fefe4401567 153 main/source/Release
 SHA256:
- dc781d9fa4753ec59cfdb971c5f85f40ee2846c23d6f53697510195c155d7bc0 2265 main/binary-amd64/Packages
- b070d5544a47319e738977c8f199712850745709f6ef650683603c1173d80e7b 1256 main/binary-amd64/Packages.gz
+ ca639ad04513f59f683e9066c73e49564d72696e3caf8954066569954507df98 2053 main/binary-amd64/Packages
+ b8a0d3e34027ef836742b4010023fe9ec63a7f9167dabe3ab1a6aae77b011c40 1154 main/binary-amd64/Packages.gz
  6c0696e9d00ec36fffca066ee46c0d0f9fe3c095a04d11d46929eaba682ba274 152 main/binary-amd64/Release
- dc781d9fa4753ec59cfdb971c5f85f40ee2846c23d6f53697510195c155d7bc0 2265 main/binary-arm64/Packages
- b070d5544a47319e738977c8f199712850745709f6ef650683603c1173d80e7b 1256 main/binary-arm64/Packages.gz
+ ca639ad04513f59f683e9066c73e49564d72696e3caf8954066569954507df98 2053 main/binary-arm64/Packages
+ b8a0d3e34027ef836742b4010023fe9ec63a7f9167dabe3ab1a6aae77b011c40 1154 main/binary-arm64/Packages.gz
  48f3352127001c4534727517805daf0a6b0a37dabaa4df65aeaa688f5426a529 152 main/binary-arm64/Release
- dc781d9fa4753ec59cfdb971c5f85f40ee2846c23d6f53697510195c155d7bc0 2265 main/binary-i386/Packages
- b070d5544a47319e738977c8f199712850745709f6ef650683603c1173d80e7b 1256 main/binary-i386/Packages.gz
+ ca639ad04513f59f683e9066c73e49564d72696e3caf8954066569954507df98 2053 main/binary-i386/Packages
+ b8a0d3e34027ef836742b4010023fe9ec63a7f9167dabe3ab1a6aae77b011c40 1154 main/binary-i386/Packages.gz
  22375758ffff9e3af7b578ebf27d864f93c0d4a41f4df6426bf21ea5e0dbf752 151 main/binary-i386/Release
  e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855 0 main/source/Sources
  59869db34853933b239f1e2219cf7d431da006aa919635478511fabbfc8849d2 20 main/source/Sources.gz
