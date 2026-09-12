@@ -1,0 +1,9 @@
+kde-plasma-desktop
+sddm
+konsole
+dolphin
+plasma-nm
+network-manager
+sudo
+curl
+ca-certificates
