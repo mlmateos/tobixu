@@ -1,0 +1,7 @@
+[org.kde.kdecoration2]
+BorderSize=1
+ButtonsOnLeft=MS
+ButtonsOnRight=HIAX
+CloseOnDoubleClickOnMenu=false
+library=org.kde.breeze
+theme=Breeze

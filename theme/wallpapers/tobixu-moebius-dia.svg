@@ -1,0 +1,69 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1920 1080" preserveAspectRatio="xMidYMid slice">
+  <defs>
+    <linearGradient id="cinta" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#2E8B6A" stop-opacity="0.8"/>
+      <stop offset="0.5" stop-color="#EDE4D3" stop-opacity="0.9"/>
+      <stop offset="1" stop-color="#7E5AA2" stop-opacity="0.8"/>
+    </linearGradient>
+    <linearGradient id="frente" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#2E8B6A"/>
+      <stop offset="1" stop-color="#7E5AA2"/>
+    </linearGradient>
+    <radialGradient id="orbeJade" cx="0.5" cy="0.5" r="0.5">
+      <stop offset="0" stop-color="#2E8B6A" stop-opacity="0.55"/>
+      <stop offset="0.45" stop-color="#2E8B6A" stop-opacity="0.2"/>
+      <stop offset="1" stop-color="#2E8B6A" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="orbeJac" cx="0.5" cy="0.5" r="0.5">
+      <stop offset="0" stop-color="#7E5AA2" stop-opacity="0.5"/>
+      <stop offset="0.45" stop-color="#7E5AA2" stop-opacity="0.18"/>
+      <stop offset="1" stop-color="#7E5AA2" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="orbeBrasa" cx="0.5" cy="0.5" r="0.5">
+      <stop offset="0" stop-color="#D9A05B" stop-opacity="0.5"/>
+      <stop offset="0.5" stop-color="#D9A05B" stop-opacity="0.18"/>
+      <stop offset="1" stop-color="#D9A05B" stop-opacity="0"/>
+    </radialGradient>
+    <filter id="suave"><feGaussianBlur stdDeviation="14"/></filter>
+    <filter id="grano">
+      <feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="2" stitchTiles="stitch"/>
+      <feColorMatrix type="matrix" values="0 0 0 0 0.13  0 0 0 0 0.19  0 0 0 0 0.23  0 0 0 0.04 0"/>
+    </filter>
+  </defs>
+
+  <rect width="1920" height="1080" fill="#F4EEE2"/>
+
+  <g fill="none" stroke="#22303A">
+    <circle cx="960" cy="540" r="430" stroke-opacity="0.10" stroke-width="1.2"/>
+    <circle cx="960" cy="540" r="470" stroke-opacity="0.06" stroke-width="1"/>
+  </g>
+  <g fill="#22303A" fill-opacity="0.3">
+    <circle cx="240" cy="180" r="2"/><circle cx="1700" cy="240" r="2.5"/>
+    <circle cx="1500" cy="900" r="2"/><circle cx="420" cy="930" r="1.8"/>
+    <circle cx="960" cy="120" r="1.5"/>
+  </g>
+
+  <circle cx="340" cy="540" r="140" fill="url(#orbeJade)"/>
+  <circle cx="340" cy="540" r="26" fill="#2E8B6A" fill-opacity="0.9"/>
+
+  <path d="M 960 540 C 780 320, 340 320, 340 540 C 340 760, 780 760, 960 540
+           C 1140 320, 1580 320, 1580 540 C 1580 760, 1140 760, 960 540"
+        fill="none" stroke="url(#cinta)" stroke-width="110" stroke-linecap="round"/>
+
+  <circle cx="960" cy="540" r="70" fill="url(#orbeBrasa)"/>
+  <circle cx="960" cy="540" r="14" fill="#D9A05B" fill-opacity="0.9"/>
+
+  <path d="M 870 430 C 900 465, 1020 615, 1050 650"
+        fill="none" stroke="#22303A" stroke-opacity="0.18" stroke-width="132"
+        stroke-linecap="round" filter="url(#suave)"/>
+
+  <path d="M 870 430 C 900 465, 1020 615, 1050 650"
+        fill="none" stroke="url(#frente)" stroke-width="110" stroke-linecap="round"/>
+  <path d="M 870 430 C 900 465, 1020 615, 1050 650"
+        fill="none" stroke="#F4EEE2" stroke-opacity="0.5" stroke-width="3" stroke-linecap="round"/>
+
+  <circle cx="1580" cy="540" r="170" fill="url(#orbeJac)"/>
+  <circle cx="1580" cy="540" r="30" fill="#7E5AA2" fill-opacity="0.9"/>
+
+  <rect width="1920" height="1080" filter="url(#grano)" opacity="0.35"/>
+</svg>
