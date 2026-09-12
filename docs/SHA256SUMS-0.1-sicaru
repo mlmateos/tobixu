@@ -1,22 +1,27 @@
 # Acta SHA256 — Tobi Xu v0.1 sicaru
 
-- Cierre: 2026-09-11 20:26:27 CST
+- Cierre: 2026-09-11 20:45:12 CST
 - Snapshot forja: 5-v0.1-sicaru-construida
 - ISO canónica: tobixu-0.1-sicaru-20260911-amd64.iso
 
-## Hashes del museo
+## Hashes del museo (tetris:~/tobixu-isos/v0.1)
 
-### SHA256SUMS
+### SHA256SUMS-rc1
 ```
-f498aefaf964a09dac63e5bdf3057c061b36a5eaad5b29982ce65fef2e47d1e5  tobixu-0.1-sicaru-20260911-amd64.iso
+807d77d6210f26ce8182efa036b619c4436b902ffe0e58ea59017c2e70ce116d  tobixu-0.1-sicaru-20260911-rc1-amd64.iso
 ```
 
 ### SHA256SUMS-rc2
 ```
-837c680fabd242458b7ef849efa2acb1f47a3d69e1b01a5e7b7901065c45fd87  tobixu-0.1-sicaru-20260911-amd64.iso
+837c680fabd242458b7ef849efa2acb1f47a3d69e1b01a5e7b7901065c45fd87  tobixu-0.1-sicaru-20260911-rc2-amd64.iso
 ```
 
 ### SHA256SUMS-rc3
 ```
-489fb2845a3356de878552b096606a1e5b66fb79e7eca3c289e450e165764b1e  tobixu-0.1-sicaru-20260911-amd64.iso
+489fb2845a3356de878552b096606a1e5b66fb79e7eca3c289e450e165764b1e  tobixu-0.1-sicaru-20260911-amd64-rc3.iso
+```
+
+### SHA256SUMS
+```
+f498aefaf964a09dac63e5bdf3057c061b36a5eaad5b29982ce65fef2e47d1e5  tobixu-0.1-sicaru-20260911-amd64.iso
 ```

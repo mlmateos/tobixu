@@ -1,31 +1,24 @@
-# Nombres de release / Release codenames
+# Tobi Xu v0.1 — Codenames sicaru
 
-**ES** — Los nombres de versión de Tobi Xu se toman, en orden, de las palabras
-del poema *«Sicarú birá gueela' ti siadó'»* («En un bello amanecer»), del poeta
-juchiteco **Pancho Nácar**. Traducción al castellano: Víctor de la Cruz.
-Por respeto y derechos de autor, este repo no reproduce el poema: solo esta
-escalera de palabras y el crédito.
+Museo en tetris: `~/tobixu-isos/v0.1/`
 
-**EN** — Tobi Xu release names are taken, in order, from the words of the poem
-*«Sicarú birá gueela' ti siadó'»* ("On a beautiful dawn"), by **Pancho Nácar**,
-poet from Juchitán. Spanish translation by Víctor de la Cruz. Out of respect
-and copyright, this repo does not reproduce the poem: only this ladder of
-words and the credit.
+| Slot | Build | Archivo | SHA256 (prefijo) |
+|---|---:|---|---|
+| A | rc1 | tobixu-0.1-sicaru-20260911-rc1-amd64.iso | 807d77d6 |
+| B | rc2 | tobixu-0.1-sicaru-20260911-rc2-amd64.iso | 837c680f |
+| C | rc3 | tobixu-0.1-sicaru-20260911-amd64-rc3.iso | 489fb284 |
+| D | v3 canónica | tobixu-0.1-sicaru-20260911-amd64.iso | f498aefa |
 
-## Regla / Rule
-1. Solo palabras del original en diidxazá (zapoteco). / Only words from the Diidxazá (Zapotec) original.
-2. Cuatro letras o más; se cuentan letras, no apóstrofos. / Four letters or more; apostrophes are not counted.
-3. Saneado: minúsculas, sin acentos, sin apóstrofos (cierre glotal), ñ → n. / Sanitized: lowercase, unaccented, no apostrophes (glottal stop), ñ → n.
-4. Las repetidas se omiten: cada palabra nombra una sola versión. / Duplicates are skipped: each word names exactly one release.
-5. El orden del poema es el orden de los releases. / The poem's order is the releases' order.
+Nota de nomenclatura: rc1/rc2 usan `-rcN-amd64.iso`; rc3 y canónica usan
+`-amd64-rc3.iso` / `-amd64.iso`. Asimetría heredada de los renombres del
+11-sep: se documenta, no se renombra (rompería las actas).
 
-## Escalera / Ladder
-1 sicaru · 2 bira · 3 gueela · 4 siado · 5 gubidxa · 6 rucheeeche · 7 xtuxhu ·
-8 guidxilayu · 9 ndaani · 10 guixhi · 11 yaga · 12 bidxi · 13 cayuunda ·
-14 manihuiini · 15 guesa · 16 nucha · 17 bandaga · 18 biguiturini ·
-19 ricaaladxi · 20 zuba · 21 rucaadiaga · 22 rusieche · 23 biluxe ·
-24 guyuudxi · 25 mala · 26 guxidxi · 27 tapa · 28 xhiaa · 29 biasaca ·
-30 zepapaca · 31 zeguiteca · 32 zeguiinexhiaaca · 33 binitica
+## Configuración congelada en v3
 
-## Uso / Usage
-`tobixu-<versión>-<codename>-<fecha>-<arquitectura>.iso` — Release 1: **sicaru**.
+- Idioma default (live e instalador): `en_US.UTF-8`, teclado `us`
+- Formatos métricos/regionales: `es_MX.UTF-8` vía `/etc/environment` (9 `LC_*`)
+- Zona horaria: `America/Mexico_City`; unidad `tobixu-tz.service` corrige
+  `/etc/localtime` después de live-config (bug 13)
+- Reloj Plasma: 24 h + segundos, heredado desde
+  `/etc/skel/.config/plasma-org.kde.plasma.desktop-appletsrc` (trofeo)
+- `openssh-server`: nunca en la ISO; solo al vuelo para pruebas
