@@ -33,7 +33,7 @@ Rectangle {
     Rectangle {
         id: loginCard
         width: 400
-        height: 400
+        height: 450
         anchors.centerIn: parent
         color: "#CC0E4D3A" // Selva translúcido
         radius: 16
@@ -136,7 +136,26 @@ Rectangle {
                     onClicked: {
                         // Fallback a 0 si lastIndex no está definido
                         var idx = (typeof sessionModel !== 'undefined' && sessionModel.lastIndex !== undefined) ? sessionModel.lastIndex : 0;
-                        sddm.login(userField.text, passField.text, idx);
+                        sddm.login(userField.text, passField.text, sessionBox.currentIndex);
+                    }
+                }
+                                ComboBox {
+                    id: sessionBox
+                    width: parent.width
+                    model: sessionModel
+                    textRole: "name"
+                    currentIndex: sessionModel.lastIndex
+                    background: Rectangle {
+                        radius: 8
+                        color: "#33FFFFFF"
+                        border.color: sessionBox.activeFocus ? "#8A2BE2" : "#FFFFFF"
+                    }
+                    contentItem: Text {
+                        text: sessionBox.currentText
+                        color: "white"
+                        font.pixelSize: 14
+                        verticalAlignment: Text.AlignVCenter
+                        elide: Text.ElideRight
                     }
                 }
             }
