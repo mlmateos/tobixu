@@ -7,3 +7,17 @@ network-manager
 sudo
 curl
 ca-certificates
+
+# Tobi Xu - Identidad visual (v0.1 sicaru)
+qt6-style-kvantum
+papirus-icon-theme
+plymouth
+plymouth-themes
+fonts-noto-cjk
+fonts-noto-color-emoji
+
+# LXQt (escritorio alternativo)
+lxqt-core
+kwin-wayland
+pcmanfm-qt
+qterminal

@@ -1,0 +1,5 @@
+XKBMODEL="pc104"
+XKBLAYOUT="us"
+XKBVARIANT=""
+XKBOPTIONS="lv3:ralt_switch,compose:rwin"
+BACKSPACE="guess"

@@ -1,0 +1,75 @@
+# tobixu.script v0.2 — la noche de Tobi Xu al arrancar
+# Esmeralda honda arriba, selva abajo; glifo 1 Xoo respirando;
+# barra de siete tonos encendiéndose conforme avanza el boot.
+
+# Fondo
+Window.SetBackgroundTopColor (0.0235, 0.1569, 0.1176);   # #06281E esmeralda honda
+Window.SetBackgroundBottomColor (0.0549, 0.3020, 0.2275); # #0E4D3A selva
+
+# Paleta de segmentos (orden de encendido)
+segment_colors = ["segment-0E4D3A.png", "segment-2E8B6A.png",
+                  "segment-22303A.png", "segment-3B2A4D.png",
+                  "segment-7E5AA2.png", "segment-D9A05B.png",
+                  "segment-C9D6D3.png"];
+
+# Cargar glifo y crear sprite centrado
+glifo_image = Image("glifo-256.png").Scale(200, 112);
+glifo_sprite = glifo_image.Sprite();
+glifo_sprite.SetX(Window.GetWidth() / 2 - 100);
+glifo_sprite.SetY(Window.GetHeight() / 2 - 116);
+
+# Crear siete sprites de segmento, todos invisibles al inicio
+segment_sprites = [];
+seg_w = 32;
+seg_h = 8;
+seg_gap = 6;
+total_w = 7 * seg_w + 6 * seg_gap;
+base_x = Window.GetWidth() / 2 - total_w / 2;
+base_y = Window.GetHeight() / 2 + 80;
+
+for (i = 0; i < 7; i++) {
+    img = Image(segment_colors[i]).Scale(seg_w, seg_h);
+    spr = img.Sprite();
+    spr.SetX(base_x + i * (seg_w + seg_gap));
+    spr.SetY(base_y);
+    spr.SetOpacity(0);
+    segment_sprites[i] = spr;
+}
+
+# Estado global para la animación
+global.frame = 0;
+
+# Refresco: respiración del glifo
+fun refresh_callback () {
+    global.frame++;
+    opacity = 0.6 + 0.4 * Math.Sin(global.frame / 15);
+    glifo_sprite.SetOpacity(opacity);
+}
+
+# Boot progress: encender segmentos según avance
+fun boot_progress_callback (duration, progress) {
+    # progress va de 0.0 a 1.0
+    activated = progress * 7;
+    for (i = 0; i < 7; i++) {
+        if (i < Math.Floor(activated)) {
+            segment_sprites[i].SetOpacity(1);
+        } else if (i == Math.Floor(activated)) {
+            # segmento actual: fade-in proporcional
+            segment_sprites[i].SetOpacity(activated - Math.Floor(activated));
+        } else {
+            segment_sprites[i].SetOpacity(0);
+        }
+    }
+}
+
+# Quit: fade out total
+fun quit_callback (duration) {
+    for (i = 0; i < 7; i++) {
+        segment_sprites[i].SetOpacity(0);
+    }
+    glifo_sprite.SetOpacity(0);
+}
+
+Plymouth.SetRefreshFunction(refresh_callback);
+Plymouth.SetBootProgressFunction(boot_progress_callback);
+Plymouth.SetQuitFunction(quit_callback);
