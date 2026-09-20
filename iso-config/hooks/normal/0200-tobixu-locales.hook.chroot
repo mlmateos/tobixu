@@ -1,19 +1,11 @@
 #!/bin/sh
 set -e
+# Ya no inyectamos /etc/environment (eso viaja como archivo estático en includes.chroot/)
+# Solo generamos los locales que necesitamos
 sed -i -e 's/^# *en_US.UTF-8 UTF-8/en_US.UTF-8 UTF-8/' \
+       -e 's/^# *en_GB.UTF-8 UTF-8/en_GB.UTF-8 UTF-8/' \
        -e 's/^# *es_MX.UTF-8 UTF-8/es_MX.UTF-8 UTF-8/' /etc/locale.gen
 locale-gen
-cat >> /etc/environment <<'EOENV'
-LC_MEASUREMENT=es_MX.UTF-8
-LC_TIME=es_MX.UTF-8
-LC_NUMERIC=es_MX.UTF-8
-LC_MONETARY=es_MX.UTF-8
-LC_PAPER=es_MX.UTF-8
-LC_NAME=es_MX.UTF-8
-LC_ADDRESS=es_MX.UTF-8
-LC_TELEPHONE=es_MX.UTF-8
-LC_IDENTIFICATION=es_MX.UTF-8
-EOENV
 # live-config de Sid escribe /etc/timezone pero olvida el symlink que manda
 ln -sf /usr/share/zoneinfo/America/Mexico_City /etc/localtime
 echo America/Mexico_City > /etc/timezone

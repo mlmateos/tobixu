@@ -87,7 +87,7 @@ Rectangle {
                 TextField {
                     id: userField
                     width: parent.width
-                    placeholderText: "Usuario"
+                    placeholderText: "Username"
                     text: userModel.lastUser
                     color: "white"
                     font.pixelSize: 18
@@ -102,7 +102,7 @@ Rectangle {
                 TextField {
                     id: passField
                     width: parent.width
-                    placeholderText: "Contraseña"
+                    placeholderText: "Password"
                     echoMode: TextInput.Password
                     color: "white"
                     font.pixelSize: 18
@@ -118,7 +118,7 @@ Rectangle {
                     id: loginButton
                     width: parent.width
                     height: 50
-                    text: "Entrar"
+                    text: "Sign in"
                     font.pixelSize: 18
                     font.weight: Font.Bold
                     background: Rectangle {
@@ -139,7 +139,7 @@ Rectangle {
                         sddm.login(userField.text, passField.text, sessionBox.currentIndex);
                     }
                 }
-                                ComboBox {
+                ComboBox {
                     id: sessionBox
                     width: parent.width
                     model: sessionModel
@@ -170,7 +170,7 @@ Rectangle {
         spacing: 30
         
         Text {
-            text: "Suspender"
+            text: "Suspend"
             color: "white"
             font.pixelSize: 14
             visible: sddm.canSuspend
@@ -181,7 +181,7 @@ Rectangle {
             }
         }
         Text {
-            text: "Reiniciar"
+            text: "Restart"
             color: "white"
             font.pixelSize: 14
             visible: sddm.canReboot
@@ -192,7 +192,7 @@ Rectangle {
             }
         }
         Text {
-            text: "Apagar"
+            text: "Shut Down"
             color: "white"
             font.pixelSize: 14
             visible: sddm.canPowerOff
