@@ -31,16 +31,16 @@ LB_ARCHIVE_AREAS="main non-free-firmware"
 LB_PARENT_ARCHIVE_AREAS="main"
 
 # Set parent mirror to bootstrap from
-LB_PARENT_MIRROR_BOOTSTRAP="http://deb.debian.org/debian/"
+LB_PARENT_MIRROR_BOOTSTRAP="http://snapshot.debian.org/archive/debian/20260913T000000Z"
 
 # Set parent mirror to fetch packages from
-LB_PARENT_MIRROR_CHROOT="http://deb.debian.org/debian/"
+LB_PARENT_MIRROR_CHROOT="http://snapshot.debian.org/archive/debian/20260913T000000Z"
 
 # Set security parent mirror to fetch packages from
 LB_PARENT_MIRROR_CHROOT_SECURITY="http://security.debian.org/"
 
 # Set parent mirror which ends up in the image
-LB_PARENT_MIRROR_BINARY="http://deb.debian.org/debian/"
+LB_PARENT_MIRROR_BINARY="http://snapshot.debian.org/archive/debian/20260913T000000Z"
 
 # Set security parent mirror which ends up in the image
 LB_PARENT_MIRROR_BINARY_SECURITY="http://security.debian.org/"
@@ -49,16 +49,16 @@ LB_PARENT_MIRROR_BINARY_SECURITY="http://security.debian.org/"
 LB_PARENT_MIRROR_DEBIAN_INSTALLER="http://deb.debian.org/debian/"
 
 # Set mirror to bootstrap from
-LB_MIRROR_BOOTSTRAP="http://deb.debian.org/debian/"
+LB_MIRROR_BOOTSTRAP="http://snapshot.debian.org/archive/debian/20260913T000000Z"
 
 # Set mirror to fetch packages from
-LB_MIRROR_CHROOT="http://deb.debian.org/debian/"
+LB_MIRROR_CHROOT="http://snapshot.debian.org/archive/debian/20260913T000000Z"
 
 # Set security mirror to fetch packages from
 LB_MIRROR_CHROOT_SECURITY="http://security.debian.org/"
 
 # Set mirror which ends up in the image
-LB_MIRROR_BINARY="http://deb.debian.org/debian/"
+LB_MIRROR_BINARY="http://snapshot.debian.org/archive/debian/20260913T000000Z"
 
 # Set security mirror which ends up in the image
 LB_MIRROR_BINARY_SECURITY="http://security.debian.org/"
