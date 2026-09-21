@@ -1,0 +1,23 @@
+#!/bin/sh
+set -e
+lb config noauto \
+    --distribution sid \
+    --distribution-chroot sid \
+    --distribution-binary sid \
+    --parent-distribution sid \
+    --parent-distribution-chroot sid \
+    --parent-distribution-binary sid \
+    --debian-installer none \
+    --debian-installer-distribution sid \
+    --architecture amd64 \
+    --archive-areas "main non-free-firmware" \
+    --updates false \
+    --security false \
+    --firmware-binary true \
+    --firmware-chroot true \
+    --iso-application "Tobi Xu sicaru Live" \
+    --iso-volume "TOBIXU_SICARU" \
+    --iso-preparer "Manuel Lopez Mateos" \
+    --iso-publisher "Tobi Xu - STEM & Arts = STEAM" \
+    --apt-options "--option Acquire::Check-Valid-Until=false -o APT::Get::Assume-Yes=true" --bootappend-live "boot=live components locales=en_US.UTF-8 keyboard-layouts=us timezone=America/Mexico_City" \
+    "${@}"
