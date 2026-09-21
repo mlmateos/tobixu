@@ -38,9 +38,13 @@ Regla de oro: el escudo preside, la mascota acompaña; jamás al revés.
 
 ### Instalación
 
-1. Grabar la ISO live y arrancar.
-2. Instalar con Calamares.
-3. El sistema instalado habla sid + repo TobiXu en /etc/apt/sources.list(.d).
+1. **Descargar la ISO** (`tobixu-0.1-sicaru-<fecha>-amd64.iso`) y su `SHA256SUMS` desde las Releases del repo.
+2. **Verificar la descarga:** `sha256sum -c SHA256SUMS`.
+3. **Crear un USB booteable** con la ISO (método recomendado):
+   - Desde Linux: `sudo dd if=tobixu-*.iso of=/dev/sdX bs=4M status=progress && sync` (sdX = el USB completo, sin número de partición).
+   - Desde cualquier sistema: Balena Etcher, Ventoy o GNOME Disks.
+4. **Arrancar desde el USB** y elegir "Tobi Xu sicaru": entrarás a la sesión live de Plasma sin tocar el disco.
+5. **Instalar como sistema principal:** abrir "Install Tobi Xu" (Calamares) y seguir el asistente. Al reiniciar sin el USB, arranca tu sistema instalado.
 
 ### Vigilancias de sid (sección viva)
 
@@ -85,9 +89,13 @@ Golden rule: the escutcheon presides, the mascot accompanies; never the reverse.
 
 ### Installation
 
-1. Write the live ISO and boot.
-2. Install with Calamares.
-3. The installed system speaks sid + TobiXu repo in /etc/apt/sources.list(.d).
+1. **Download the ISO** (`tobixu-0.1-sicaru-<date>-amd64.iso`) and its `SHA256SUMS` from the repo Releases.
+2. **Verify the download:** `sha256sum -c SHA256SUMS`.
+3. **Create a bootable USB** with the ISO (recommended method):
+   - From Linux: `sudo dd if=tobixu-*.iso of=/dev/sdX bs=4M status=progress && sync` (sdX = the whole USB drive, no partition number).
+   - From any system: Balena Etcher, Ventoy or GNOME Disks.
+4. **Boot from the USB** and pick "Tobi Xu sicaru": you enter the Plasma live session without touching the disk.
+5. **Install as your main system:** open "Install Tobi Xu" (Calamares) and follow the wizard. Reboot without the USB and your installed system starts.
 
 ### Sid watchlist (living section)
 
@@ -132,9 +140,13 @@ Golden rule: the escutcheon presides, the mascot accompanies; never the reverse.
 
 ### 安装
 
-1. 写入 live ISO 并启动。
-2. 使用 Calamares 安装。
-3. 安装后的系统在 /etc/apt/sources.list(.d) 中同时使用 sid 与 TobiXu 仓库。
+1. **下载 ISO**（`tobixu-0.1-sicaru-<日期>-amd64.iso`）及其 `SHA256SUMS`（见仓库 Releases）。
+2. **校验下载：** `sha256sum -c SHA256SUMS`。
+3. **制作可启动 U 盘**（推荐方式）：
+   - Linux 下：`sudo dd if=tobixu-*.iso of=/dev/sdX bs=4M status=progress && sync`（sdX 为整块 U 盘，不带分区号）。
+   - 任意系统：Balena Etcher、Ventoy 或 GNOME Disks。
+4. **从 U 盘启动**并选择 "Tobi Xu sicaru"：进入 Plasma live 会话，不触碰硬盘。
+5. **安装为主系统：**打开 "Install Tobi Xu"（Calamares）并按向导操作。拔掉 U 盘重启后，即进入已安装的系统。
 
 ### sid 守望（活栏目）
 
@@ -151,7 +163,7 @@ Golden rule: the escutcheon presides, the mascot accompanies; never the reverse.
 
 ## 🤖 Acknowledgments / Reconocimientos / 致谢
 
-**🇲🇽 Español:** Este proyecto fue desarrollado con la asistencia de Qwen, un modelo de lenguaje grande de Alibaba Group. Agradecimientos especiales a la comunidad Debian y a todos los contribuidores de los proyectos de software libre que hacen posible Tobi Xu.
+**🇲🇽 Español:** Este proyecto fue desarrollado con la asistencia de Qwen, un modelo de lenguaje grande de Alibaba Group. Agradecimientos especiales a la comunidad Debian y a todos los contribuyentes de los proyectos de software libre que hacen posible Tobi Xu.
 
 **🇬🇧 English:** This project was developed with the assistance of Qwen, a large language model by Alibaba Group. Special thanks to the Debian community and all contributors of the free software projects that make Tobi Xu possible.
 
