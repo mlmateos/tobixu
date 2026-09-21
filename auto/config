@@ -19,5 +19,6 @@ lb config noauto \
     --iso-volume "TOBIXU_SICARU" \
     --iso-preparer "Manuel Lopez Mateos" \
     --iso-publisher "Tobi Xu - STEM & Arts = STEAM" \
-    --apt-options "--option Acquire::Check-Valid-Until=false -o APT::Get::Assume-Yes=true" --bootappend-live "boot=live components locales=en_US.UTF-8 keyboard-layouts=us timezone=America/Mexico_City" \
+    --apt-options "--option Acquire::Check-Valid-Until=false -o APT::Get::Assume-Yes=true" --net-tarball false \
+    --bootappend-live "boot=live components locales=en_US.UTF-8 keyboard-layouts=us timezone=America/Mexico_City" \
     "${@}"
