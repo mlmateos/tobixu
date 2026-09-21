@@ -1,0 +1,4 @@
+#!/bin/sh
+# Red de seguridad: ningún colibrí queda en la selva
+apt-get remove --purge --yes lxqt-core lxqt-config lxqt-policykit lxqt-qtplugin lxqt-powermanagement qps qterminal qterminal-dropdown 2>/dev/null || true
+apt-get autoremove --yes || true
