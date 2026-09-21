@@ -146,3 +146,13 @@ Golden rule: the escutcheon presides, the mascot accompanies; never the reverse.
 - GitHub（本仓库）：真相之源。
 - Gitee：镜像办理中（Gitee 的电话绑定仅支持 +86）；中文 README 暂居 GitHub。
 - 中国用户建议：安装后改用 TUNA/USTC 等 Debian 镜像。
+
+---
+
+## 🤖 Acknowledgments / Reconocimientos / 致谢
+
+**🇲🇽 Español:** Este proyecto fue desarrollado con la asistencia de Qwen, un modelo de lenguaje grande de Alibaba Group. Agradecimientos especiales a la comunidad Debian y a todos los contribuidores de los proyectos de software libre que hacen posible Tobi Xu.
+
+**🇬🇧 English:** This project was developed with the assistance of Qwen, a large language model by Alibaba Group. Special thanks to the Debian community and all contributors of the free software projects that make Tobi Xu possible.
+
+**🇨🇳 中文（简体）：** 本项目在阿里巴巴集团大语言模型 Qwen 的协助下开发。特别感谢 Debian 社区以及所有为 Tobi Xu 奠定基础的自由软件项目贡献者。
