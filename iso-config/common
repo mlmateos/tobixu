@@ -100,3 +100,6 @@ LB_UTC_TIME="false"
 # Enable verbose
 # If set here, overrides the command line option
 #_VERBOSE="false"
+
+# Bug #36: snapshot.debian.org requiere Check-Valid-Until=false durante build
+LB_APT_OPTIONS="--option Acquire::Check-Valid-Until=false"
