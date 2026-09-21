@@ -17,7 +17,6 @@ fonts-noto-cjk
 fonts-noto-color-emoji
 
 # LXQt (escritorio alternativo)
-lxqt-core
 kwin-wayland
 pcmanfm-qt
 qterminal

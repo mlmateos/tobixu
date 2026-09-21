@@ -1,0 +1,6 @@
+#!/bin/sh
+# Bug #37: live-build reescribe /etc/apt/sources.list al cierre del chroot.
+# La casa lo reescribe de vuelta: sid vivo + repo firmado TobiXu.
+cat > /etc/apt/sources.list <<'SOURCES'
+deb http://deb.debian.org/debian sid main contrib non-free non-free-firmware
+SOURCES

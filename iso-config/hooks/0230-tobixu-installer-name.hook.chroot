@@ -1,0 +1,5 @@
+#!/bin/sh
+# Bug #39: "Install Debian" -> "Install Tobi Xu"
+for d in /usr/share/applications/org.calamares.calamares.desktop /usr/share/applications/calamares.desktop; do
+  [ -f "$d" ] && sed -i -e 's/^Name=.*/Name=Install Tobi Xu/' -e 's/^Name\[es\]=.*/Name[es]=Instalar Tobi Xu/' "$d"
+done

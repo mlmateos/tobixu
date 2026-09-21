@@ -1,6 +1,12 @@
 #!/bin/bash
-# Hornea un build en la Forja bajo setsid, con testamento y bautizo de ISO.
+# Hornea un build en la Forja bajo setsid, con preflight, testamento y bautizo de ISO.
 cd /home/manuel/tobixu-iso || exit 1
+for f in etc/environment etc/apt/sources.list etc/sddm.conf.d/tobixu-autologin.conf etc/skel/.config/kdeglobals; do
+  if [ ! -f "config/includes.chroot/$f" ]; then
+    echo "PREFLIGHT FALLO: falta $f"
+    exit 1
+  fi
+done
 umount /tmp 2>/dev/null || true
 LOG="build-$(date +%Y%m%d-%H%M).log"
 { df -h /tmp | tail -n 1; df -h /home | tail -n 1; } > "$LOG"

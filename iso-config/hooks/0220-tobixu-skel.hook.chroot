@@ -1,0 +1,6 @@
+#!/bin/sh
+# Bug #38: el home del usuario live se creó antes de que el skel tuviera alma.
+if [ -d /home/user ]; then
+  cp -a /etc/skel/. /home/user/ 2>/dev/null || true
+  chown -R user:user /home/user 2>/dev/null || true
+fi
