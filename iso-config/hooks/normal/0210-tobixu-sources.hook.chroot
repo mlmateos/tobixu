@@ -1,6 +1,27 @@
 #!/bin/sh
 # Bug #37: live-build reescribe /etc/apt/sources.list al cierre del chroot.
-# La casa lo reescribe de vuelta: sid vivo + repo firmado TobiXu.
+# La casa lo reescribe de vuelta: sid vivo (el repo firmado lo inyecta el hook live 0010).
 cat > /etc/apt/sources.list <<'SOURCES'
 deb http://deb.debian.org/debian sid main contrib non-free non-free-firmware
 SOURCES
+
+# Segunda via del pin negativo: declarativo, aplicado por apt durante el install pass.
+# Independiente del reloj de los hooks: el install pass siempre respeta esto.
+mkdir -p /etc/apt/preferences.d
+cat > /etc/apt/preferences.d/tobixu-no-lxqt <<'PIN'
+Package: lxqt-*
+Pin: version *
+Pin-Priority: -1
+
+Package: liblxqt*
+Pin: version *
+Pin-Priority: -1
+
+Package: libdbusmenu-lxqt*
+Pin: version *
+Pin-Priority: -1
+
+Package: lximage-qt qterminal qterminal-dropdown pcmanfm-qt obconf-qt xdg-desktop-portal-lxqt qps screengrab
+Pin: version *
+Pin-Priority: -1
+PIN

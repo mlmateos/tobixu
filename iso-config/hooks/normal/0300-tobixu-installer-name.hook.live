@@ -1,0 +1,9 @@
+#!/bin/sh
+# Bug #39: la puerta del instalador se renombra al cierre del live pass,
+# no en el chroot stage (los hooks normal/*.chroot corren antes del install pass).
+for d in /usr/share/applications/*calamares*.desktop; do
+  [ -f "$d" ] || continue
+  sed -i -e 's/^Name=.*/Name=Install Tobi Xu/' \
+         -e 's/^Name\[es\]=.*/Name[es]=Instalar Tobi Xu/' "$d"
+done
+exit 0
