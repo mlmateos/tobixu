@@ -1,4 +1,6 @@
 #!/bin/sh
-set -e
-apt-get update
-apt-get install -y tobi-xu-core tobixu-iguana
+# Corazon de la casa en el chroot (cinturon y suspensorios:
+# el live pass tambien lo instala con el sources de la casa activo).
+apt-get update || true
+apt-get install -y tobi-xu-core tobixu-iguana || true
+exit 0

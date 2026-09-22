@@ -1,5 +1,10 @@
 #!/bin/sh
-# Bug #39: "Install Debian" -> "Install Tobi Xu"
-for d in /usr/share/applications/org.calamares.calamares.desktop /usr/share/applications/calamares.desktop; do
-  [ -f "$d" ] && sed -i -e 's/^Name=.*/Name=Install Tobi Xu/' -e 's/^Name\[es\]=.*/Name[es]=Instalar Tobi Xu/' "$d"
+# Bug #39: "Install Debian" -> "Install Tobi Xu".
+# Debian renombra el .desktop con los anios (hoy: calamares-install-debian.desktop);
+# el glob lo caza sea cual sea su nombre. Si no hay puerta que renombrar,
+# el hook se aparta en silencio: nunca aborta el horneado.
+for d in /usr/share/applications/*calamares*.desktop; do
+  [ -f "$d" ] || continue
+  sed -i -e 's/^Name=.*/Name=Install Tobi Xu/' -e 's/^Name\[es\]=.*/Name[es]=Instalar Tobi Xu/' "$d"
 done
+exit 0
