@@ -5,5 +5,9 @@ if [ "$1" = "configure" ]; then
        && ! snapper -c root list >/dev/null 2>&1; then
         snapper -c root create-config / || true
     fi
+    systemctl enable tobixu-first-boot.service 2>/dev/null || true
+    if [ ! -e /var/lib/tobixu/.first-boot-done ]; then
+        systemctl start tobixu-first-boot.service 2>/dev/null || true
+    fi
 fi
 exit 0

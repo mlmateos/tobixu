@@ -1,0 +1,14 @@
+[Unit]
+Description=TobiXu first-boot trigger
+ConditionPathExists=!/var/lib/tobixu/.first-boot-done
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=oneshot
+ExecStart=/usr/lib/tobixu/first-boot.sh
+RemainAfterExit=no
+StandardOutput=journal+console
+
+[Install]
+WantedBy=multi-user.target
