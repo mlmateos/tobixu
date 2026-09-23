@@ -18,5 +18,5 @@ fonts-noto-color-emoji
 
 # LXQt (escritorio alternativo)
 kwin-wayland
-pcmanfm-qt
-qterminal
+# pcmanfm-qt  (jubilado: colibri de la era LXQt)
+# qterminal  (jubilado: colibri de la era LXQt)
