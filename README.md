@@ -46,6 +46,10 @@ Regla de oro: el escudo preside, la mascota acompaña; jamás al revés.
 4. **Arrancar desde el USB** y elegir "Tobi Xu sicaru": entrarás a la sesión live de Plasma sin tocar el disco.
 5. **Instalar como sistema principal:** abrir "Install Tobi Xu" (Calamares) y seguir el asistente. Al reiniciar sin el USB, arranca tu sistema instalado.
 
+### 📜 Profundizar
+
+La doctrina técnica completa —catorce días de selva, once familias de cicatrices, decisiones de arquitectura y tareas frías— vive en [`docs/MasterAct.md`](docs/MasterAct.md). Ahí heredan contexto los nuevos chats, colaboradores y yoes futuros.
+
 ### Vigilancias de sid (sección viva)
 
 - Ventana Qt 6.10 → 6.11 (sep 2026): kwin-wayland pinea qt6-base-private-abi=6.10.2 y sid queda roto para el stack KDE. Los builds de rc4 se congelaron en snapshot.debian.org 20260913 (el mundo validado del coredump) hasta que la transición sane. No hacer dist-upgrade durante la ventana.
@@ -97,6 +101,10 @@ Golden rule: the escutcheon presides, the mascot accompanies; never the reverse.
 4. **Boot from the USB** and pick "Tobi Xu sicaru": you enter the Plasma live session without touching the disk.
 5. **Install as your main system:** open "Install Tobi Xu" (Calamares) and follow the wizard. Reboot without the USB and your installed system starts.
 
+### 📜 Go deeper
+
+The complete technical doctrine — fourteen days of jungle, eleven scar families, architectural decisions and cold tasks — lives in [`docs/MasterAct.md`](docs/MasterAct.md). New chats, collaborators and future selves inherit context there.
+
 ### Sid watchlist (living section)
 
 - Qt 6.10 → 6.11 window (Sep 2026): kwin-wayland pins qt6-base-private-abi=6.10.2 and sid breaks for the KDE stack. rc4 builds were frozen on snapshot.debian.org 20260913 (the coredump-validated world) until the transition heals. Do not dist-upgrade during the window.
@@ -147,6 +155,10 @@ Golden rule: the escutcheon presides, the mascot accompanies; never the reverse.
    - 任意系统：Balena Etcher、Ventoy 或 GNOME Disks。
 4. **从 U 盘启动**并选择 "Tobi Xu sicaru"：进入 Plasma live 会话，不触碰硬盘。
 5. **安装为主系统：**打开 "Install Tobi Xu"（Calamares）并按向导操作。拔掉 U 盘重启后，即进入已安装的系统。
+
+### 📜 深入阅读
+
+完整的技术纪要——十四日丛林、十一道伤疤族群、架构决策与冷任务——存放于 [`docs/MasterAct.md`](docs/MasterAct.md)。新会话、协作者与未来的自我，皆由此继承语境。
 
 ### sid 守望（活栏目）
 
