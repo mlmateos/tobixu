@@ -1,4 +1,29 @@
 #!/bin/bash
+# ---- Caja negra F9 (v7.2): testigo automatico de estados D.
+# ---- Vive dentro del horno: unico lugar con root en forja dado el sudoers.
+# ---- Muere solo cuando muere el horno.
+CAJA_PADRE=$$
+(
+  set +e
+  sysctl -w kernel.hung_task_timeout_secs=60 >/dev/null 2>&1
+  while kill -0 "$CAJA_PADRE" 2>/dev/null; do
+    n=$(ps -eo stat= | awk '/^D/{c++} END{print c+0}')
+    if [ "$n" -gt 0 ]; then
+      {
+        echo "== $(date -Is) procesos en D: $n =="
+        ps -eo pid,ppid,stat,etime,time,cmd | awk 'NR==1 || $3 ~ /D/'
+        dmesg -T | grep -B2 -A28 'blocked for more than' | tail -n 120
+        for p in $(ps -eo pid=,stat= | awk '$2 ~ /^D/ {print $1}'); do
+          echo "-- stack del $p --"
+          cat /proc/$p/stack 2>/dev/null || echo '(sin stack)'
+        done
+      } >> /home/manuel/tobixu-iso/caja-negra.log
+      sleep 300
+    fi
+    sleep 10
+  done
+) &
+# ---- fin caja negra ----
 # Horno v7: limpieza a fondo, purga verificada ANTES del binary, bautizo automatico.
 cd /home/manuel/tobixu-iso || exit 1
 [ "$(id -u)" -ne 0 ] && { echo "HORNO: sudo"; exit 1; }
@@ -28,13 +53,13 @@ chroot chroot apt-get purge --yes 'lxqt-*' 'liblxqt*' 'libdbusmenu-lxqt*' >/dev/
 chroot chroot apt-get autoremove --purge --yes >/dev/null 2>&1 || true
 
 echo "PUERTA: dpkg --purge --force-depends sobre CUALQUIER lxqt..." | tee -a "$LOG"
-RESIDUOS=$(chroot chroot dpkg -l 2>/dev/null | awk '/lxqt/{print $2}')
+RESIDUOS=$(chroot chroot dpkg -l 2>/dev/null | awk '/lxqt|pcmanfm-qt|qterminal|lximage-qt|obconf-qt/{print $2}')
 if [ -n "$RESIDUOS" ]; then
   chroot chroot dpkg --purge --force-depends $RESIDUOS 2>&1 | tail -n 3 | tee -a "$LOG"
 fi
 
-N_II=$(chroot chroot dpkg -l 2>/dev/null | grep -ci "^ii.*lxqt")
-N_ANY=$(chroot chroot dpkg -l 2>/dev/null | grep -ci "lxqt")
+N_II=$(chroot chroot dpkg -l 2>/dev/null | grep -ciE "^ii.*(lxqt|pcmanfm-qt|qterminal|lximage-qt|obconf-qt)")
+N_ANY=$(chroot chroot dpkg -l 2>/dev/null | grep -ciE "lxqt|pcmanfm-qt|qterminal|lximage-qt|obconf-qt")
 N_SES=$(find chroot/usr/share/xsessions chroot/usr/share/wayland-sessions -iname "*lxqt*" 2>/dev/null | wc -l)
 echo "PUERTA: ii=$N_II any=$N_ANY sesiones=$N_SES" | tee -a "$LOG"
 
