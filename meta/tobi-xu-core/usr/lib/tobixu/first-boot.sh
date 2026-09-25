@@ -1,5 +1,5 @@
 #!/bin/bash
-# Trigger de primer arranque TobiXu 0.1.3
+# Trigger de primer arranque TobiXu 0.1.4
 # Misiones: triada v2 por escritura directa (F15) + despensa sid garantizada (F16)
 #          + expulsion trixie + puerta renombrada
 # Idempotente: marcador en /var/lib/tobixu evita re-ejecucion
@@ -13,6 +13,7 @@ CONF="/etc/tobixu/defaults.conf"
 APPLY_LOCALES=1
 APPLY_SOURCES=1
 APPLY_DOOR=1
+APPLY_GRUB=1
 DEF_LANG=en_US.UTF-8
 DEF_LC_TIME=en_GB.UTF-8
 DEF_LC_METRIC=es_MX.UTF-8
@@ -79,6 +80,20 @@ if [ "$APPLY_DOOR" = "1" ]; then
     fi
 else
     echo "mision 3 omitida por $CONF (APPLY_DOOR=$APPLY_DOOR)"
+fi
+
+# --- Mision 4: preseed de grub-pc (F17: el grub que pregunta a nadie) ---
+if [ "$APPLY_GRUB" = "1" ]; then
+    RAIZ=$(findmnt -n -o SOURCE / 2>/dev/null || true)
+    DISCO=$(lsblk -ndo pkname "$RAIZ" 2>/dev/null || true)
+    if [ -n "$DISCO" ]; then
+        echo "grub-pc grub-pc/install_devices multiselect /dev/$DISCO" | debconf-set-selections
+        echo "mision 4: preseed grub-pc -> /dev/$DISCO"
+    else
+        echo "mision 4: disco raiz no detectable (entorno exotico); se omite"
+    fi
+else
+    echo "mision 4 omitida por $CONF (APPLY_GRUB=$APPLY_GRUB)"
 fi
 
 # --- Marcador ---
