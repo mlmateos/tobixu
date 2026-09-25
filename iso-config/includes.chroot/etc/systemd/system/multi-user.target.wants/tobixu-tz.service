@@ -1,1 +1,12 @@
-../tobixu-tz.service
+[Unit]
+Description=Tobi Xu: forzar America/Mexico_City despues de live-config
+After=live-config.service
+Before=display-manager.service sddm.service graphical.target
+
+[Service]
+Type=oneshot
+RemainAfterExit=yes
+ExecStart=/bin/sh -c 'ln -sf /usr/share/zoneinfo/America/Mexico_City /etc/localtime; echo America/Mexico_City > /etc/timezone'
+
+[Install]
+WantedBy=multi-user.target
