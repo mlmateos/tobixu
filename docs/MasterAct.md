@@ -21,7 +21,7 @@
 | **Repo firmado** / Signed repo / 签名仓库 | `https://mlmateos.github.io/tobixu/apt sid main` |
 | **Estado del smoke** / Smoke status / 烟雾状态 | ✅ 11/11 puntos verdes (live + instalado) |
 | **Familias cerradas** / Closed families / 已结族群 | F1 – F11 (con testigos / with witnesses / 有证人) |
-| **Próxima tarea fría** / Next cold task / 下一个冷任务 | Trigger `tobi-xu-core 0.1.2` (ver apéndice / see appendix / 见附录) |
+| **Próxima tarea fría** / Next cold task / 下一个冷任务 | Renombrar disco-rc42.qcow2 a disco-rc45-smoke.qcow2 (con acta) | `tobi-xu-core 0.1.2` (ver apéndice / see appendix / 见附录) |
 
 ---
 
@@ -276,6 +276,44 @@ Ordered by priority. All done **cold**, with the VM off and with acta.
 > *沉默的杀手不住在我们的代码里，不住在 Debian 里，也不住在砖里：它住在主机的叠瓦屋顶之下，等候写入的风暴。姓名与姓氏：Seagate BarraCuda SMR，型号 ST4000DM004-2U9104。以纪事葬于 `/media/manuel/debiantesting-f9-corrupta.qcow2`。*
 
 ---
+
+* * *
+
+## 📅 Bitácora de sesiones / Session log / 会话日志
+
+### 2026-09-25 — Camino A sellado, doctrina 13, F12
+
+- **Forense del disco smoke** (doctrina 11): autopsia de `disco-rc42.qcow2` reveló que el archivo es nuevo (nacimiento 23-sep, primer boot 23-sep 12:11, 10 boots, sin `/var/log/calamares/`). Kernel 7.2.6→7.2.7 vía `full-upgrade`; `pcmanfm-qt`/`qterminal` ausentes confirman estrato rc4.5+. El nombre `disco-rc42.qcow2` es una reliquia mentirosa. **Tarea fría:** renombrar a `disco-rc45-smoke.qcow2` con acta (VM apagada).
+- **F12 "El cordón umbilical"**: 26 hooks en `hooks/{normal,live}` eran symlinks (`git mode 120000`) apuntando a `/usr/share/live/build/hooks/...` de forja. En tetris eran rotos; `diff -rq` salía con exit 2. Cura: dereferenciar (rm + cp + chmod) y congelar en el repo. Testigo: `diff -rq` exit 0, cero líneas.
+- **Triada v2 de locales**: `en_DK` jubilado (punto en reloj CLDR/Qt), `es_MX` descartado (12h en glibc), `en_GB` ganador (24h con dos puntos). Aplicada en `includes.chroot/etc/environment`, hook `0200-locales` y trigger `first-boot.sh`.
+- **Doctrina 13: "Los defaults son semillas, no cadenas"**: el sistema siembra una vez; el usuario cosecha (`plasma-localerc`, `localectl`) o re-siembra. Implementación: `/etc/tobixu/defaults.conf` con interruptores `APPLY_*` y semillas `DEF_*`; re-sembrado documentado (editar conf, borrar marcador, restart del servicio).
+- **tobi-xu-core 0.1.2 construido, firmado, inyectado, recibido**: `dpkg-deb --build --root-owner-group` → `reprepro includedeb sid` → push → `apt install` en smoke-rc45 → trigger corrido en caliente (sin reboot) → `/etc/locale.conf` reconciliado con la triada v2. Camino A sellado con testigo vivo en `/var/log/tobixu-first-boot.log`.
+- **Observación para el libro**: Calamares no deja `/var/log/calamares/` en el sistema instalado (T1 vacío en la autopsia) — justificación para que el trigger de primer arranque sí deje acta en `/var/log/tobixu-first-boot.log`.
+- **Polizones**: `tools/hornear.sh.pre-cajanegra` borrado (git ya tenía la versión en historial, duplicado es ruido); `tools/checkpoints.md` trackeado (runbook de caja negra F9).
+
+### 2026-09-25 — Sealed Road A, Doctrine 13, F12
+
+- **Smoke disk forensics** (doctrine 11): autopsy of `disco-rc42.qcow2` showed the file is new (birth 23-sep, first boot 23-sep 12:11, 10 boots, no `/var/log/calamares/`). Kernel 7.2.6→7.2.7 via `full-upgrade`; absence of `pcmanfm-qt`/`qterminal` confirms rc4.5+ stratum. The filename `disco-rc42.qcow2` is a lying relic. **Cold task:** rename to `disco-rc45-smoke.qcow2` with acta (VM off).
+- **F12 "The umbilical cord"**: 26 hooks under `hooks/{normal,live}` were symlinks (`git mode 120000`) pointing at `/usr/share/live/build/hooks/...` on the forge. On tetris they were dangling; `diff -rq` exited with 2. Cure: dereference (rm + cp + chmod) and freeze in the repo. Witness: `diff -rq` exit 0, zero lines.
+- **Locale triad v2**: `en_DK` retired (dot on clock per CLDR/Qt), `es_MX` discarded (12h in glibc), `en_GB` the winner (24h with colons). Applied to `includes.chroot/etc/environment`, hook `0200-locales`, and the `first-boot.sh` trigger.
+- **Doctrine 13: "Defaults are seeds, not chains"**: the system seeds once; the user harvests (`plasma-localerc`, `localectl`) or re-seeds. Implementation: `/etc/tobixu/defaults.conf` with `APPLY_*` switches and `DEF_*` seeds; re-seeding documented (edit conf, remove marker, restart service).
+- **tobi-xu-core 0.1.2 built, signed, injected, received**: `dpkg-deb --build --root-owner-group` → `reprepro includedeb sid` → push → `apt install` on smoke-rc45 → trigger ran hot (no reboot) → `/etc/locale.conf` reconciled with triad v2. Road A sealed with a living witness at `/var/log/tobixu-first-boot.log`.
+- **Observation for the book**: Calamares leaves no `/var/log/calamares/` on the installed system (T1 empty on the autopsy) — justification for the first-boot trigger leaving an acta at `/var/log/tobixu-first-boot.log`.
+- **Stragglers**: `tools/hornear.sh.pre-cajanegra` deleted (git already had the version in history, duplicate is noise); `tools/checkpoints.md` tracked (F9 black-box runbook).
+
+### 2026-09-25 — A 路封印，准则 13，F12
+
+- **烟雾盘取证**（准则 11）：对 `disco-rc42.qcow2` 的尸检显示文件是新的（诞生 9 月 23 日，首次启动 12:11，10 次引导，无 `/var/log/calamares/`）。内核 7.2.6→7.2.7 经由 `full-upgrade`；`pcmanfm-qt`/`qterminal` 缺失确认为 rc4.5+ 地层。文件名 `disco-rc42.qcow2` 是一则谎称的遗迹。**冷任务**：VM 关闭状态下以纪事更名为 `disco-rc45-smoke.qcow2`。
+- **F12「脐带」**：`hooks/{normal,live}` 下 26 个钩子均为符号链接（`git mode 120000`），指向 Forja 上的 `/usr/share/live/build/hooks/...`。在 Tetris 上为悬空链接；`diff -rq` 以退出码 2 告终。疗法：解引用（rm + cp + chmod）并冻结于仓库。证人：`diff -rq` 退出码 0，零行。
+- **区域三件套 v2**：`en_DK` 退役（CLDR/Qt 下时钟显点），`es_MX` 弃用（glibc 中为 12 时制），`en_GB` 胜出（24 时制带冒号）。应用于 `includes.chroot/etc/environment`、钩子 `0200-locales` 与 `first-boot.sh` 触发器。
+- **准则 13：「默认即种籽，非锁链」**：系统播种一次；用户收割（`plasma-localerc`、`localectl`）或重新播种。实现：`/etc/tobixu/defaults.conf` 含 `APPLY_*` 开关与 `DEF_*` 种籽；重新播种文档化（编辑配置、删除标记、重启服务）。
+- **tobi-xu-core 0.1.2 构建、签名、注入、接收**：`dpkg-deb --build --root-owner-group` → `reprepro includedeb sid` → 推送 → smoke-rc45 上 `apt install` → 触发器热启动运行（无重启）→ `/etc/locale.conf` 已与三件套 v2 和解。A 路以 `/var/log/tobixu-first-boot.log` 中的活体证人封印。
+- **书中注记**：Calamares 在已安装系统上不留 `/var/log/calamares/`（尸检中 T1 为空）——此为首次启动触发器在 `/var/log/tobixu-first-boot.log` 留纪事的理由。
+- **游散文件**：删除 `tools/hornear.sh.pre-cajanegra`（git 历史中已有该版本，重复即噪声）；`tools/checkpoints.md` 纳入跟踪（F9 黑匣运行簿）。
+
+---
+
+* * *
 
 # 📎 Apéndice / Appendix / 附录: Trigger `tobi-xu-core 0.1.2`
 
