@@ -1,5 +1,5 @@
 Package: tobi-xu-core
-Version: 0.1.2
+Version: 0.1.3
 Architecture: all
 Maintainer: Manuel López Mateos <mlmateos@users.noreply.github.com>
 Depends: linux-image-amd64, network-manager, snapper, btrfs-progs

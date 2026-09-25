@@ -1,5 +1,5 @@
 Package: tobi-xu-core
-Version: 0.1.2
+Version: 0.1.3
 Architecture: all
 Maintainer: Manuel López Mateos <mlmateos@users.noreply.github.com>
 Depends: linux-image-amd64, network-manager, snapper, btrfs-progs
@@ -7,11 +7,11 @@ Recommends: linux-headers-amd64, firmware-linux, neovim, nala, fonts-stix, syste
 Homepage: https://mlmateos.github.io/tobixu/
 Priority: optional
 Section: metapackages
-Filename: pool/main/t/tobi-xu-core/tobi-xu-core_0.1.2_all.deb
-Size: 3028
-SHA256: 5ac165383f0b6fbc1f4d4d34655a6e84664b5516ebcdf1aa72065737c357249d
-SHA1: 46760d9603b907112b5666a4761232cd0cdff687
-MD5sum: 50c04290be6b24ab06282e040f173e88
+Filename: pool/main/t/tobi-xu-core/tobi-xu-core_0.1.3_all.deb
+Size: 3176
+SHA256: c253da97ed222f209255cfefa4f5ae84798e5dc48ffa7070f06963c5bc6838cb
+SHA1: 0e1c23ecee73197b4e7072bf69e6ecf1d06b0b8d
+MD5sum: 95c026857956fa3a0b409b4a183e5f36
 Description: Tobi Xu base: Debian Sid con snapshots
  Tobi Xu ("Uno Temblor", zapoteco) es una distribucion rolling-release
  STEM & ARTS para el cientifico, el artista, el pensador y el poeta.
