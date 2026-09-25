@@ -311,6 +311,39 @@ Ordered by priority. All done **cold**, with the VM off and with acta.
 - **书中注记**：Calamares 在已安装系统上不留 `/var/log/calamares/`（尸检中 T1 为空）——此为首次启动触发器在 `/var/log/tobixu-first-boot.log` 留纪事的理由。
 - **游散文件**：删除 `tools/hornear.sh.pre-cajanegra`（git 历史中已有该版本，重复即噪声）；`tools/checkpoints.md` 纳入跟踪（F9 黑匣运行簿）。
 
+### 2026-09-25 (tarde) — rc6 canonica; cicatrices F13–F18
+
+- **F13 "El sudoers con nombre y apellido"**: sudoers literal `hornear-rc4.sh` mato el lanzamiento de rc5 (`a password is required`). Cura: patron `hornear-*.sh`.
+- **F14 descartada con testigos**: el "bautizo en 8 min" de rc5 era real (caches); el bautizo sin criatura se descarto al hallar la ISO renombrada. Leccion: verificar por **mtime y SHA256**, no por nombre.
+- **F15 "El mensajero sin audiencia"**: `localectl` da Access denied en boot temprano (sin agente polkit). Cura (0.1.3): escritura directa de `/etc/locale.conf`.
+- **F16 "La muralla que vacia la despensa"**: la mision 2 barria el sources.list trixie sin reponer sid. Cura (0.1.3): garantizar `debian.sources` (unstable) antes de expulsar.
+- **F17 "El grub que pregunta a nadie"**: Discover sin terminal debconf rompio el full-upgrade (grub-pc exit 1). Cura (0.1.4, mision 4): preseed debconf con el disco raiz detectado en el primer arranque. Testigo: grub 2.14-3 actualizado sin dialogo.
+- **F18 "El paste devoralineas" y el horno fantasma**: seis pastes troceados en un dia; un comando de diagnostico (`| head`) decapito un horno con SIGPIPE. Doctrina nueva: bloques cortos, y ningun diagnostico toca el horno.
+- **rc5 al museo** como no canonica (acta de F15+F16); **rc6 canonica de sicaru**: ISO `tobixu-0.1-sicaru-rc6-20260925-amd64.iso` (SHA256 `17ee39e1…`), tobi-xu-core 0.1.4 de fabrica, kernel 7.2.7 por el rio tras reboot.
+- Snapshot forja #7: `7-v0.1-rc6-canonica`.
+
+### 2026-09-25 (afternoon) — rc6 canonical; scars F13–F18
+
+- **F13 "The sudoers with a surname"**: literal `hornear-rc4.sh` in sudoers killed the rc5 launch (`a password is required`). Cure: pattern `hornear-*.sh`.
+- **F14 discarded with witnesses**: rc5's "8-minute baptism" was real (caches); the baptism-without-creature was discarded upon finding the renamed ISO. Lesson: verify by **mtime and SHA256**, not by name.
+- **F15 "The messenger with no audience"**: `localectl` yields Access denied at early boot (no polkit agent). Cure (0.1.3): direct write of `/etc/locale.conf`.
+- **F16 "The wall that empties the pantry"**: mission 2 swept the trixie sources.list without restoring sid. Cure (0.1.3): guarantee `debian.sources` (unstable) before sweeping.
+- **F17 "The grub that asks nobody"**: Discover without a debconf terminal broke the full-upgrade (grub-pc exit 1). Cure (0.1.4, mission 4): debconf preseed with the root disk detected at first boot. Witness: grub 2.14-3 upgraded with no dialog.
+- **F18 "The line-eating paste" and the ghost oven**: six truncated pastes in one day; a diagnostic command (`| head`) beheaded an oven with SIGPIPE. New doctrine: short blocks, and no diagnostic touches the oven.
+- **rc5 to the museum** as non-canonical (acta of F15+F16); **rc6 canonical of sicaru**: ISO `tobixu-0.1-sicaru-rc6-20260925-amd64.iso` (SHA256 `17ee39e1…`), tobi-xu-core 0.1.4 from factory, kernel 7.2.7 via the river after reboot.
+- Forge snapshot #7: `7-v0.1-rc6-canonica`.
+
+### 2026-09-25（下午）— rc6 正典；伤痕 F13–F18
+
+- **F13「带姓氏的 sudoers」**：sudoers 中字面的 `hornear-rc4.sh` 扼杀了 rc5 的启动（`a password is required`）。疗法：模式 `hornear-*.sh`。
+- **F14 以证人排除**：rc5 的「8 分钟洗礼」为真（缓存）；「无婴之洗礼」在找到已更名 ISO 后被排除。教训：以 **mtime 与 SHA256** 验证，而非名称。
+- **F15「无人接见的信使」**：`localectl` 在早期启动时返回 Access denied（无 polkit 代理）。疗法（0.1.3）：直接写 `/etc/locale.conf`。
+- **F16「清空食品库的城墙」**：任务 2 扫除 trixie 的 sources.list 却未补回 sid。疗法（0.1.3）：扫除前保证 `debian.sources`（unstable）。
+- **F17「无人可问的 grub」**：无 debconf 终端的 Discover 破坏了 full-upgrade（grub-pc exit 1）。疗法（0.1.4，任务 4）：以首启检测到的根盘做 debconf preseed。证人：grub 2.14-3 无对话升级。
+- **F18「吞行粘贴」与幽灵烤箱**：一日六次粘贴断行；一条诊断命令（`| head`）以 SIGPIPE 斩首烤箱。新准则：短块操作，诊断不得触碰烤箱。
+- **rc5 入博物馆**为非正典（F15+F16 纪事）；**rc6 为 sicaru 正典**：ISO `tobixu-0.1-sicaru-rc6-20260925-amd64.iso`（SHA256 `17ee39e1…`），出厂自带 tobi-xu-core 0.1.4，重启后经河流获得内核 7.2.7。
+- Forja 快照 #7：`7-v0.1-rc6-canonica`。
+
 ---
 
 * * *
