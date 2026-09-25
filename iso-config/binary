@@ -95,7 +95,7 @@ LB_LOADLIN="false"
 LB_WIN32_LOADER="false"
 
 # Set net tarball
-LB_NET_TARBALL="true"
+LB_NET_TARBALL="false"
 
 # Set onie
 LB_ONIE="false"

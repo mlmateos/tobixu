@@ -58,7 +58,7 @@ LB_SYSTEM="live"
 LB_IMAGE_NAME="live-image"
 
 # Set options to use with apt
-APT_OPTIONS="--yes -o Acquire::Retries=5"
+APT_OPTIONS="--option Acquire::Check-Valid-Until=false -o APT::Get::Assume-Yes=true"
 
 # Set options to use with aptitude
 APTITUDE_OPTIONS="--assume-yes -o Acquire::Retries=5"
@@ -100,6 +100,3 @@ LB_UTC_TIME="false"
 # Enable verbose
 # If set here, overrides the command line option
 #_VERBOSE="false"
-
-# Bug #36: snapshot.debian.org requiere Check-Valid-Until=false durante build
-LB_APT_OPTIONS="--option Acquire::Check-Valid-Until=false"
