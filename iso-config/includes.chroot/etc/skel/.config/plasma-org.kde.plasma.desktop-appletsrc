@@ -14,6 +14,7 @@ lastScreen=0
 location=0
 plugin=org.kde.plasma.folder
 wallpaperplugin=org.kde.image
+Image=file:///usr/share/wallpapers/TobiXu-Orbita-Noche/contents/images/orbita-noche.png
 
 [Containments][2]
 activityId=
@@ -23,6 +24,7 @@ lastScreen=0
 location=4
 plugin=org.kde.panel
 wallpaperplugin=org.kde.image
+Image=file:///usr/share/wallpapers/TobiXu-Orbita-Noche/contents/images/orbita-noche.png
 
 [Containments][2][Applets][19]
 immutability=1
@@ -78,6 +80,7 @@ plugin=org.kde.plasma.systemtray
 popupHeight=432
 popupWidth=432
 wallpaperplugin=org.kde.image
+Image=file:///usr/share/wallpapers/TobiXu-Orbita-Noche/contents/images/orbita-noche.png
 
 [Containments][2][Applets][7][Applets][10]
 immutability=1
