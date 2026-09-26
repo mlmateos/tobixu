@@ -344,26 +344,29 @@ Ordered by priority. All done **cold**, with the VM off and with acta.
 - **rc5 入博物馆**为非正典（F15+F16 纪事）；**rc6 为 sicaru 正典**：ISO `tobixu-0.1-sicaru-rc6-20260925-amd64.iso`（SHA256 `17ee39e1…`），出厂自带 tobi-xu-core 0.1.4，重启后经河流获得内核 7.2.7。
 - Forja 快照 #7：`7-v0.1-rc6-canonica`。
 
-### 2026-09-26 — F19 y el wallpaper que rompio la sesion
+### 2026-09-26 — F19, el rostro recuperado y la doctrina del laboratorio
 
-- **F19 "El plasmashell que era compositor"**: en Wayland, `killall plasmashell` mata la sesion entera; y las sesiones zombis que no sueltan el compositor se curan con **reboot**, no con restart de sddm (testigo: `loginctl list-sessions` con 8 filas).
-- **F10-frente-1 redisenado**: inyectar `Image=` suelto tras `wallpaperplugin=` coloca la clave en el nivel del Containment y **crashea plasmashell** (pantalla negra post-login + journal). Metodo correcto para rc7: crear la subseccion `[Containments][N][Wallpaper][org.kde.image][General]` con su `Image=`, solo en el containment con `formfactor=0`.
-- **Nota de entorno**: en QEMU sin aceleracion GL, la sesion X11 de Plasma 6 entra en crash-loop (`glSwapInterval is unsupported`); el aislamiento de fallos se hace con **usuario nuevo**, nunca cambiando a X11.
-- rc6 vive como VM de trabajo `tobixurc6` bajo bridge de libvirt (SSH por IP, IPv6 local).
+- **F19 "El plasmashell que era compositor"**: en Wayland, `killall plasmashell` mata la sesion; las sesiones zombis que no sueltan el compositor se curan con reboot (testigo: 8 filas en `loginctl list-sessions`).
+- **Nota de entorno**: en QEMU sin GL, la sesion X11 de Plasma 6 entra en crash-loop (`glSwapInterval is unsupported`); se aisla con usuario nuevo, nunca con X11.
+- **F10-frente-1 curado por congelacion**: inyectar `Image=` suelto crashea plasmashell; el metodo correcto es configurar en el rio y congelar el appletsrc validado al skel (commit a1a1f5b). Doctrina nueva: *el rio es el laboratorio; el skel es la fabrica*.
+- **F10-frente-3 parcial**: avatar glifo TobiXu en logout/greeter via `~/.face.icon` + AccountsService; pendiente injertarlo al skel y la geometria del glifo en Main.qml.
+- rc6 vive como VM de trabajo `tobixurc6` (bridge libvirt, SSH por IP).
 
-### 2026-09-26 — F19 and the wallpaper that broke the session
+### 2026-09-26 — F19, the recovered face and the laboratory doctrine
 
-- **F19 "The plasmashell that was the compositor"**: on Wayland, `killall plasmashell` kills the whole session; zombie sessions that won't release the compositor are cured with a **reboot**, not an sddm restart (witness: `loginctl list-sessions` with 8 rows).
-- **F10-front-1 redesigned**: injecting a loose `Image=` after `wallpaperplugin=` places the key at Containment level and **crashes plasmashell** (black screen post-login + journal). Correct method for rc7: create the `[Containments][N][Wallpaper][org.kde.image][General]` subsection with its `Image=`, only in the containment with `formfactor=0`.
-- **Environment note**: on QEMU without GL acceleration, Plasma 6's X11 session enters a crash-loop (`glSwapInterval is unsupported`); fault isolation is done with a **new user**, never by switching to X11.
-- rc6 lives as work VM `tobixurc6` under a libvirt bridge (SSH by IP, local IPv6).
+- **F19 "The plasmashell that was the compositor"**: on Wayland, `killall plasmashell` kills the session; zombie sessions are cured with a reboot (witness: 8 rows in `loginctl list-sessions`).
+- **Environment note**: on QEMU without GL, Plasma 6's X11 session crash-loops (`glSwapInterval is unsupported`); isolate with a new user, never with X11.
+- **F10-front-1 cured by freezing**: loose `Image=` injection crashes plasmashell; the correct method is configuring in the river and freezing the validated appletsrc into the skel (commit a1a1f5b). New doctrine: *the river is the laboratory; the skel is the factory*.
+- **F10-front-3 partial**: TobiXu glyph avatar on logout/greeter via `~/.face.icon` + AccountsService; pending: inject into skel and fix glyph geometry in Main.qml.
+- rc6 lives as work VM `tobixurc6` (libvirt bridge, SSH by IP).
 
-### 2026-09-26 — F19 与会破坏会话的壁纸
+### 2026-09-26 — F19、恢复的面容与实验室准则
 
-- **F19「即合成器的 plasmashell」**：Wayland 下 `killall plasmashell` 会杀死整个会话；不释放合成器的僵尸会话须以 **reboot** 治愈，而非重启 sddm（证人：`loginctl list-sessions` 八行）。
-- **F10  fronts-1 重新设计**：在 `wallpaperplugin=` 后注入游离 `Image=` 会将键置于 Containment 层并**使 plasmashell 崩溃**（登录后黑屏 + journal）。rc7 的正确方法：仅在 `formfactor=0` 的 containment 中创建带 `Image=` 的 `[Containments][N][Wallpaper][org.kde.image][General]` 子节。
-- **环境注记**：在无 GL 加速的 QEMU 中，Plasma 6 的 X11 会话陷入崩溃循环（`glSwapInterval is unsupported`）；故障隔离以**新用户**进行，绝不切换 X11。
-- rc6 以工作 VM `tobixurc6` 存活于 libvirt 桥接之下（SSH 用 IP，本地 IPv6）。
+- **F19「即合成器的 plasmashell」**：Wayland 下 `killall plasmashell` 杀死会话；僵尸会话以 reboot 治愈（证人：`loginctl list-sessions` 八行）。
+- **环境注记**：无 GL 的 QEMU 中 Plasma 6 的 X11 会话崩溃循环（`glSwapInterval is unsupported`）；以新用户隔离，绝不用 X11。
+- **F10 fronts-1 以冻结治愈**：游离 `Image=` 注入使 plasmashell 崩溃；正确方法是在河中配置并将验证后的 appletsrc 冻结入 skel（commit a1a1f5b）。新准则：*河是实验室；skel 是工厂*。
+- **F10 fronts-3 部分**：登出/greeter 的 TobiXu 字形头像经 `~/.face.icon` + AccountsService；待办：注入 skel 并修正 Main.qml 字形几何。
+- rc6 以工作 VM `tobixurc6` 存活（libvirt 桥接，SSH 用 IP）。
 
 ---
 
