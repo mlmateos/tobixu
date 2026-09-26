@@ -344,6 +344,27 @@ Ordered by priority. All done **cold**, with the VM off and with acta.
 - **rc5 入博物馆**为非正典（F15+F16 纪事）；**rc6 为 sicaru 正典**：ISO `tobixu-0.1-sicaru-rc6-20260925-amd64.iso`（SHA256 `17ee39e1…`），出厂自带 tobi-xu-core 0.1.4，重启后经河流获得内核 7.2.7。
 - Forja 快照 #7：`7-v0.1-rc6-canonica`。
 
+### 2026-09-26 — F19 y el wallpaper que rompio la sesion
+
+- **F19 "El plasmashell que era compositor"**: en Wayland, `killall plasmashell` mata la sesion entera; y las sesiones zombis que no sueltan el compositor se curan con **reboot**, no con restart de sddm (testigo: `loginctl list-sessions` con 8 filas).
+- **F10-frente-1 redisenado**: inyectar `Image=` suelto tras `wallpaperplugin=` coloca la clave en el nivel del Containment y **crashea plasmashell** (pantalla negra post-login + journal). Metodo correcto para rc7: crear la subseccion `[Containments][N][Wallpaper][org.kde.image][General]` con su `Image=`, solo en el containment con `formfactor=0`.
+- **Nota de entorno**: en QEMU sin aceleracion GL, la sesion X11 de Plasma 6 entra en crash-loop (`glSwapInterval is unsupported`); el aislamiento de fallos se hace con **usuario nuevo**, nunca cambiando a X11.
+- rc6 vive como VM de trabajo `tobixurc6` bajo bridge de libvirt (SSH por IP, IPv6 local).
+
+### 2026-09-26 — F19 and the wallpaper that broke the session
+
+- **F19 "The plasmashell that was the compositor"**: on Wayland, `killall plasmashell` kills the whole session; zombie sessions that won't release the compositor are cured with a **reboot**, not an sddm restart (witness: `loginctl list-sessions` with 8 rows).
+- **F10-front-1 redesigned**: injecting a loose `Image=` after `wallpaperplugin=` places the key at Containment level and **crashes plasmashell** (black screen post-login + journal). Correct method for rc7: create the `[Containments][N][Wallpaper][org.kde.image][General]` subsection with its `Image=`, only in the containment with `formfactor=0`.
+- **Environment note**: on QEMU without GL acceleration, Plasma 6's X11 session enters a crash-loop (`glSwapInterval is unsupported`); fault isolation is done with a **new user**, never by switching to X11.
+- rc6 lives as work VM `tobixurc6` under a libvirt bridge (SSH by IP, local IPv6).
+
+### 2026-09-26 — F19 与会破坏会话的壁纸
+
+- **F19「即合成器的 plasmashell」**：Wayland 下 `killall plasmashell` 会杀死整个会话；不释放合成器的僵尸会话须以 **reboot** 治愈，而非重启 sddm（证人：`loginctl list-sessions` 八行）。
+- **F10  fronts-1 重新设计**：在 `wallpaperplugin=` 后注入游离 `Image=` 会将键置于 Containment 层并**使 plasmashell 崩溃**（登录后黑屏 + journal）。rc7 的正确方法：仅在 `formfactor=0` 的 containment 中创建带 `Image=` 的 `[Containments][N][Wallpaper][org.kde.image][General]` 子节。
+- **环境注记**：在无 GL 加速的 QEMU 中，Plasma 6 的 X11 会话陷入崩溃循环（`glSwapInterval is unsupported`）；故障隔离以**新用户**进行，绝不切换 X11。
+- rc6 以工作 VM `tobixurc6` 存活于 libvirt 桥接之下（SSH 用 IP，本地 IPv6）。
+
 ---
 
 * * *
