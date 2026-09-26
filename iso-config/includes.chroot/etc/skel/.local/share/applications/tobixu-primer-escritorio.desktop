@@ -1,0 +1,5 @@
+[Desktop Entry]
+Type=Application
+Name=TobiXu primer escritorio
+Exec=/usr/lib/tobixu/primer-escritorio.sh
+X-KDE-autostart-phase=2
