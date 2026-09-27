@@ -368,6 +368,33 @@ Ordered by priority. All done **cold**, with the VM off and with acta.
 - **F10 fronts-3 部分**：登出/greeter 的 TobiXu 字形头像经 `~/.face.icon` + AccountsService；待办：注入 skel 并修正 Main.qml 字形几何。
 - rc6 以工作 VM `tobixurc6` 存活（libvirt 桥接，SSH 用 IP）。
 
+### 2026-09-26 (tarde) — rc9 recipiente definitivo; F20–F23
+
+- **F20 "El reset de primer arranque"**: Plasma reescribe el containment de escritorio al reasociarlo a la actividad nueva; un skel no puede congelar el wallpaper del escritorio (el panel trofeo si sobrevive). Cura: autostart de un solo uso con `plasma-apply-wallpaperimage`.
+- **F21 "El rsync desde el directorio equivocado"**: rsync ejecutado desde `~` en vez de `~/projects/tobixu` no transfiere nada; verificar `pwd` antes.
+- **F22 "El autostart en el directorio de menu"**: `.desktop` de autostart en `~/.local/share/applications/` es invisible para la sesion; los autostarts viven en `~/.config/autostart/`. Cura: `git mv` al directorio correcto (commit fd0f90d).
+- **F23 "El autostart que se borraba en el directorio equivocado"**: el script autodestruia la ruta vieja; idempotencia por marcador sigue funcionando. Cura: `rm -f` con la ruta nueva.
+- **rc9 = recipiente definitivo**: trofeo + glifo + orbita-noche de fabrica en el primer login sin intervencion (testigos: marcador 17:57:50, `Image=` correcto, escritorio con orbita-noche). SHA256 `16986eed…`.
+- Pendientes de arte para v0.2: Konqi (frente-2), branding de Calamares (frente-4), geometria del glifo en el greeter (frente-3b).
+
+### 2026-09-26 (afternoon) — rc9 definitive vessel; F20–F23
+
+- **F20 "The first-boot reset"**: Plasma rewrites the desktop containment when reassociating it to the new activity; a skel cannot freeze the desktop wallpaper (the trophy panel does survive). Cure: one-shot autostart with `plasma-apply-wallpaperimage`.
+- **F21 "The rsync from the wrong directory"**: rsync run from `~` instead of `~/projects/tobixu` transfers nothing; check `pwd` first.
+- **F22 "The autostart in the menu directory"**: an autostart `.desktop` in `~/.local/share/applications/` is invisible to the session; autostarts live in `~/.config/autostart/`. Cure: `git mv` to the right directory (commit fd0f90d).
+- **F23 "The autostart that deleted itself in the wrong directory"**: the script removed the old path; marker-based idempotency still works. Cure: `rm -f` with the new path.
+- **rc9 = definitive vessel**: trophy + glyph + orbita-noche from factory on first login with no intervention (witnesses: marker 17:57:50, correct `Image=`, desktop with orbita-noche). SHA256 `16986eed…`.
+- Art pending for v0.2: Konqi (front-2), Calamares branding (front-4), glyph geometry in greeter (front-3b).
+
+### 2026-09-26（下午）— rc9 决定版容器；F20–F23
+
+- **F20「首启重置」**：Plasma 在重新关联新活动时重写桌面 containment；skel 无法冻结桌面壁纸（奖杯面板则存活）。疗法：以 `plasma-apply-wallpaperimage` 的一次性 autostart。
+- **F21「错误目录的 rsync」**：在 `~` 而非 `~/projects/tobixu` 运行的 rsync 不传输任何内容；先检查 `pwd`。
+- **F22「菜单目录中的 autostart」**：位于 `~/.local/share/applications/` 的 autostart `.desktop` 对会话不可见；autostart 住在 `~/.config/autostart/`。疗法：`git mv` 至正确目录（commit fd0f90d）。
+- **F23「在错误目录自删的 autostart」**：脚本删除旧路径；基于标记的幂等仍然有效。疗法：以新路径 `rm -f`。
+- **rc9 = 决定版容器**：首启无需干预即出厂自带奖杯 + 字形 + órbita-noche（证人：标记 17:57:50、正确的 `Image=`、桌面显示 órbita-noche）。SHA256 `16986eed…`。
+- v0.2 待办艺术：Konqi（front-2）、Calamares 品牌（front-4）、greeter 字形几何（front-3b）。
+
 ---
 
 * * *
