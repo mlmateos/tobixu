@@ -395,6 +395,33 @@ Ordered by priority. All done **cold**, with the VM off and with acta.
 - **rc9 = 决定版容器**：首启无需干预即出厂自带奖杯 + 字形 + órbita-noche（证人：标记 17:57:50、正确的 `Image=`、桌面显示 órbita-noche）。SHA256 `16986eed…`。
 - v0.2 待办艺术：Konqi（front-2）、Calamares 品牌（front-4）、greeter 字形几何（front-3b）。
 
+### 2026-09-29 — Capa 2 sellada: rc12 y el primer paquete de fabrica
+
+- **Capa 2 completa (camino C, capa A)**: `tobixu-wallpapers 0.1.0` se hornea en el propio `hornear.sh` (bloque CAPA2 tras `lb bootstrap`), se siembra en `includes.chroot/opt/tobixu-debs/`, y el hook `0400-install-tobixu-debs.hook.chroot` lo instala dentro del chroot y borra el directorio. Testigos en rc12 instalado: `ii tobixu-wallpapers 0.1.0`, `dpkg -S` atribuye el svg al paquete, `/opt/tobixu-debs` ausente. SHA256 rc12: `c3dcd98f…`.
+- **F24 "El contenido de archivo pegado como comando"**: pegar el cuerpo de un hook suelto en la terminal ejecuto su `exit 0` y cerro la sesion. Los cuerpos de script se escriben con `cat > archivo <<'EOF'`, nunca se pegan sueltos.
+- **F25 "El rsync que no puede borrar lo que el horno creo como root"**: `includes.chroot/opt/tobixu-debs/` queda propiedad de root tras el horneado; `rsync --delete` no puede hacer unlink. No bloquea (el horno limpia como root), pero se documenta: cura futura = limpiar al final del horneado o excluir la ruta del rsync.
+- **F26 "El falso positivo del grep numerico"**: `grep 0400` matcheo `0400-libkf6syntaxhighlighting6` (paquete KDE) y no al hook. Usar el nombre completo (`0400-install`) en los testigos.
+- **live-build no recorre `config/hooks/chroot/`**: los hooks chroot viven en `config/hooks/normal/` (cura del 0400, commit del 28-sep).
+- Pendientes: Konqi (frente-2), branding Calamares (frente-4), proximo paquete: `tobixu-sddm-theme` o `tobixu-welcome`.
+
+### 2026-09-29 — Layer 2 sealed: rc12 and the first factory package
+
+- **Layer 2 complete (path C, layer A)**: `tobixu-wallpapers 0.1.0` is built inside `hornear.sh` (CAPA2 block after `lb bootstrap`), seeded into `includes.chroot/opt/tobixu-debs/`, and hook `0400-install-tobixu-debs.hook.chroot` installs it inside the chroot and removes the directory. Witnesses on installed rc12: `ii tobixu-wallpapers 0.1.0`, `dpkg -S` attributes the svg to the package, `/opt/tobixu-debs` absent. rc12 SHA256: `c3dcd98f…`.
+- **F24 "File content pasted as command"**: pasting a hook body loose in the terminal ran its `exit 0` and closed the session. Script bodies are written with `cat > file <<'EOF'`, never pasted loose.
+- **F25 "The rsync that cannot delete what the oven created as root"**: `includes.chroot/opt/tobixu-debs/` ends up root-owned after a build; `rsync --delete` cannot unlink. Non-blocking (the oven cleans as root), but documented: future cure = clean at end of build or exclude the path from rsync.
+- **F26 "The numeric grep false positive"**: `grep 0400` matched `0400-libkf6syntaxhighlighting6` (a KDE package), not the hook. Use the full name (`0400-install`) in witnesses.
+- **live-build does not walk `config/hooks/chroot/`**: chroot hooks live in `config/hooks/normal/` (0400 cure, 28-Sep commit).
+- Pending: Konqi (front-2), Calamares branding (front-4), next package: `tobixu-sddm-theme` or `tobixu-welcome`.
+
+### 2026-09-29 — 第二层封印：rc12 与首个出厂包
+
+- **第二层完成（路径 C，A 层）**：`tobixu-wallpapers 0.1.0` 在 `hornear.sh` 内构建（`lb bootstrap` 后的 CAPA2 块），播种到 `includes.chroot/opt/tobixu-debs/`，hook `0400-install-tobixu-debs.hook.chroot` 在 chroot 内安装并删除该目录。rc12 安装后的证人：`ii tobixu-wallpapers 0.1.0`、`dpkg -S` 将 svg 归属于该包、`/opt/tobixu-debs` 不存在。rc12 SHA256：`c3dcd98f…`。
+- **F24「把文件内容当命令粘贴」**：将 hook 正文松散粘贴到终端会执行其 `exit 0` 并关闭会话。脚本正文须用 `cat > file <<'EOF'` 书写，绝不松散粘贴。
+- **F25「无法删除 horno 以 root 所建之物的 rsync」**：`includes.chroot/opt/tobixu-debs/` 在构建后归 root 所有；`rsync --delete` 无法 unlink。不阻塞（horno 以 root 清理），但已记录：未来疗法 = 构建末尾清理或从 rsync 排除该路径。
+- **F26「数字 grep 的假阳性」**：`grep 0400` 匹配到 `0400-libkf6syntaxhighlighting6`（KDE 包）而非 hook。证人中使用全名（`0400-install`）。
+- **live-build 不遍历 `config/hooks/chroot/`**：chroot hooks 住在 `config/hooks/normal/`（0400 的疗法，9月28日 commit）。
+- 待办：Konqi（front-2）、Calamares 品牌（front-4）、下一个包：`tobixu-sddm-theme` 或 `tobixu-welcome`。
+
 ---
 
 * * *
