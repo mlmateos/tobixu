@@ -40,6 +40,16 @@ LOG="build-$(date +%Y%m%d-%H%M).log"
 { df -h /tmp | tail -n 1; df -h /home | tail -n 1; } > "$LOG"
 
 lb bootstrap --debug 2>&1 | tee -a "$LOG"; [ "${PIPESTATUS[0]}" -eq 0 ] || exit 1
+
+# === CAPA 2: hornear paquetes TobiXu y sembrarlos en el chroot ===
+echo "CAPA2: empaquetando tobixu-wallpapers..." | tee -a "$LOG"
+mkdir -p config/includes.chroot/opt/tobixu-debs
+rm -f config/includes.chroot/opt/tobixu-debs/*.deb
+for PKG in tobixu-wallpapers; do
+  ( cd "packages/$PKG" && dpkg-buildpackage -us -uc -b ) 2>&1 | tail -n 3 | tee -a "$LOG"
+  cp packages/${PKG}_*.deb config/includes.chroot/opt/tobixu-debs/
+done
+ls -l config/includes.chroot/opt/tobixu-debs/ | tee -a "$LOG"
 lb chroot    --debug 2>&1 | tee -a "$LOG"; [ "${PIPESTATUS[0]}" -eq 0 ] || exit 1
 
 # === PUERTA: montajes + purga por dpkg (la autoridad que no miente) + triple testigo ===
