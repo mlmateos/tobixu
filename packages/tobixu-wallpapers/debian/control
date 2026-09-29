@@ -1,0 +1,13 @@
+Source: tobixu-wallpapers
+Section: graphics
+Priority: optional
+Maintainer: Manuel Lopez Mateos <mlmateos@tobixu.org>
+Build-Depends: debhelper-compat (= 13)
+Standards-Version: 4.6.2
+
+Package: tobixu-wallpapers
+Architecture: all
+Depends: ${misc:Depends}
+Description: Fondos de pantalla TobiXu (orbita-noche)
+ Wallpaper por defecto de TobiXu sicaru: orbita-noche en SVG y como
+ paquete de wallpaper de Plasma (metadata.desktop e imagenes).
