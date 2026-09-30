@@ -1,0 +1,7 @@
+#!/bin/sh
+set -e
+if [ "$1" = remove ]; then
+    plymouth-set-default-theme debian-theme || true
+    update-initramfs -u || true
+fi
+#DEBHELPER#

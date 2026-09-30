@@ -1,0 +1,15 @@
+Source: tobixu-plymouth-theme
+Section: utils
+Priority: optional
+Maintainer: Manuel Lopez Mateos <mlmateos@tobixu.org>
+Build-Depends: debhelper-compat (= 13)
+Standards-Version: 4.6.2
+
+Package: tobixu-plymouth-theme
+Architecture: all
+Depends: ${misc:Depends}, plymouth
+Description: Velo de arranque de Tobi Xu (tema plymouth script)
+ Tema de Plymouth con orbita-noche a pantalla completa y el glifo
+ dorado centrado. El postinst lo activa con plymouth-set-default-theme
+ y lo hornea al initramfs (update-initramfs -u); al removerlo, el
+ sistema vuelve al tema de Debian sin residuos.

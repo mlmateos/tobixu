@@ -1,0 +1,9 @@
+#!/bin/sh
+set -e
+if [ "$1" = configure ]; then
+    if command -v plymouth-set-default-theme >/dev/null 2>&1; then
+        plymouth-set-default-theme tobixu-selva
+        update-initramfs -u || echo "PLYMOUTH: update-initramfs difirio el velo al proximo regen"
+    fi
+fi
+#DEBHELPER#
