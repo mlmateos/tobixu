@@ -1,3 +1,13 @@
+tobixu-sddm-theme (0.4.2) sicaru; urgency=low
+
+  * F31: id duplicado eliminado; glifo anclado a loginCard (el id real de la tarjeta).
+
+ -- Manuel Lopez Mateos <mlmateos@tobixu.org>  Wed, 30 Sep 2026 10:38:16 -0600
+tobixu-sddm-theme (0.4.1) sicaru; urgency=low
+
+  * Geometria del glifo: anclado a card.top con margen -56 y z:2 (frente-3b).
+
+ -- Manuel Lopez Mateos <mlmateos@tobixu.org>  Wed, 30 Sep 2026 10:32:55 -0600
 tobixu-sddm-theme (0.4.0) sicaru; urgency=low
 
   * Tema del greeter empaquetado (antes suelto en includes.chroot y theme/sddm).

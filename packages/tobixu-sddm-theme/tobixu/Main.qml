@@ -19,7 +19,10 @@ Rectangle {
         source: "glifo-256.png"
         width: 200
         height: 112
-        anchors.horizontalCenter: parent.horizontalCenter
+        anchors.horizontalCenter: loginCard.horizontalCenter
+        anchors.bottom: loginCard.top
+        anchors.bottomMargin: -56
+        z: 2
         y: parent.height * 0.15
         
         SequentialAnimation on opacity {
