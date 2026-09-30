@@ -1,0 +1,15 @@
+Source: tobixu-keyboard
+Section: utils
+Priority: optional
+Maintainer: Manuel Lopez Mateos <mlmateos@tobixu.org>
+Build-Depends: debhelper-compat (= 13)
+Standards-Version: 4.6.2
+
+Package: tobixu-keyboard
+Architecture: all
+Depends: ${misc:Depends}, xkb-data
+Description: Teclado US modificado de TobiXu (diversion de xkb-data)
+ Instala el layout us modificado por Manuel Lopez Mateos mediante
+ dpkg-divert sobre /usr/share/X11/xkb/symbols/us, con reversa limpia
+ al remover el paquete. Funciona en X11 y en Wayland (KWin lee el
+ mismo arbol xkb al iniciar la sesion).

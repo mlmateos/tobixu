@@ -1,0 +1,25 @@
+tobixu-keyboard (0.1.3) sicaru; urgency=low
+
+  * La tecla de acentos es RWIN (Right Super), no MENU: RWIN = Multi_key.
+
+ -- Manuel Lopez Mateos <mlmateos@tobixu.org>  Tue, 29 Sep 2026 21:06:18 -0600
+tobixu-keyboard (0.1.2) sicaru; urgency=low
+
+  * MENU derecha = Multi_key (Compose) en basic; recupera <MenuR>+'+a = a aguda.
+
+ -- Manuel Lopez Mateos <mlmateos@tobixu.org>  Tue, 29 Sep 2026 20:53:23 -0600
+tobixu-keyboard (0.1.2) sicaru; urgency=low
+
+  * MENU derecha = Multi_key (Compose) en basic; recupera acentos <MenuR>+'+a.
+
+ -- Manuel Lopez Mateos <mlmateos@tobixu.org>  Tue, 29 Sep 2026 20:38:50 -0600
+tobixu-keyboard (0.1.1) sicaru; urgency=low
+
+  * basic: include level3(ralt_switch) al cierre del bloque; AltGr cablea L3/L4 en Wayland.
+
+ -- Manuel Lopez Mateos <mlmateos@tobixu.org>  Tue, 29 Sep 2026 20:16:58 -0600
+tobixu-keyboard (0.1.0) sicaru; urgency=low
+
+  * Layout us modificado (L3/L4 zai y espanol) via dpkg-divert.
+
+ -- Manuel Lopez Mateos <mlmateos@tobixu.org>  Tue, 29 Sep 2026 19:30:47 -0600

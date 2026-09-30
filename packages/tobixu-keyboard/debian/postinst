@@ -1,0 +1,10 @@
+#!/bin/sh
+set -e
+TARGET=/usr/share/X11/xkb/symbols/us
+if [ "$1" = configure ]; then
+    if ! dpkg-divert --list | grep -q "$TARGET"; then
+        dpkg-divert --package tobixu-keyboard --divert "$TARGET.tobixu-orig" --rename "$TARGET"
+    fi
+    install -m 644 /usr/share/tobixu-keyboard/us "$TARGET"
+fi
+#DEBHELPER#
