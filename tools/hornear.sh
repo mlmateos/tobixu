@@ -45,7 +45,7 @@ lb bootstrap --debug 2>&1 | tee -a "$LOG"; [ "${PIPESTATUS[0]}" -eq 0 ] || exit 
 echo "CAPA2: empaquetando tobixu-wallpapers..." | tee -a "$LOG"
 mkdir -p config/includes.chroot/opt/tobixu-debs
 rm -f config/includes.chroot/opt/tobixu-debs/*.deb
-for PKG in tobixu-wallpapers; do
+for PKG in tobixu-wallpapers tobixu-keyboard; do
   ( cd "packages/$PKG" && dpkg-buildpackage -us -uc -b ) 2>&1 | tail -n 3 | tee -a "$LOG"
   cp packages/${PKG}_*.deb config/includes.chroot/opt/tobixu-debs/
 done
