@@ -8,7 +8,6 @@ Version=0.4
 MainScript=Main.qml
 ConfigFile=theme.conf
 TranslationsDirectory=
-Screenshot=preview.png
 Theme-Id=tobixu
 Theme-API=2.0
 QtVersion=6

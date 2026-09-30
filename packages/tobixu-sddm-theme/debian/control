@@ -1,0 +1,15 @@
+Source: tobixu-sddm-theme
+Section: utils
+Priority: optional
+Maintainer: Manuel Lopez Mateos <mlmateos@tobixu.org>
+Build-Depends: debhelper-compat (= 13)
+Standards-Version: 4.6.2
+
+Package: tobixu-sddm-theme
+Architecture: all
+Depends: ${misc:Depends}, sddm
+Description: Puerta selva de Tobi Xu (tema SDDM con glifo y orbita-noche)
+ Tema del greeter de TobiXu: glifo sobre orbita-noche, tarjeta de
+ login y botones de poder. Incluye el drop-in de sddm.conf.d que lo
+ activa (Current=tobixu); al remover el paquete, SDDM vuelve al tema
+ por defecto sin residuos.
