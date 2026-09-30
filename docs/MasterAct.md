@@ -422,6 +422,22 @@ Ordered by priority. All done **cold**, with the VM off and with acta.
 - **live-build 不遍历 `config/hooks/chroot/`**：chroot hooks 住在 `config/hooks/normal/`（0400 的疗法，9月28日 commit）。
 - 待办：Konqi（front-2）、Calamares 品牌（front-4）、下一个包：`tobixu-sddm-theme` 或 `tobixu-welcome`。
 
+### 2026-09-29 — rc13: teclado y tecla de fabrica (Capa 2 completa)
+
+- **rc13**: primera ISO con `tobixu-keyboard 0.1.3` (us modificado por dpkg-divert sobre xkb-data), `tobixu-wallpapers 0.1.0` y `tecla 51.0-1` de fabrica. Testigos sin intervencion: tres `ii`, diversion listada, AltGr+c→ç, RWIN→'→a→á, tecla con 4 niveles. SHA256 rc13: `4df17a64…`.
+- **F27 "La tecla por keycode, no por posicion"**: la tecla de acentos era RWIN (Right Super), no MENU; dos versiones fallidas (0.1.1/0.1.2) por identificarla por posicion. Cura: precedente drix del propio archivo (RWIN = Multi_key).
+- **F28 "El horno fail-fast"**: rc13a nacio muda (el source de tobixu-keyboard no existia en packages/ de la forja y el bucle CAPA2 siguio de largo). Cura: guardia `[ -d packages/$PKG ] || exit 1` (commit 6be9ec9).
+- **F29 "Wayland no hereda opciones fantasma"**: el basic del us no declaraba level3(ralt_switch); en X11 una opcion global lo suplia, en Wayland nada. Cura dentro del propio layout; RWIN=Multi_key viaja en el archivo, no en kxkbrc.
+- **dpkg-divert como canon**: sobrescribir un archivo de otro paquete (xkb-data) con reversa limpia en prerm.
+- Pendientes v0.2: Konqi (frente-2), branding Calamares (frente-4), geometria del greeter (frente-3b); paquetes `tobixu-sddm-theme` y `tobixu-welcome`.
+
+### 2026-09-29 — rc13: factory keyboard and tecla (Layer 2 complete)
+
+- **rc13**: first ISO with `tobixu-keyboard 0.1.3` (modified us via dpkg-divert over xkb-data), `tobixu-wallpapers 0.1.0` and `tecla 51.0-1` from factory. Witnesses: three `ii`, diversion listed, AltGr+c→ç, RWIN→'→a→á, tecla with 4 levels. rc13 SHA256: `4df17a64…`.
+- **F27 "The key by keycode, not by position"**: the accent key was RWIN (Right Super), not MENU; two failed versions (0.1.1/0.1.2) from position-based identification. Cure: the drix precedent in the file itself (RWIN = Multi_key).
+- **F28 "The fail-fast oven"**: rc13a was born mute (tobixu-keyboard source missing in forja's packages/; the CAPA2 loop skipped on). Cure: guard `[ -d packages/$PKG ] || exit 1` (commit 6be9ec9).
+- **F29 "
+
 ---
 
 * * *
