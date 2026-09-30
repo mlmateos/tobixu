@@ -438,6 +438,30 @@ Ordered by priority. All done **cold**, with the VM off and with acta.
 - **F28 "The fail-fast oven"**: rc13a was born mute (tobixu-keyboard source missing in forja's packages/; the CAPA2 loop skipped on). Cure: guard `[ -d packages/$PKG ] || exit 1` (commit 6be9ec9).
 - **F29 "
 
+### 2026-09-30 — Capa 3 abierta: rc14 y la puerta versionada
+
+- **rc14**: primera ISO con `tobixu-sddm-theme 0.4.2` de fabrica (greeter con glifo a caballo sobre la tarjeta), junto a `tobixu-keyboard 0.1.3`, `tobixu-wallpapers 0.1.0` y `tecla 51.0-1`. Testigos sin intervencion: cuatro `ii`, `dpkg -S` atribuye Main.qml y el drop-in al paquete, captura del greeter con glifo completo. SHA256 rc14: `7946bc96…`.
+- **F30 "Las dos copias que divergieron"**: el greeter vivia en dos lugares (`theme/sddm/` taller en espanol, `includes.chroot` contrabando en ingles). Desempate por commit mas reciente (b482f97, ingles) y fuente unica en `packages/tobixu-sddm-theme/`. Semilla trilingue: `TranslationsDirectory=` en metadata y copia espanola preservada en git (9aba956) para el frente i18n (es/en/zh).
+- **F31 "La inyeccion ciega"**: el grep de geometria no incluia `id:`; la tarjeta ya tenia nombre (`loginCard`) y el sed anadio un segundo `id` → QML "Property value set multiple times" y greeter gris de respaldo. Cura: id unico y glifo anclado a `loginCard` con `z:2`. Leccion: todo grep forense de QML incluye `id:`.
+- **Frente-3b cerrado**: geometria del glifo en el greeter.
+- Pendientes: Plymouth (negro de arranque), `tobixu-welcome` (jubilar a Konqi, frente-2), branding Calamares (frente-4), `tobixu-plasma-look` (lockscreen + Kvantum + Papirus), i18n trilingue.
+
+### 2026-09-30 — Layer 3 open: rc14 and the versioned door
+
+- **rc14**: first ISO with factory `tobixu-sddm-theme 0.4.2` (greeter with glyph straddling the card), plus `tobixu-keyboard 0.1.3`, `tobixu-wallpapers 0.1.0`, `tecla 51.0-1`. Witnesses without intervention: four `ii`, `dpkg -S` attributes Main.qml and the drop-in to the package, greeter capture with full glyph. rc14 SHA256: `7946bc96…`.
+- **F30 "The two copies that diverged"**: the greeter lived in two places (`theme/sddm/` workshop in Spanish, `includes.chroot` contraband in English). Tie-break by most recent commit (b482f97, English) and single source at `packages/tobixu-sddm-theme/`. Trilingual seed: `TranslationsDirectory=` in metadata and the Spanish copy preserved in git (9aba956) for the i18n front (es/en/zh).
+- **F31 "The blind injection"**: the geometry grep omitted `id:`; the card already had a name (`loginCard`) and the sed added a second `id` → QML "Property value set multiple times" and fallback gray greeter. Cure: single id and glyph anchored to `loginCard` with `z:2`. Lesson: every QML forensic grep includes `id:`.
+- **Front-3b closed**: greeter glyph geometry.
+- Pending: Plymouth (boot black), `tobixu-welcome` (retire Konqi, front-2), Calamares branding (front-4), `tobixu-plasma-look` (lockscreen + Kvantum + Papirus), trilingual i18n.
+
+### 2026-09-30 — 第三层开启：rc14 与版本化之门
+
+- **rc14**：首个出厂 `tobixu-sddm-theme 0.4.2`（greeter 中徽记骑跨卡片）的 ISO，另有 `tobixu-keyboard 0.1.3`、`tobixu-wallpapers 0.1.0`、`tecla 51.0-1`。无干预证人：四个 `ii`、`dpkg -S` 将 Main.qml 与 drop-in 归属于该包、greeter 徽记完整截图。rc14 SHA256：`7946bc96…`。
+- **F30「分歧的两份拷贝」**：greeter 曾住两处（`theme/sddm/` 西班牙语工坊、`includes.chroot` 英语走私）。以最近 commit（b482f97，英语）裁决，单一源归于 `packages/tobixu-sddm-theme/`。三语种子：metadata 的 `TranslationsDirectory=` 与 git 中保存的西班牙语拷贝（9aba956），供 i18n 前线（es/en/zh）。
+- **F31「盲目注入」**：几何 grep 未含 `id:`；卡片本有名（`loginCard`），sed 又加第二 `id` → QML "Property value set multiple times"，greeter 退回灰色。疗法：唯一 id，徽记锚定 `loginCard` 且 `z:2`。教训：QML 取证 grep 必含 `id:`。
+- **front-3b 已闭**：greeter 徽记几何。
+- 待办：Plymouth（启动黑屏）、`tobixu-welcome`（Konqi 退休，front-2）、Calamares 品牌（front-4）、`tobixu-plasma-look`（锁屏 + Kvantum + Papirus）、三语 i18n。
+
 ---
 
 * * *
