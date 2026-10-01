@@ -1,0 +1,31 @@
+Source: tobi-xu-arts
+Section: metapackages
+Priority: optional
+Maintainer: Manuel Lopez Mateos <mlmateos@tobixu.org>
+Build-Depends: debhelper-compat (= 13)
+Standards-Version: 4.6.2
+
+Package: tobi-xu-arts
+Architecture: all
+Depends: ${misc:Depends},
+ krita,
+ inkscape,
+ gimp,
+ rawtherapee,
+ kdenlive,
+ obs-studio,
+ vlc,
+ ffmpeg,
+ audacity,
+ musescore,
+ ardour,
+ lmms,
+ jackd2,
+ freecad,
+ scribus,
+ handbrake
+Recommends: blender, tobixu-pulsar
+Description: Metapaquete ARTS de Tobi Xu (arte, diseno, multimedia)
+ Coleccion completa ARTS: imagen (Krita, Inkscape, GIMP, RawTherapee), video (Kdenlive, OBS,
+ HandBrake), audio (Audacity, Ardour, LMMS), 3D (FreeCAD, Blender recomendado), publicacion
+ (Scribus), edicion de texto (Pulsar recomendado).

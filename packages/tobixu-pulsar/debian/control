@@ -1,0 +1,11 @@
+Source: tobixu-pulsar
+Section: utils
+Priority: optional
+Maintainer: Manuel Lopez Mateos <mlmateos@tobixu.org>
+Build-Depends: debhelper-compat (= 13)
+Standards-Version: 4.6.2
+
+Package: tobixu-pulsar
+Architecture: all
+Depends: ${misc:Depends}, wget, sudo
+Description: Wrapper de instalacion de Pulsar (primer arranque)

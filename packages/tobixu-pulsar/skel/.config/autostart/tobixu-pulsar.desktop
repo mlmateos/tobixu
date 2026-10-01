@@ -1,0 +1,5 @@
+[Desktop Entry]
+Type=Application
+Name=TobiXu Pulsar Installer
+Exec=/bin/bash /usr/lib/tobixu/instalar-pulsar.sh
+X-KDE-autostart-phase=2

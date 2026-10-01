@@ -1,0 +1,8 @@
+tobi-xu-stem (0.1.1) sicaru; urgency=low
+
+  * texlive-base obligatorio, texlive-full recomendado.
+  * LibreOffice completo + Xournal++ + juegos cientificos (Go, Ajedrez, Puzzles).
+  * Cinco gigantes (Sage, ROOT, ParaView, Blender) como Recommends; QGIS obligatorio.
+  * texstudio/frescobaldi desde repo Qt6 con pinning de prioridad.
+
+ -- Manuel Lopez Mateos <mlmateos@tobixu.org>  Thu, 01 Oct 2026 17:34:10 -0600

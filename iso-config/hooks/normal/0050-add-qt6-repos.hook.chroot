@@ -1,0 +1,14 @@
+#!/bin/sh
+set -e
+mkdir -p /etc/apt/keyrings /etc/apt/preferences.d
+curl -fsSL https://raw.githubusercontent.com/mlmateos/texstudio-qt6-builds/master/texstudio-qt6-key.asc | gpg --dearmor -o /etc/apt/keyrings/texstudio-qt6-key.gpg
+curl -fsSL https://raw.githubusercontent.com/mlmateos/frescobaldi-qt6-builds/main/frescobaldi-qt6-key.asc | gpg --dearmor -o /etc/apt/keyrings/frescobaldi-qt6-key.gpg
+chmod a+r /etc/apt/keyrings/texstudio-qt6-key.gpg /etc/apt/keyrings/frescobaldi-qt6-key.gpg
+echo "deb [arch=amd64 signed-by=/etc/apt/keyrings/texstudio-qt6-key.gpg] https://mlmateos.github.io/texstudio-qt6-builds stable main" > /etc/apt/sources.list.d/texstudio-qt6-builds.list
+echo "deb [arch=amd64 signed-by=/etc/apt/keyrings/frescobaldi-qt6-key.gpg] https://mlmateos.github.io/frescobaldi-qt6-builds stable main" > /etc/apt/sources.list.d/frescobaldi-qt6-builds.list
+cat > /etc/apt/preferences.d/tobixu-qt6 <<'PREF'
+Package: texstudio frescobaldi
+Pin: origin mlmateos.github.io
+Pin-Priority: 990
+PREF
+apt-get update -qq || true

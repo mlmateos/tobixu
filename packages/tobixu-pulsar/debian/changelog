@@ -1,0 +1,5 @@
+tobixu-pulsar (0.1.0) sicaru; urgency=low
+
+  * Wrapper de Pulsar: autostart de primer arranque.
+
+ -- Manuel Lopez Mateos <mlmateos@tobixu.org>  Thu, 01 Oct 2026 17:34:25 -0600
