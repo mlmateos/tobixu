@@ -1,3 +1,14 @@
+tobixu-plasma-look (0.2.1) sicaru; urgency=low
+
+  * F37/F38: imagenes del splash presentes y debian/install completo.
+
+ -- Manuel Lopez Mateos <mlmateos@tobixu.org>  Thu, 01 Oct 2026 08:40:44 -0600
+tobixu-plasma-look (0.2.0) sicaru; urgency=low
+
+  * Identidad visible: ColorScheme=IguanaNoche + widgetStyle=kvantum.
+  * KSplash org.tobixu.selva: orbita-noche + glifo (D1: Konqi se queda, el splash es nuestro).
+
+ -- Manuel Lopez Mateos <mlmateos@tobixu.org>  Thu, 01 Oct 2026 08:29:59 -0600
 tobixu-plasma-look (0.1.1) sicaru; urgency=low
 
   * qt-style-kvantum movido a Recommends: motor de estilos opcional, no obligatorio.

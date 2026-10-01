@@ -77,6 +77,7 @@ echo "PUERTA: ii=$N_II any=$N_ANY sesiones=$N_SES" | tee -a "$LOG"
 for d in chroot/usr/share/applications/*calamares*.desktop; do
   [ -f "$d" ] || continue
   sed -i -e 's/^Name=.*/Name=Install Tobi Xu/' -e 's/^Name\[es\]=.*/Name[es]=Instalar Tobi Xu/' "$d"
+  grep -q '^Name\[zh_CN\]=' "$d" || echo 'Name[zh_CN]=安装 Tobi Xu' >> "$d"
 done
 N_OK=$(grep -l "^Name=Install Tobi Xu" chroot/usr/share/applications/*calamares*.desktop 2>/dev/null | wc -l)
 echo "PUERTA: puertas renombradas=$N_OK" | tee -a "$LOG"

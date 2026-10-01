@@ -1,5 +1,8 @@
+[General]
+ColorScheme=IguanaNoche
+
 [KDE]
-widgetStyle=Breeze
+widgetStyle=kvantum
 
 [Icons]
 Theme=Papirus-Dark

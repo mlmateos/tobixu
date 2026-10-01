@@ -1,3 +1,8 @@
+tobixu-sddm-theme (0.5.0) sicaru; urgency=low
+
+  * Greeter trilingue EN/ES/ZH con selector en la puerta.
+
+ -- Manuel Lopez Mateos <mlmateos@tobixu.org>  Thu, 01 Oct 2026 08:43:18 -0600
 tobixu-sddm-theme (0.4.2) sicaru; urgency=low
 
   * F31: id duplicado eliminado; glifo anclado a loginCard (el id real de la tarjeta).

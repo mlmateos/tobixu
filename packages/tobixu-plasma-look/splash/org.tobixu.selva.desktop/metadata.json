@@ -1,0 +1,12 @@
+{
+    "KPackageStructure": "Plasma/LookAndFeel",
+    "KPlugin": {
+        "Authors": [ { "Name": "Manuel Lopez Mateos" } ],
+        "Description": "Splash de sesion TobiXu: orbita-noche y glifo",
+        "Id": "org.tobixu.selva.desktop",
+        "License": "CC-BY-SA-4.0",
+        "Name": "TobiXu Selva",
+        "Version": "0.2.0",
+        "Website": "https://mlmateos.github.io/tobixu/"
+    }
+}

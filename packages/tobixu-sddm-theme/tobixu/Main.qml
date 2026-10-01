@@ -6,11 +6,42 @@ Rectangle {
     anchors.fill: parent
     color: "#06281E"
 
-    // Fondo Órbita Noche
+    // i18n trilingue: EN / ES / ZH
+    property string lang: "en"
+    property var tr: ({
+        en: { user: "Username", pass: "Password", signin: "Sign in", suspend: "Suspend", restart: "Restart", shutdown: "Shut Down" },
+        es: { user: "Usuario", pass: "Contraseña", signin: "Entrar", suspend: "Suspender", restart: "Reiniciar", shutdown: "Apagar" },
+        zh: { user: "用户名", pass: "密码", signin: "登录", suspend: "挂起", restart: "重启", shutdown: "关机" }
+    })
+
+    // Fondo Orbita Noche
     Image {
         anchors.fill: parent
         source: "orbita-noche.png"
         fillMode: Image.PreserveAspectCrop
+    }
+
+    // Selector de idioma (arriba a la derecha)
+    Row {
+        anchors.top: parent.top
+        anchors.right: parent.right
+        anchors.margins: 24
+        spacing: 14
+        z: 3
+        Repeater {
+            model: [ ["en", "EN"], ["es", "ES"], ["zh", "中文"] ]
+            Text {
+                text: modelData[1]
+                color: root.lang === modelData[0] ? "#8A2BE2" : "#FFFFFF"
+                font.pixelSize: 14
+                font.bold: root.lang === modelData[0]
+                MouseArea {
+                    anchors.fill: parent
+                    cursorShape: Qt.PointingHandCursor
+                    onClicked: root.lang = modelData[0]
+                }
+            }
+        }
     }
 
     // Glifo Xoo respirando
@@ -23,8 +54,6 @@ Rectangle {
         anchors.bottom: loginCard.top
         anchors.bottomMargin: -56
         z: 2
-        y: parent.height * 0.15
-        
         SequentialAnimation on opacity {
             loops: Animation.Infinite
             NumberAnimation { to: 0.6; duration: 2000; easing.type: Easing.InOutSine }
@@ -38,21 +67,19 @@ Rectangle {
         width: 400
         height: 450
         anchors.centerIn: parent
-        color: "#CC0E4D3A" // Selva translúcido
+        color: "#CC0E4D3A"
         radius: 16
         border.width: 2
-        border.color: "#8A2BE2" // Jacaranda
-        
+        border.color: "#8A2BE2"
+
         Column {
             anchors.fill: parent
             anchors.margins: 30
             spacing: 20
-            
-            // Reloj y Fecha (Política de la puerta: en inglés, 24h)
+
             Column {
                 width: parent.width
                 spacing: 5
-                
                 Text {
                     id: clockText
                     width: parent.width
@@ -61,7 +88,6 @@ Rectangle {
                     font.weight: Font.Light
                     color: "white"
                     text: Qt.formatTime(new Date(), "HH:mm")
-                    
                     Timer {
                         interval: 1000
                         running: true
@@ -69,7 +95,6 @@ Rectangle {
                         onTriggered: clockText.text = Qt.formatTime(new Date(), "HH:mm")
                     }
                 }
-                
                 Text {
                     width: parent.width
                     horizontalAlignment: Text.AlignHCenter
@@ -79,18 +104,16 @@ Rectangle {
                     text: new Date().toLocaleDateString(enLocale, "dddd, d MMMM yyyy")
                 }
             }
-            
-            Item { width: 1; height: 20 } // Espaciador
-            
-            // Campos de entrada
+
+            Item { width: 1; height: 20 }
+
             Column {
                 width: parent.width
                 spacing: 15
-                
                 TextField {
                     id: userField
                     width: parent.width
-                    placeholderText: "Username"
+                    placeholderText: root.tr[root.lang].user
                     text: userModel.lastUser
                     color: "white"
                     font.pixelSize: 18
@@ -101,11 +124,10 @@ Rectangle {
                     }
                     Keys.onReturnPressed: loginButton.clicked()
                 }
-                
                 TextField {
                     id: passField
                     width: parent.width
-                    placeholderText: "Password"
+                    placeholderText: root.tr[root.lang].pass
                     echoMode: TextInput.Password
                     color: "white"
                     font.pixelSize: 18
@@ -116,12 +138,11 @@ Rectangle {
                     }
                     Keys.onReturnPressed: loginButton.clicked()
                 }
-                
                 Button {
                     id: loginButton
                     width: parent.width
                     height: 50
-                    text: "Sign in"
+                    text: root.tr[root.lang].signin
                     font.pixelSize: 18
                     font.weight: Font.Bold
                     background: Rectangle {
@@ -136,11 +157,7 @@ Rectangle {
                         horizontalAlignment: Text.AlignHCenter
                         verticalAlignment: Text.AlignVCenter
                     }
-                    onClicked: {
-                        // Fallback a 0 si lastIndex no está definido
-                        var idx = (typeof sessionModel !== 'undefined' && sessionModel.lastIndex !== undefined) ? sessionModel.lastIndex : 0;
-                        sddm.login(userField.text, passField.text, sessionBox.currentIndex);
-                    }
+                    onClicked: sddm.login(userField.text, passField.text, sessionBox.currentIndex)
                 }
                 ComboBox {
                     id: sessionBox
@@ -165,54 +182,36 @@ Rectangle {
         }
     }
 
-    // Botones de apagado (Texto explícito, sin Repeater)
+    // Botones de apagado trilingues
     Row {
         anchors.bottom: parent.bottom
         anchors.right: parent.right
         anchors.margins: 40
         spacing: 30
-        
         Text {
-            text: "Suspend"
+            text: root.tr[root.lang].suspend
             color: "white"
             font.pixelSize: 14
             visible: sddm.canSuspend
-            MouseArea { 
-                anchors.fill: parent
-                cursorShape: Qt.PointingHandCursor
-                onClicked: sddm.suspend() 
-            }
+            MouseArea { anchors.fill: parent; cursorShape: Qt.PointingHandCursor; onClicked: sddm.suspend() }
         }
         Text {
-            text: "Restart"
+            text: root.tr[root.lang].restart
             color: "white"
             font.pixelSize: 14
             visible: sddm.canReboot
-            MouseArea { 
-                anchors.fill: parent
-                cursorShape: Qt.PointingHandCursor
-                onClicked: sddm.reboot() 
-            }
+            MouseArea { anchors.fill: parent; cursorShape: Qt.PointingHandCursor; onClicked: sddm.reboot() }
         }
         Text {
-            text: "Shut Down"
+            text: root.tr[root.lang].shutdown
             color: "white"
             font.pixelSize: 14
             visible: sddm.canPowerOff
-            MouseArea { 
-                anchors.fill: parent
-                cursorShape: Qt.PointingHandCursor
-                onClicked: sddm.powerOff() 
-            }
+            MouseArea { anchors.fill: parent; cursorShape: Qt.PointingHandCursor; onClicked: sddm.powerOff() }
         }
     }
-    
-    // Manejo de foco inicial
+
     Component.onCompleted: {
-        if (userField.text !== "") {
-            passField.forceActiveFocus();
-        } else {
-            userField.forceActiveFocus();
-        }
+        if (userField.text !== "") { passField.forceActiveFocus() } else { userField.forceActiveFocus() }
     }
 }
