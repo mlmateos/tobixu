@@ -1,0 +1,11 @@
+tobixu-plasma-look (0.1.1) sicaru; urgency=low
+
+  * qt-style-kvantum movido a Recommends: motor de estilos opcional, no obligatorio.
+
+ -- Manuel Lopez Mateos <mlmateos@tobixu.org>  Wed, 30 Sep 2026 19:10:21 -0600
+tobixu-plasma-look (0.1.0) sicaru; urgency=low
+
+  * Identidad visual Plasma: absorbe IguanaNoche + Kvantum + Konsole + skel.
+  * Replaces/Breaks tobixu-iguana (<< 0.2.0): jubila el monolito artesanal.
+
+ -- Manuel Lopez Mateos <mlmateos@tobixu.org>  Wed, 30 Sep 2026 18:59:46 -0600

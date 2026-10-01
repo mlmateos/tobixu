@@ -1,0 +1,19 @@
+Source: tobixu-plasma-look
+Section: utils
+Priority: optional
+Maintainer: Manuel Lopez Mateos <mlmateos@tobixu.org>
+Build-Depends: debhelper-compat (= 13)
+Standards-Version: 4.6.2
+
+Package: tobixu-plasma-look
+Architecture: all
+Depends: ${misc:Depends}, plasma-desktop, konsole
+Recommends: qt-style-kvantum
+Replaces: tobixu-iguana (<< 0.2.0)
+Breaks: tobixu-iguana (<< 0.2.0)
+Description: Identidad visual de Tobi Xu para Plasma (esquema + Kvantum + Konsole + skel)
+ Paquete que absorbe la identidad visual de TobiXu: esquema de colores
+ IguanaNoche para Plasma, tema Kvantum TobiXu-Selva, perfil de Konsole
+ IguanaNoche, y configuraciones del skel (kdeglobals, kscreenlockerrc,
+ kvantum.kvconfig). Reemplaza y jubila a tobixu-iguana (0.1.0), que
+ era un monolito artesanal construido con dpkg-deb --build.

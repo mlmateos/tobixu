@@ -1,0 +1,6 @@
+color-schemes/IguanaNoche.colors usr/share/color-schemes/
+kvantum/TobiXu-Selva/* usr/share/Kvantum/TobiXu-Selva/
+konsole/IguanaNoche.colorscheme usr/share/konsole/
+skel/.config/kdeglobals etc/skel/.config/
+skel/.config/kscreenlockerrc etc/skel/.config/
+skel/.config/Kvantum/kvantum.kvconfig etc/skel/.config/Kvantum/
