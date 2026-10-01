@@ -23,8 +23,9 @@ Depends: ${misc:Depends},
  jackd2,
  freecad,
  scribus,
- handbrake
-Recommends: blender, tobixu-pulsar
+ handbrake,
+ tobixu-pulsar
+Recommends: blender
 Description: Metapaquete ARTS de Tobi Xu (arte, diseno, multimedia)
  Coleccion completa ARTS: imagen (Krita, Inkscape, GIMP, RawTherapee), video (Kdenlive, OBS,
  HandBrake), audio (Audacity, Ardour, LMMS), 3D (FreeCAD, Blender recomendado), publicacion

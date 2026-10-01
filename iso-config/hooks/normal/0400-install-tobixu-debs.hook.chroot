@@ -2,7 +2,10 @@
 set -e
 if [ -d /opt/tobixu-debs ]; then
     export DEBIAN_FRONTEND=noninteractive
-    dpkg --force-confdef --force-confold -i /opt/tobixu-debs/*.deb || apt-get install -f -y
+    apt-get update -qq || true
+    apt-get install -y --no-install-recommends \
+        -o Dpkg::Options::=--force-confold -o Dpkg::Options::=--force-confdef \
+        /opt/tobixu-debs/*.deb
     rm -rf /opt/tobixu-debs
 fi
 exit 0
