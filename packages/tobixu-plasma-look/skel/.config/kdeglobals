@@ -3,6 +3,7 @@ ColorScheme=IguanaNoche
 
 [KDE]
 widgetStyle=kvantum
+LookAndFeel=org.tobixu.selva.desktop
 
 [Icons]
 Theme=Papirus-Dark
