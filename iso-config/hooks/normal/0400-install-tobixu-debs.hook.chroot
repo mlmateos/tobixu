@@ -1,7 +1,8 @@
 #!/bin/sh
 set -e
 if [ -d /opt/tobixu-debs ]; then
-    dpkg -i /opt/tobixu-debs/*.deb || apt-get install -f -y
+    export DEBIAN_FRONTEND=noninteractive
+    dpkg --force-confdef --force-confold -i /opt/tobixu-debs/*.deb || apt-get install -f -y
     rm -rf /opt/tobixu-debs
 fi
 exit 0
