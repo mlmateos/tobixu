@@ -510,7 +510,26 @@ Ordered by priority. All done **cold**, with the VM off and with acta.
 - **F36「包名非河名」**：Debian 14 (trixie) + Plasma 6 (Qt6) 的样式引擎叫 `qt-style-kvantum`，非 `kvantum`。0.1.0 的 `Depends: kvantum` 破坏系统；0.1.1 改为 `Recommends`。
 - 0.1.2 视觉待办：现 kdeglobals 为 `widgetStyle=Breeze` 无 `ColorScheme=IguanaNoche`；身份已装未激活。需 `ColorScheme=IguanaNoche` 与 `widgetStyle=kvantum` 才可见。
 
+### 2026-09-30 — rc16: jubila al monolito iguana (Capa 3 identidad)
 
+- **rc16**: primera ISO con `tobixu-plasma-look 0.1.1` de fabrica y sin `tobixu-iguana`. Testigos: seis `ii` (wallpapers, keyboard, sddm-theme, plymouth-theme, plasma-look, tecla), ausencia total de iguana en `dpkg -l`, archivos de identidad atribuidos a plasma-look. SHA256 rc16: `ba499f9fbd497c587522dc529722f8370535ad3bb47b2e6e82b7bcdfbdb2193b`.
+- **F33 cerrado**: el monolito artesanal (construido con `dpkg-deb --build`) es reemplazado por `tobixu-plasma-look` con `Replaces: tobixu-iguana (<< 0.2.0)`, `Breaks: tobixu-iguana (<< 0.2.0)`. El hook 0100 ya no lo pide.
+- **F36 "El nombre del paquete no es el nombre del rio"**: en Debian 14 (trixie) con Plasma 6 (Qt6), el motor de estilos se llama `qt-style-kvantum`, no `kvantum`. El `Depends: kvantum` del 0.1.0 rompio el sistema; cura en 0.1.1 como `Recommends`.
+- Pendiente visual 0.1.2: el kdeglobals actual dice `widgetStyle=Breeze` sin `ColorScheme=IguanaNoche`; la identidad esta instalada pero no activada. Requiere `ColorScheme=IguanaNoche` y `widgetStyle=kvantum` para que se vea.
+
+### 2026-09-30 — rc16: the iguana monolith retired (Layer 3 identity)
+
+- **rc16**: first ISO with factory `tobixu-plasma-look 0.1.1` and without `tobixu-iguana`. Witnesses: six `ii`, total absence of iguana in `dpkg -l`, identity files attributed to plasma-look. rc16 SHA256: `ba499f9fbd497c587522dc529722f8370535ad3bb47b2e6e82b7bcdfbdb2193b`.
+- **F33 closed**: the artisanal monolith (built with `dpkg-deb --build`) is replaced by `tobixu-plasma-look` with `Replaces: tobixu-iguana (<< 0.2.0)`, `Breaks: tobixu-iguana (<< 0.2.0)`. Hook 0100 no longer requests it.
+- **F36 "The package name is not the river's name"**: in Debian 14 (trixie) with Plasma 6 (Qt6), the style engine is called `qt-style-kvantum`, not `kvantum`. The `Depends: kvantum` of 0.1.0 broke the system; cured in 0.1.1 as `Recommends`.
+- Pending visual 0.1.2: current kdeglobals says `widgetStyle=Breeze` without `ColorScheme=IguanaNoche`; identity is installed but not activated. Requires `ColorScheme=IguanaNoche` and `widgetStyle=kvantum` to be seen.
+
+### 2026-09-30 — rc16：iguana 巨石退休（第三层身份）
+
+- **rc16**：首个出厂 `tobixu-plasma-look 0.1.1` 且无 `tobixu-iguana` 的 ISO。证人：六个 `ii`、`dpkg -l` 中全无 iguana、身份文件归属 plasma-look。rc16 SHA256：`ba499f9fbd497c587522dc529722f8370535ad3bb47b2e6e82b7bcdfbdb2193b`。
+- **F33 已闭**：手工巨石（`dpkg-deb --build` 构建）被 `tobixu-plasma-look` 替代，附 `Replaces: tobixu-iguana (<< 0.2.0)`、`Breaks: tobixu-iguana (<< 0.2.0)`。Hook 0100 不再请求。
+- **F36「包名非河名」**：Debian 14 (trixie) + Plasma 6 (Qt6) 的样式引擎叫 `qt-style-kvantum`，非 `kvantum`。0.1.0 的 `Depends: kvantum` 破坏系统；0.1.1 改为 `Recommends`。
+- 0.1.2 视觉待办：现 kdeglobals 为 `widgetStyle=Breeze` 无 `ColorScheme=IguanaNoche`；身份已装未激活。需 `ColorScheme=IguanaNoche` 与 `widgetStyle=kvantum` 才可见。
 
 ---
 
@@ -617,23 +636,4 @@ fi
 ---
 
 
-### 2026-09-30 — rc16: jubila al monolito iguana (Capa 3 identidad)
 
-- **rc16**: primera ISO con `tobixu-plasma-look 0.1.1` de fabrica y sin `tobixu-iguana`. Testigos: seis `ii` (wallpapers, keyboard, sddm-theme, plymouth-theme, plasma-look, tecla), ausencia total de iguana en `dpkg -l`, archivos de identidad atribuidos a plasma-look. SHA256 rc16: `ba499f9fbd497c587522dc529722f8370535ad3bb47b2e6e82b7bcdfbdb2193b`.
-- **F33 cerrado**: el monolito artesanal (construido con `dpkg-deb --build`) es reemplazado por `tobixu-plasma-look` con `Replaces: tobixu-iguana (<< 0.2.0)`, `Breaks: tobixu-iguana (<< 0.2.0)`. El hook 0100 ya no lo pide.
-- **F36 "El nombre del paquete no es el nombre del rio"**: en Debian 14 (trixie) con Plasma 6 (Qt6), el motor de estilos se llama `qt-style-kvantum`, no `kvantum`. El `Depends: kvantum` del 0.1.0 rompio el sistema; cura en 0.1.1 como `Recommends`.
-- Pendiente visual 0.1.2: el kdeglobals actual dice `widgetStyle=Breeze` sin `ColorScheme=IguanaNoche`; la identidad esta instalada pero no activada. Requiere `ColorScheme=IguanaNoche` y `widgetStyle=kvantum` para que se vea.
-
-### 2026-09-30 — rc16: the iguana monolith retired (Layer 3 identity)
-
-- **rc16**: first ISO with factory `tobixu-plasma-look 0.1.1` and without `tobixu-iguana`. Witnesses: six `ii`, total absence of iguana in `dpkg -l`, identity files attributed to plasma-look. rc16 SHA256: `ba499f9fbd497c587522dc529722f8370535ad3bb47b2e6e82b7bcdfbdb2193b`.
-- **F33 closed**: the artisanal monolith (built with `dpkg-deb --build`) is replaced by `tobixu-plasma-look` with `Replaces: tobixu-iguana (<< 0.2.0)`, `Breaks: tobixu-iguana (<< 0.2.0)`. Hook 0100 no longer requests it.
-- **F36 "The package name is not the river's name"**: in Debian 14 (trixie) with Plasma 6 (Qt6), the style engine is called `qt-style-kvantum`, not `kvantum`. The `Depends: kvantum` of 0.1.0 broke the system; cured in 0.1.1 as `Recommends`.
-- Pending visual 0.1.2: current kdeglobals says `widgetStyle=Breeze` without `ColorScheme=IguanaNoche`; identity is installed but not activated. Requires `ColorScheme=IguanaNoche` and `widgetStyle=kvantum` to be seen.
-
-### 2026-09-30 — rc16：iguana 巨石退休（第三层身份）
-
-- **rc16**：首个出厂 `tobixu-plasma-look 0.1.1` 且无 `tobixu-iguana` 的 ISO。证人：六个 `ii`、`dpkg -l` 中全无 iguana、身份文件归属 plasma-look。rc16 SHA256：`ba499f9fbd497c587522dc529722f8370535ad3bb47b2e6e82b7bcdfbdb2193b`。
-- **F33 已闭**：手工巨石（`dpkg-deb --build` 构建）被 `tobixu-plasma-look` 替代，附 `Replaces: tobixu-iguana (<< 0.2.0)`、`Breaks: tobixu-iguana (<< 0.2.0)`。Hook 0100 不再请求。
-- **F36「包名非河名」**：Debian 14 (trixie) + Plasma 6 (Qt6) 的样式引擎叫 `qt-style-kvantum`，非 `kvantum`。0.1.0 的 `Depends: kvantum` 破坏系统；0.1.1 改为 `Recommends`。
-- 0.1.2 视觉待办：现 kdeglobals 为 `widgetStyle=Breeze` 无 `ColorScheme=IguanaNoche`；身份已装未激活。需 `ColorScheme=IguanaNoche` 与 `widgetStyle=kvantum` 才可见。
