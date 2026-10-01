@@ -4,5 +4,3 @@ ColorScheme=IguanaNoche
 widgetStyle=kvantum
 [kdeglobals][Icons]
 Theme=Papirus-Dark
-[plasmarc][KSplash]
-Theme=org.tobixu.selva.desktop
