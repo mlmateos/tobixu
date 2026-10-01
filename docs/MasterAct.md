@@ -539,6 +539,25 @@ Ordered by priority. All done **cold**, with the VM off and with acta.
 - **D2「stock KSplash」**：look-and-feel 包 org.tobixu.selva.desktop 就位、metadata.json 合法、plasmarc 指向正确，但 kpackagetool6 未注册，KSplash 退回 breeze。仅改背景需 patch breeze 文件（divert 领地，风险高，收益装饰性）。v0.1：won't fix。skel 中的 plasmarc 无害（fallback = stock），留作 v0.2 种子。
 - **第三层闭合**：版本化门（F30/F31）、出厂 veil（F33/F34/F35）、无巨石可见身份（F33 已闭、F36）、三语 greeter、CJK 字体、本地化安装图标。河流转向内容：元包 `tobi-xu-stem` 与 `tobi-xu-arts`。
 
+### 2026-10-01 — rc21: Capa 3 cerrada con splash (cierre pragmatico)
+
+- **rc21**: identidad cero clics confirmada (`LookAndFeelPackage=org.tobixu.selva.desktop` sin intervencion, marcador `~/.tobixu-wallpaper-done`, Kate/Konsole con piel selva), puerta trilingue, velo de fabrica, y sorpresa: KSplash muestra orbita+glifo al caer al splash del look-and-feel activo cuando plasmarc no trae pin `[KSplash]`. Residuo: splash del primer login es stock. SHA256 rc21: `3285d3c6161cd6ff34651ff0048581983a9c138bf4e21ed425dded002ca7e01a`.
+- **F42 "La ruta relativa silenciosa"**: el Splash.qml no renderizaba invocado por el pin explicito de plasmarc (KSplashQML + Theme); cura B (quitar el pin) revelo que la ruta del look-and-feel lo renderiza bien. Semilla v0.2: investigar la ruta explicita de KSplashQML.
+- **F39/F40/F41**: conffile noninteractive con debs duplicados; clave `LookAndFeel=` vs `LookAndFeelPackage`; primer arranque pisa el pin del skel (curado con autostart de un solo uso). **D1 honrado** (Konqi saluda una vez con piel selva); **D2 revertida del todo** en rc21.
+- **Capa 3 cerrada**: puerta, velo, identidad, trilingue, fuente CJK, icono localizado, cero clics, splash selva. El rio pasa al contenido: `tobi-xu-stem` y `tobi-xu-arts`.
+
+### 2026-10-01 — rc21: Layer 3 closed with splash (pragmatic closure)
+
+- **rc21**: zero-click identity confirmed, trilingual door, factory veil, and surprise: KSplash shows orbit+glyph by falling back to the active look-and-feel splash once plasmarc carries no `[KSplash]` pin. Residue: first-login splash is stock. rc21 SHA256: `3285d3c6161cd6ff34651ff0048581983a9c138bf4e21ed425dded002ca7e01a`.
+- **F42**: Splash.qml failed only via the explicit plasmarc pin path; the look-and-feel path renders it. v0.2 seed: investigate KSplashQML explicit path. **F39/F40/F41** cured as logged. **D1 honored; D2 fully reverted** in rc21.
+- **Layer 3 closed**: door, veil, identity, trilingual, CJK font, localized icon, zero clicks, selva splash. The river moves to content: `tobi-xu-stem` and `tobi-xu-arts`.
+
+### 2026-10-01 — rc21：第三层含 splash 闭合（务实收束）
+
+- **rc21**：零点击身份确认、三语门、出厂 veil，且惊喜：plasmarc 无 `[KSplash]` pin 后 KSplash 回落到活跃 look-and-feel 的 splash，显示 orbit+glyph。残留：首登 splash 为 stock。rc21 SHA256：`3285d3c6161cd6ff34651ff0048581983a9c138bf4e21ed425dded002ca7e01a`。
+- **F42**：Splash.qml 仅经 plasmarc 显式 pin 路径失败；look-and-feel 路径正常。v0.2 种子：调查 KSplashQML 显式路径。**F39/F40/F41** 已愈。**D1 已尊；D2 于 rc21 完全反转**。
+- **第三层闭合**：门、veil、身份、三语、CJK 字体、本地化图标、零点击、selva splash。河流转向内容：`tobi-xu-stem` 与 `tobi-xu-arts`。
+
 ---
 
 * * *
