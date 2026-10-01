@@ -462,6 +462,34 @@ Ordered by priority. All done **cold**, with the VM off and with acta.
 - **front-3b 已闭**：greeter 徽记几何。
 - 待办：Plymouth（启动黑屏）、`tobixu-welcome`（Konqi 退休，front-2）、Calamares 品牌（front-4）、`tobixu-plasma-look`（锁屏 + Kvantum + Papirus）、三语 i18n。
 
+### 2026-09-30 — rc15: el velo de fabrica (Capa 3 completa)
+
+- **rc15**: primera ISO con `tobixu-plymouth-theme 0.1.2` de fabrica: orbita-noche y glifo dorado velan el arranque desde el initramfs. Testigos sin intervencion: cinco `ii`, `lsinitramfs` lista `tobixu-selva` en el initrd, `plymouthd.conf` con `Theme=tobixu-selva`, captura del velo en el arranque. SHA256 rc15: `f32b5223…`.
+- **F33 "El metapaquete iguana que hacia de todo"**: `tobixu-iguana 0.1.0` poseia `/usr/share/plymouth/themes/tobixu/`; dpkg rechazo el overwrite. Cura: renombrar nuestro tema a `tobixu-selva` y coexistir sin Replaces; la migracion (jubilar iguana, dividir colores Konsole/CSS) queda en `tobixu-plasma-look`.
+- **F34 "El fantasma del rsync sin --delete"**: el dir de build en forja conservo el `tobixu/` viejo; con `debian/install` obsoleto, el 0.1.1 reempaqueto la ruta antigua y colisiono con iguana otra vez. Cura: `rsync --delete` a dirs de build y actualizar `debian/install` en cada rename.
+- **F35 "El comando que Debian 14 mato"**: `plymouth-set-default-theme` no existe en Debian 14; el guard del postinst fallo en silencio y el trigger de initramfs-tools regenero el initrd de todos modos; el tema se activa via `/etc/plymouth/plymouthd.conf`. Pendiente 0.1.3: escribir el conf directamente desde el postinst.
+- **Micro-frentes nuevos**: KSplash de Plasma negro al iniciar sesion (`tobixu-plasma-look`); volcado breve de texto de consola al retirarse plymouth (cosmetico); `tobixu-grub-theme` para el hueco GRUB→initramfs.
+- Estado Capa 3: puerta + velo + teclado + wallpapers + tecla de fabrica. Pendientes: `tobixu-welcome` (Konqi), branding Calamares, plasma-look, i18n trilingue, repo APT (latido rolling).
+
+### 2026-09-30 — rc15: the factory veil (Layer 3 complete)
+
+- **rc15**: first ISO with factory `tobixu-plymouth-theme 0.1.2`: orbita-noche and the golden glyph veil the boot from the initramfs. Witnesses without intervention: five `ii`, `lsinitramfs` lists `tobixu-selva` in the initrd, `plymouthd.conf` with `Theme=tobixu-selva`, boot capture of the veil. rc15 SHA256: `f32b5223…`.
+- **F33 "The iguana metapackage that did everything"**: `tobixu-iguana 0.1.0` owned `/usr/share/plymouth/themes/tobixu/`; dpkg refused the overwrite. Cure: rename our theme to `tobixu-selva` and coexist without Replaces; migration (retire iguana, split Konsole/CSS colors) deferred to `tobixu-plasma-look`.
+- **F34 "The ghost of rsync without --delete"**: forja's build dir kept the old `tobixu/`; with a stale `debian/install`, 0.1.1 repackaged the old path and collided with iguana again. Cure: `rsync --delete` to build dirs and update `debian/install` on every rename.
+- **F35 "The command Debian 14 killed"**: `plymouth-set-default-theme` does not exist in Debian 14; the postinst guard failed silently and the initramfs-tools trigger regenerated the initrd anyway; the theme activates via `/etc/plymouth/plymouthd.conf`. Pending 0.1.3: write the conf directly from postinst.
+- **New micro-fronts**: black Plasma KSplash at session start (`tobixu-plasma-look`); brief console text dump when plymouth quits (cosmetic); `tobixu-grub-theme` for the GRUB→initramfs gap.
+- Layer 3 state: door + veil + keyboard + wallpapers + tecla from factory. Pending: `tobixu-welcome` (Konqi), Calamares branding, plasma-look, trilingual i18n, APT repo (rolling heartbeat).
+
+### 2026-09-30 — rc15：出厂之 veil（第三层完成）
+
+- **rc15**：首个出厂 `tobixu-plymouth-theme 0.1.2` 的 ISO：orbita-noche 与金色徽记自 initramfs 遮蔽启动。无干预证人：五个 `ii`、`lsinitramfs` 在 initrd 中列出 `tobixu-selva`、`plymouthd.conf` 为 `Theme=tobixu-selva`、启动 veil 截图。rc15 SHA256：`f32b5223…`。
+- **F33「无所不包的 iguana 元包」**：`tobixu-iguana 0.1.0` 拥有 `/usr/share/plymouth/themes/tobixu/`；dpkg 拒绝覆盖。疗法：我方主题改名 `tobixu-selva` 并存，不用 Replaces；迁移（iguana 退休、拆分 Konsole/CSS 颜色）留给 `tobixu-plasma-look`。
+- **F34「无 --delete 的 rsync 之幽灵」**：forja 构建目录残留旧 `tobixu/`；配合过期的 `debian/install`，0.1.1 重新打包旧路径再撞 iguana。疗法：构建目录用 `rsync --delete`，每次改名更新 `debian/install`。
+- **F35「Debian 14 杀死的命令」**：`plymouth-set-default-theme` 在 Debian 14 不存在；postinst 守卫静默失败，initramfs-tools 触发器仍重建 initrd；主题经 `/etc/plymouth/plymouthd.conf` 激活。0.1.3 待办：postinst 直写 conf。
+- **新微前线**：会话启动时黑色 Plasma KSplash（`tobixu-plasma-look`）；plymouth 退场时短暂控制台文本（装饰性）；GRUB→initramfs 空档的 `tobixu-grub-theme`。
+- 第三层状态：门 + veil + 键盘 + 壁纸 + tecla 出厂。待办：`tobixu-welcome`（Konqi）、Calamares 品牌、plasma-look、三语 i18n、APT 仓库（rolling 心跳）。
+
+
 ---
 
 * * *
