@@ -531,6 +531,14 @@ Ordered by priority. All done **cold**, with the VM off and with acta.
 - **F36「包名非河名」**：Debian 14 (trixie) + Plasma 6 (Qt6) 的样式引擎叫 `qt-style-kvantum`，非 `kvantum`。0.1.0 的 `Depends: kvantum` 破坏系统；0.1.1 改为 `Recommends`。
 - 0.1.2 视觉待办：现 kdeglobals 为 `widgetStyle=Breeze` 无 `ColorScheme=IguanaNoche`；身份已装未激活。需 `ColorScheme=IguanaNoche` 与 `widgetStyle=kvantum` 才可见。
 
+### 2026-10-01 — rc17: identidad trilingue y contenido visible (Capa 3 cerrada)
+
+- **rc17**: primera ISO con `tobixu-plasma-look 0.2.1` (identidad visible: ColorScheme=IguanaNoche + widgetStyle=kvantum), `tobixu-sddm-theme 0.5.0` (greeter trilingue EN/ES/ZH con selector), y `fonts-wqy-zenhei` (fuente CJK de fabrica). Testigos: siete `ii`, velo de plymouth, puerta trilingue, icono instalador con Name[zh_CN]=安装 Tobi Xu, escritorio con piel Kvantum selva. SHA256 rc17: `XXXXX…`.
+- **F39 "El conffile…
+- **D1「Konqi 留下」**：Welcome Center 是 Plasma 自带教程，不应披我方皮肤；仅会话 splash（KSplash）接收 orbita-noche。`tobixu-welcome` 退出地图。
+- **D2「stock KSplash」**：look-and-feel 包 org.tobixu.selva.desktop 就位、metadata.json 合法、plasmarc 指向正确，但 kpackagetool6 未注册，KSplash 退回 breeze。仅改背景需 patch breeze 文件（divert 领地，风险高，收益装饰性）。v0.1：won't fix。skel 中的 plasmarc 无害（fallback = stock），留作 v0.2 种子。
+- **第三层闭合**：版本化门（F30/F31）、出厂 veil（F33/F34/F35）、无巨石可见身份（F33 已闭、F36）、三语 greeter、CJK 字体、本地化安装图标。河流转向内容：元包 `tobi-xu-stem` 与 `tobi-xu-arts`。
+
 ---
 
 * * *
