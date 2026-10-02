@@ -1,13 +1,5 @@
-tobi-xu-stem (0.1.2) sicaru; urgency=low
+tobi-xu-stem (0.1.3) sicaru; urgency=low
 
-  * F44: julia, r-base, octave, qgis a Recommends (transiciones sid).
+  * F45: control reescrito limpio (F44 dejo lineas vacias que rompian dpkg-buildpackage).
 
- -- Manuel Lopez Mateos <mlmateos@tobixu.org>  Fri, 02 Oct 2026 07:03:28 -0600
-tobi-xu-stem (0.1.1) sicaru; urgency=low
-
-  * texlive-base obligatorio, texlive-full recomendado.
-  * LibreOffice completo + Xournal++ + juegos cientificos (Go, Ajedrez, Puzzles).
-  * Cinco gigantes (Sage, ROOT, ParaView, Blender) como Recommends; QGIS obligatorio.
-  * texstudio/frescobaldi desde repo Qt6 con pinning de prioridad.
-
- -- Manuel Lopez Mateos <mlmateos@tobixu.org>  Thu, 01 Oct 2026 17:34:10 -0600
+ -- Manuel Lopez Mateos <mlmateos@tobixu.org>  Fri, 02 Oct 2026 08:56:17 -0600

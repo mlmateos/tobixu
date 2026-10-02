@@ -7,58 +7,6 @@ Standards-Version: 4.6.2
 
 Package: tobi-xu-stem
 Architecture: all
-Depends: ${misc:Depends},
- texstudio,
- frescobaldi,
- texlive-base,
- libreoffice,
- xournalpp,
-
- geogebra,
- gnuplot,
- python3-numpy,
- python3-matplotlib,
- python3-scipy,
- sqlitebrowser,
-
-
- pspp,
- lilypond,
-
- qgis-plugin-grass,
- grass-core,
- avogadro,
- stellarium,
- kstars,
- astrometry.net,
- python3-astropy,
- saods9,
- openbabel,
- gromacs,
- ugene,
- jalview,
- artemis,
- python3-biopython,
- emboss,
- seaview,
- gnucash,
- kmymoney,
- ledger,
- gnumeric,
- homebank,
- r-cran-quantmod,
- python3-pandas,
- gnugo,
- qgo,
- cgoban,
- gnuchess,
- xboard,
- sgt-puzzles
+Depends: ${misc:Depends}, texstudio, frescobaldi, texlive-base, libreoffice, xournalpp, geogebra, gnuplot, python3-numpy, python3-matplotlib, python3-scipy, sqlitebrowser, pspp, lilypond, qgis-plugin-grass, grass-core, avogadro, stellarium, kstars, astrometry.net, python3-astropy, saods9, openbabel, gromacs, ugene, jalview, artemis, python3-biopython, emboss, seaview, gnucash, kmymoney, ledger, gnumeric, homebank, r-cran-quantmod, python3-pandas, gnugo, qgo, cgoban, gnuchess, xboard, sgt-puzzles
 Recommends: texlive-full, sagemath, root-system, paraview, blender, julia, r-base, octave, qgis
 Description: Metapaquete STEM de Tobi Xu (ciencia, tecnologia, ingenieria, matematicas)
- Coleccion completa STEM: matematicas (Octave, GeoGebra, Sage recomendado), estadistica (R,
- Julia, PSPP), notacion musical (LilyPond, Frescobaldi Qt6), GIS (QGIS), fisica (CERN ROOT,
- ParaView recomendados), astronomia (Stellarium, KStars), quimica (Avogadro, Gromacs),
- biologia (UGENE, Jalview), economia/finanzas (GnuCash, KMyMoney), LaTeX (TeXStudio Qt6,
- texlive-base), ofimatica (LibreOffice), notas (Xournal++), juegos cientificos (Go, Ajedrez,
- Puzzles).
