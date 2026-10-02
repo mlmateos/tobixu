@@ -1,5 +1,5 @@
-tobi-xu-arts (0.1.3) sicaru; urgency=low
+tobi-xu-arts (0.1.4) sicaru; urgency=low
 
-  * F45: control reescrito limpio; krita/ardour/musescore vuelven a Recommends.
+  * F48: lmms a Recommends (transicion ABI libgig10t64 -> libgig13).
 
- -- Manuel Lopez Mateos <mlmateos@tobixu.org>  Fri, 02 Oct 2026 08:56:17 -0600
+ -- Manuel Lopez Mateos <mlmateos@tobixu.org>  Fri, 02 Oct 2026 11:43:24 -0600

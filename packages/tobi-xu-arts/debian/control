@@ -7,6 +7,6 @@ Standards-Version: 4.6.2
 
 Package: tobi-xu-arts
 Architecture: all
-Depends: ${misc:Depends}, inkscape, gimp, rawtherapee, kdenlive, obs-studio, vlc, ffmpeg, audacity, lmms, jackd2, freecad, scribus, handbrake, tobixu-pulsar
-Recommends: blender, krita, ardour, musescore
+Depends: ${misc:Depends}, inkscape, gimp, rawtherapee, kdenlive, obs-studio, vlc, ffmpeg, audacity, jackd2, freecad, scribus, handbrake, tobixu-pulsar
+Recommends: blender, krita, ardour, musescore, lmms
 Description: Metapaquete ARTS de Tobi Xu (arte, diseno, multimedia)
