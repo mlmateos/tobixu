@@ -1,3 +1,8 @@
+tobi-xu-arts (0.1.2) sicaru; urgency=low
+
+  * F44: krita, ardour, musescore a Recommends (transiciones sid).
+
+ -- Manuel Lopez Mateos <mlmateos@tobixu.org>  Fri, 02 Oct 2026 07:03:28 -0600
 tobi-xu-arts (0.1.1) sicaru; urgency=low
 
   * tobixu-pulsar pasa a Depends (con --no-install-recommends los Recommends no llegan).

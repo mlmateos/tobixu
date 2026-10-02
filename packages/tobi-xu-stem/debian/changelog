@@ -1,3 +1,8 @@
+tobi-xu-stem (0.1.2) sicaru; urgency=low
+
+  * F44: julia, r-base, octave, qgis a Recommends (transiciones sid).
+
+ -- Manuel Lopez Mateos <mlmateos@tobixu.org>  Fri, 02 Oct 2026 07:03:28 -0600
 tobi-xu-stem (0.1.1) sicaru; urgency=low
 
   * texlive-base obligatorio, texlive-full recomendado.

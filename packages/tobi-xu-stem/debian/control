@@ -13,18 +13,18 @@ Depends: ${misc:Depends},
  texlive-base,
  libreoffice,
  xournalpp,
- octave,
+
  geogebra,
  gnuplot,
  python3-numpy,
  python3-matplotlib,
  python3-scipy,
  sqlitebrowser,
- r-base,
- julia,
+
+
  pspp,
  lilypond,
- qgis,
+
  qgis-plugin-grass,
  grass-core,
  avogadro,
@@ -54,7 +54,7 @@ Depends: ${misc:Depends},
  gnuchess,
  xboard,
  sgt-puzzles
-Recommends: texlive-full, sagemath, root-system, paraview, blender
+Recommends: texlive-full, sagemath, root-system, paraview, blender, julia, r-base, octave, qgis
 Description: Metapaquete STEM de Tobi Xu (ciencia, tecnologia, ingenieria, matematicas)
  Coleccion completa STEM: matematicas (Octave, GeoGebra, Sage recomendado), estadistica (R,
  Julia, PSPP), notacion musical (LilyPond, Frescobaldi Qt6), GIS (QGIS), fisica (CERN ROOT,

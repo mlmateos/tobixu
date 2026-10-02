@@ -8,7 +8,7 @@ Standards-Version: 4.6.2
 Package: tobi-xu-arts
 Architecture: all
 Depends: ${misc:Depends},
- krita,
+
  inkscape,
  gimp,
  rawtherapee,
@@ -17,8 +17,8 @@ Depends: ${misc:Depends},
  vlc,
  ffmpeg,
  audacity,
- musescore,
- ardour,
+
+
  lmms,
  jackd2,
  freecad,
