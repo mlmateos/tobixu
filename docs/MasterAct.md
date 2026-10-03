@@ -558,6 +558,46 @@ Ordered by priority. All done **cold**, with the VM off and with acta.
 - **F42**：Splash.qml 仅经 plasmarc 显式 pin 路径失败；look-and-feel 路径正常。v0.2 种子：调查 KSplashQML 显式路径。**F39/F40/F41** 已愈。**D1 已尊；D2 于 rc21 完全反转**。
 - **第三层闭合**：门、veil、身份、三语、CJK 字体、本地化图标、零点击、selva splash。河流转向内容：`tobi-xu-stem` 与 `tobi-xu-arts`。
 
+### 2026-10-02 — rc22n: v0.1-sicaru en el metal y en el aire
+
+- **rc22n horneado con contenido completo**: 2603 paquetes; metapaquetes tobi-xu-stem 0.1.2
+  y tobi-xu-arts 0.1.1; repos Qt6 firmados (texstudio, frescobaldi) con pinning 990;
+  hook 0400 curado (F43); F44: julia/r-base/octave/qgis y krita/ardour/musescore a
+  Recommends por transiciones de sid en el snapshot 20260920.
+- **Sitio publico en el aire**: tobixu.xyz (GitHub Pages + dominio via Cloudflare); heroe
+  con glifo sobre orbita-noche en ES/中文/EN; atribucion a Qwen (Alibaba Tongyi Lab);
+  titular "GNU/Linux distro"; SHA256 de rc22n publicado.
+- **HTTPS por el borde (F45)**: verificador DNS de GitHub atorado pese a DNS perfecto;
+  tras 24 h de manos quietas, proxy Cloudflare + SSL Flexible + Always Use HTTPS →
+  candado verde. Deuda v0.2: volver a topologia pura de GitHub.
+- **Listo para difusion por fases**: Distrowatch → HN → Reddit/Lobsters → STEM → trilingues.
+
+### 2026-10-02 — rc22n: v0.1-sicaru on metal and on air
+
+- **rc22n baked with full content**: 2603 packages; metapackages tobi-xu-stem 0.1.2 and
+  tobi-xu-arts 0.1.1; signed Qt6 repos (texstudio, frescobaldi) pinned at 990; hook 0400
+  cured (F43); F44: julia/r-base/octave/qgis and krita/ardour/musescore moved to Recommends
+  due to sid transitions in snapshot 20260920.
+- **Public site on air**: tobixu.xyz (GitHub Pages + custom domain via Cloudflare); hero
+  with glyph over orbita-noche in ES/中文/EN; Qwen (Alibaba Tongyi Lab) attribution;
+  "GNU/Linux distro" headline; rc22n SHA256 published.
+- **Edge HTTPS (F45)**: GitHub DNS verifier stuck despite perfect DNS; after 24 h of quiet
+  hands, Cloudflare proxy + Flexible SSL + Always Use HTTPS → green padlock. v0.2 debt:
+  return to pure GitHub topology.
+- **Ready for phased outreach**: Distrowatch → HN → Reddit/Lobsters → STEM → trilingual.
+
+### 2026-10-02 — rc22n：v0.1-sicaru 落地与上线
+
+- **rc22n 完整内容烘焙**：2603 个软件包；元包 tobi-xu-stem 0.1.2 与 tobi-xu-arts 0.1.1；
+  签名 Qt6 仓库（texstudio、frescobaldi）优先级 990；hook 0400 修复（F43）；F44：
+  julia/r-base/octave/qgis 与 krita/ardour/musescore 移至 Recommends（sid 转换）。
+- **公共站点上线**：tobixu.xyz（GitHub Pages + Cloudflare 自定义域名）；ES/中文/EN
+  三语英雄区（轨道之夜上的字形）；Qwen（阿里巴巴通义实验室）署名；"GNU/Linux distro"
+  标题；rc22n SHA256 已公布。
+- **边缘 HTTPS（F45）**：GitHub DNS 校验器卡死（DNS 本身完美）；静置 24 小时后改用
+  Cloudflare 代理 + Flexible SSL + 强制 HTTPS → 绿锁。v0.2 债务：回归纯 GitHub 拓扑。
+- **分阶段传播就绪**：Distrowatch → HN → Reddit/Lobsters → STEM → 三语社区。
+
 ---
 
 * * *
