@@ -598,6 +598,59 @@ Ordered by priority. All done **cold**, with the VM off and with acta.
   Cloudflare 代理 + Flexible SSL + 强制 HTTPS → 绿锁。v0.2 债务：回归纯 GitHub 拓扑。
 - **分阶段传播就绪**：Distrowatch → HN → Reddit/Lobsters → STEM → 三语社区。
 
+
+
+## 2026-10-03 — Candado, press kit y primera semilla de difusión
+
+### ES
+
+- **HTTPS por el borde (F45 cerrado):** proxy Cloudflare + SSL Flexible +
+  "Always Use HTTPS"; candado verde en `https://tobixu.xyz` y redirección
+  301 desde `www.tobixu.xyz` al apex. F46 anotada: doble salto
+  `www→http→https`, curar en v0.2 con regla directa en Cloudflare.
+- **Snapshot #15** de sicaru01 (`snap15-v01sicaru`): rc22n con contenido
+  STEM+ARTS en el metal y sitio con candado en el aire.
+- **Press kit mínimo** en `docs/press/`: one-pager trilingüe (ES/EN/ZH) +
+  capturas canónicas de las cuatro fases del arranque (velo, puerta,
+  splash, escritorio) + glifo + órbita-noche.
+- **Difusión fase 1 (Distrowatch):** correo de sumisión a
+  `distro@distrowatch.com` con los cuatro datos canónicos (nombre, sitio,
+  descripción, ISO directa en Archive.org) + bug tracker, foro (GitHub
+  Discussions activado) y press kit. Mención breve en el DistroWatch
+  Weekly del 5-oct esperada; waiting list después, sin correspondencia
+  (doctrina de su propia página).
+
+### EN
+
+- **Edge HTTPS (F45 closed):** Cloudflare proxy + Flexible SSL +
+  "Always Use HTTPS"; green padlock on `https://tobixu.xyz` and 301
+  redirect from `www.tobixu.xyz` to apex. F46 noted: double jump
+  `www→http→https`, fix in v0.2 with direct rule in Cloudflare.
+- **Snapshot #15** of sicaru01 (`snap15-v01sicaru`): rc22n with STEM+ARTS
+  content on metal and padlocked site on air.
+- **Minimal press kit** in `docs/press/`: trilingual one-pager (ES/EN/ZH)
+  + canonical screenshots of all four boot phases (veil, door, splash,
+  desktop) + glyph + orbita-noche.
+- **Outreach phase 1 (Distrowatch):** submission email to
+  `distro@distrowatch.com` with the four canonical pieces of info (name,
+  site, description, direct ISO link on Archive.org) + bug tracker,
+  forum (GitHub Discussions enabled) and press kit. Brief mention in
+  DistroWatch Weekly on Oct 5 expected; waiting list afterwards, no
+  correspondence (their own doctrine).
+
+### ZH
+
+- **边缘 HTTPS（F45 关闭）：** Cloudflare 代理 + Flexible SSL + 强制 HTTPS；
+  `https://tobixu.xyz` 绿锁，`www.tobixu.xyz` 301 重定向到 apex。F46 记录：
+  双跳 `www→http→https`，v0.2 中在 Cloudflare 直接修复。
+- **sicaru01 快照 #15**（`snap15-v01sicaru`）：rc22n 落地且站点已加锁。
+- **最小新闻资料包** 在 `docs/press/`：三语单页（ES/EN/ZH）+ 四个启动
+  阶段标准截图（面纱、门、启动画面、桌面）+ 字形 + 轨道之夜。
+- **传播第一阶段（Distrowatch）：** 向 `distro@distrowatch.com` 发送提交
+  邮件，包含四条规范信息（名称、站点、描述、Archive.org 上的 ISO 直接链接）
+  + bug 跟踪器、论坛（已启用 GitHub Discussions）与新闻资料包。预计 10-05
+  在 DistroWatch Weekly 简要提及；之后进入等待名单，不通信（其自身原则）。
+
 ---
 
 * * *
