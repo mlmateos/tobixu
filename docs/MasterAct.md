@@ -650,6 +650,72 @@ Ordered by priority. All done **cold**, with the VM off and with acta.
   邮件，包含四条规范信息（名称、站点、描述、Archive.org 上的 ISO 直接链接）
   + bug 跟踪器、论坛（已启用 GitHub Discussions）与新闻资料包。预计 10-05
   在 DistroWatch Weekly 简要提及；之后进入等待名单，不通信（其自身原则）。
+  
+## 2026-10-05 — rc23: firmwares Wi-Fi para el metal real; primera piedra (F47–F54)
+
+### ES
+
+- **F47:** el helper de Calamares hacia `apt-get install grub-efi` en plena
+  instalacion; la ISO sin firmwares Wi-Fi no-libres dejaba al metal real sin
+  red → exit 2. Invisible en VM: virtio da Ethernet cableado sin firmware.
+- **F48–F52:** tabla de verdades del grub: un sistema lleva UNA sola variante;
+  `grub-efi-amd64` Conflicts `grub-efi-ia32` (F51) y `grub-pc` (F52). Doctrina
+  resultante: el chroot preinstala `grub-efi-amd64` (UEFI64 instala offline);
+  las maquinas BIOS obtienen `grub-pc` en plena instalacion, ahora posible
+  porque la ISO trae firmwares → sesion live con red → apt alcanza forky.
+- **F49:** firmwares Wi-Fi y microcodigos ausentes del snapshot 20260920;
+  fuente de respaldo de forky vivo (testing) con pin 100 y secciones
+  `contrib non-free-firmware non-free` en `config/archives/firmware.*`.
+- **rc23:** 2607 paquetes, ~4.4 GB; subida a Archive.org (item
+  `tobixu-v0.1-sicaru`); sitio con liga, SHA256 y SHA256SUMS coherentes.
+- **Primera piedra real:** Huawei UEFI64 instala y corre de maravilla
+  (maquina espejo de tetris; rsync de recuperacion en vivo).
+- **F53 (abierta):** VM rc23test (`--network none`, OVMF) falla la
+  instalacion; en diagnostico.
+- **F54 (abierta):** MacBook Air 2008 instala pero se traba; sospecha de
+  mixed-mode EFI32/CPU64; en diagnostico.
+
+### EN
+
+- **F47:** Calamares helper ran `apt-get install grub-efi` mid-install; the
+  ISO without non-free Wi-Fi firmwares left real metal without network →
+  exit 2. Invisible in VMs: virtio gives wired Ethernet without firmware.
+- **F48–F52:** grub truth table: a system carries ONE variant only;
+  `grub-efi-amd64` Conflicts `grub-efi-ia32` (F51) and `grub-pc` (F52).
+  Resulting doctrine: chroot preinstalls `grub-efi-amd64` (UEFI64 installs
+  offline); BIOS machines get `grub-pc` mid-install, now possible because
+  the ISO ships firmwares → live session with network → apt reaches forky.
+- **F49:** Wi-Fi firmwares and microcode absent from snapshot 20260920;
+  fallback source from live forky (testing), pin 100, sections
+  `contrib non-free-firmware non-free` in `config/archives/firmware.*`.
+- **rc23:** 2607 packages, ~4.4 GB; uploaded to Archive.org (item
+  `tobixu-v0.1-sicaru`); site with coherent link, SHA256 and SHA256SUMS.
+- **First real stone:** Huawei UEFI64 installs and runs beautifully
+  (tetris mirror machine; live rsync recovery).
+- **F53 (open):** VM rc23test (`--network none`, OVMF) fails installation;
+  under diagnosis.
+- **F54 (open):** MacBook Air 2008 installs but stalls; mixed-mode
+  EFI32/CPU64 suspected; under diagnosis.
+
+### ZH
+
+- **F47：** Calamares helper 在安装中期执行 `apt-get install grub-efi`；ISO 缺少
+  非自由 Wi-Fi 固件 → 真实金属无网络 → 退出码 2。VM 中不可见：virtio 提供无需
+  固件的有线以太网。
+- **F48–F52：** grub 真值表：系统仅携带一个变体；`grub-efi-amd64` 与
+  `grub-efi-ia32`（F51）及 `grub-pc`（F52）互斥。由此原则：chroot 预装
+  `grub-efi-amd64`（UEFI64 离线安装）；BIOS 机器在安装中期获取 `grub-pc`，
+  因 ISO 带固件而可行 → live 会话有网络 → apt 到达 forky。
+- **F49：** Wi-Fi 固件与微代码不在 snapshot 20260920；在
+  `config/archives/firmware.*` 添加实时 forky (testing) 备用源，pin 100，
+  section `contrib non-free-firmware non-free`。
+- **rc23：** 2607 个软件包，约 4.4 GB；上传至 Archive.org（item
+  `tobixu-v0.1-sicaru`）；站点链接、SHA256 与 SHA256SUMS 一致。
+- **第一块真实石头：** Huawei UEFI64 安装并运行良好（tetris 镜像机；rsync
+  实时恢复）。
+- **F53（开放）：** VM rc23test（`--network none`，OVMF）安装失败；诊断中。
+- **F54（开放）：** MacBook Air 2008 安装但卡顿；疑似 EFI32/CPU64 混合模式；
+  诊断中。
 
 ---
 
