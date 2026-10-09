@@ -9,7 +9,7 @@ set -e
 if [ -d /opt/tobixu-debs ] && ls /opt/tobixu-debs/*.deb >/dev/null 2>&1; then
     echo "=== 0400-install: instalando paquetes de fabrica ==="
     export DEBIAN_FRONTEND=noninteractive
-    dpkg -i /opt/tobixu-debs/*.deb || apt-get install -f -y
+    dpkg -i --force-confold --force-confdef /opt/tobixu-debs/*.deb || apt-get install -f -y
     echo "=== 0400-install: paquetes instalados ==="
     dpkg -l | grep -E "tobixu-|tobi-xu-" | awk '{print $2, $3}'
     rm -rf /opt/tobixu-debs
