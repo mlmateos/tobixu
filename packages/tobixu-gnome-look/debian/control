@@ -1,0 +1,26 @@
+Source: tobixu-gnome-look
+Section: x11
+Priority: optional
+Maintainer: Manuel Lopez Mateos <mlmateos@tobixu.xyz>
+Build-Depends: debhelper-compat (= 13)
+Standards-Version: 4.6.2
+
+Package: tobixu-gnome-look
+Architecture: all
+Depends: ${misc:Depends},
+         gnome-shell,
+         gdm3,
+         papirus-icon-theme,
+         gnome-tweaks,
+         gnome-shell-extension-appindicator,
+         gnome-shell-extension-dashtodock,
+         tobixu-wallpapers
+Recommends: tobi-xu-desktop-gnome
+Description: TobiXu GNOME identity — system seeds
+ Default look and feel for the TobiXu GNU/Linux distribution when the
+ user chooses the GNOME session. Seeds the dconf database with
+ orbita-noche wallpaper, the modified keyboard options (compose:rctrl +
+ lv3:ralt_switch), Adwaita-dark + Papirus, fractional scaling hint for
+ Wayland, and the curated favorite apps. Honors Doctrine 13: defaults
+ are seeds, not chains — the user harvests freely via gnome-tweaks or
+ dconf-editor.

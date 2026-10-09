@@ -1,0 +1,6 @@
+#!/bin/sh
+set -e
+if [ "$1" = "remove" ]; then
+    dconf update || true
+fi
+#DEBHELPER#
