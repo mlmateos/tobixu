@@ -717,6 +717,26 @@ Ordered by priority. All done **cold**, with the VM off and with acta.
 - **F54（开放）：** MacBook Air 2008 安装但卡顿；疑似 EFI32/CPU64 混合模式；
   诊断中。
 
+## 2026-10-08 — El giro GNOME: el escritorio es semilla, no cadena (F56–F59)
+
+### ES
+
+- **Decision de producto (usuario cero):** el mantenedor vive en GNOME; Plasma
+  se siente ajeno (look & feel tipo Windows). TobiXu v0.1 gira a GNOME por
+  defecto con gdm3; Plasma queda como sesion alternativa.
+- **D3 candidata:** "El escritorio es semilla, no cadena: el default es un
+  metapaquete; las sesiones conviven en el engranaje de GDM."
+- **D4 candidata:** "La geometria del display es de la maquina, n…意字符串；mutter 只服从
+  `/usr/share/X11/xkb/rules/evdev.lst`（非 `xkb.lst`）中的名称。
+  `level3:ralt_switch` 不存在；正名为 `lv3:ralt_switch`。治愈后 AltGr 出 ç/€。
+- **F55 gnome-initial-setup：** 以标记 `~/.config/gnome-initial-setup-done`
+  解除；出厂将置于 `/etc/skel`。
+- **状态：** Huawei = 已生活的 GNOME 实验室；tetris 保留工坊、门与 Plasma 之路。
+  rc24 待办：`tobixu-gnome-look`、`010-desktop.list.chroot` 默认翻转、
+  Calamares→gdm3、双会话烟雾、更新新闻资料包（GNOME 下：面纱 → GDM 门 →
+  桌面；splash 仅 Plasma）。
+- **开放：** F53（VM rc23test）、F54（MacBook 2008）、Huawei 转储在途（工厂种子）。
+
 ---
 
 * * *
