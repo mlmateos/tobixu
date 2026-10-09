@@ -1,0 +1,31 @@
+#!/bin/sh
+set -e
+# F70 curada: el hook asume /etc/locale.gen existe, pero locales puede no estar instalado
+# Cura: instalar locales si falta, luego generar los tres locales de la triada v2
+
+# Instalar locales si no esta presente
+if ! dpkg -s locales >/dev/null 2>&1; then
+    apt-get update -qq
+    DEBIAN_FRONTEND=noninteractive apt-get install -y locales
+fi
+
+# Descomentar los tres locales de la triada v2 (en_GB, es_MX, en_US)
+if [ -f /etc/locale.gen ]; then
+    sed -i -e 's/^# *en_US.UTF-8 UTF-8/en_US.UTF-8 UTF-8/' \
+           -e 's/^# *en_GB.UTF-8 UTF-8/en_GB.UTF-8 UTF-8/' \
+           -e 's/^# *es_MX.UTF-8 UTF-8/es_MX.UTF-8 UTF-8/' /etc/locale.gen
+else
+    # Si locale.gen no existe (locales recien instalado), crearlo con los tres
+    cat > /etc/locale.gen <<'LOCALES'
+en_US.UTF-8 UTF-8
+en_GB.UTF-8 UTF-8
+es_MX.UTF-8 UTF-8
+LOCALES
+fi
+
+# Generar los locales
+locale-gen
+
+# Configurar zona horaria (America/Mexico_City)
+ln -sf /usr/share/zoneinfo/America/Mexico_City /etc/localtime
+echo America/Mexico_City > /etc/timezone
