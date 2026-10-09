@@ -48,7 +48,7 @@ rm -f config/includes.chroot/opt/tobixu-debs/*.deb
 for PKG in tobixu-wallpapers tobixu-keyboard tobixu-sddm-theme tobixu-plymouth-theme tobixu-plasma-look tobixu-gnome-look tobi-xu-stem tobi-xu-arts tobixu-pulsar; do
   [ -d "packages/$PKG" ] || { echo "CAPA2 FATAL: falta packages/$PKG" | tee -a "$LOG"; exit 1; }
   ( cd "packages/$PKG" && dpkg-buildpackage -us -uc -b ) 2>&1 | tail -n 3 | tee -a "$LOG"
-  cp packages/${PKG}_*.deb config/includes.chroot/opt/tobixu-debs/
+  cp "$(ls -t packages/${PKG}_*.deb | head -1)" config/includes.chroot/opt/tobixu-debs/
 done
 ls -l config/includes.chroot/opt/tobixu-debs/ | tee -a "$LOG"
 lb chroot    --debug 2>&1 | tee -a "$LOG"; [ "${PIPESTATUS[0]}" -eq 0 ] || exit 1
