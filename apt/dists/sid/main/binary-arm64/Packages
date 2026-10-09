@@ -22,19 +22,19 @@ Description: Tobi Xu base: Debian Sid con snapshots
  elige en el instalador; la marca Iguana dia/noche va en Recommends.
 
 Package: tobixu-gnome-look
-Version: 0.1.0
+Version: 0.1.1
 Architecture: all
 Maintainer: Manuel Lopez Mateos <mlmateos@tobixu.xyz>
-Installed-Size: 19
+Installed-Size: 126
 Depends: gnome-shell, gdm3, papirus-icon-theme, gnome-tweaks, gnome-shell-extension-appindicator, gnome-shell-extension-dashtodock, tobixu-wallpapers
 Recommends: tobi-xu-desktop-gnome
 Priority: optional
 Section: x11
-Filename: pool/main/t/tobixu-gnome-look/tobixu-gnome-look_0.1.0_all.deb
-Size: 2600
-SHA256: 32759c9e46b713e0702c37f025331830ee971b07ffe1418d5560582695683e81
-SHA1: e203629f861854c8b5b9d0f10480c51695b37b4a
-MD5sum: bb1f3d8c8444ffe96bc8562181a18c07
+Filename: pool/main/t/tobixu-gnome-look/tobixu-gnome-look_0.1.1_all.deb
+Size: 24636
+SHA256: 8ea0473dcba48f122ba50310e020e0f3720672816665780f16ccf8f6a5a6f0ae
+SHA1: c8eab5836b5ac3135572c44183f8f5b6dc10879d
+MD5sum: a40c197c3b4dd26f8a20e497619d9a4c
 Description: TobiXu GNOME identity — system seeds
  Default look and feel for the TobiXu GNU/Linux distribution when the
  user chooses the GNOME session. Seeds the dconf database with
