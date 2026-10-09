@@ -44,25 +44,3 @@ Description: TobiXu GNOME identity — system seeds
  are seeds, not chains — the user harvests freely via gnome-tweaks or
  dconf-editor.
 
-Package: tobixu-iguana
-Version: 0.1.0
-Architecture: all
-Maintainer: Manuel López Mateos <mlmateos@users.noreply.github.com>
-Depends: plymouth
-Homepage: https://mlmateos.github.io/tobixu/
-Priority: optional
-Section: graphics
-Filename: pool/main/t/tobixu-iguana/tobixu-iguana_0.1.0_all.deb
-Size: 3312
-SHA256: 0bd4d8847fad40a58bdefe2db28a6eac51caba6e0b2c03bb56b8941efe57218d
-SHA1: 052066ffab7bd7ccd07676ce5dfedffd225b8e18
-MD5sum: 5d342563719e73829d761692e78af6d7
-Description: Iguana day/night theme for Tobi Xu
- Paleta oficial de Tobi Xu en sus cuatro pieles: esquema de
- colores de Plasma, perfil de Konsole, tema de Plymouth y
- variables CSS. La noche es el estado natural; el dia se elige.
- Siete tonos (esmeralda honda, selva, jade, jacaranda honda,
- jacaranda, bruma, niebla) mas rojo piedra y ambar brasa como
- semaforos. Nacida el 9 de septiembre de 2026; migrara a
- mlmateos/iguana cuando este salga de preliminares.
-
