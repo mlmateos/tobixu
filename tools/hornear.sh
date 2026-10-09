@@ -26,6 +26,7 @@ CAJA_PADRE=$$
 # ---- fin caja negra ----
 # Horno v7: limpieza a fondo, purga verificada ANTES del binary, bautizo automatico.
 cd /home/manuel/tobixu-iso || exit 1
+trap 'mount | grep "/tobixu-iso/chroot/" | cut -d" " -f3 | sort -r | while read -r mp; do umount "$mp" 2>/dev/null || umount -l "$mp" 2>/dev/null || true; done' EXIT
 [ "$(id -u)" -ne 0 ] && { echo "HORNO: sudo"; exit 1; }
 
 for f in etc/environment etc/apt/sources.list etc/sddm.conf.d/tobixu-autologin.conf etc/skel/.config/kdeglobals; do
@@ -33,6 +34,8 @@ for f in etc/environment etc/apt/sources.list etc/sddm.conf.d/tobixu-autologin.c
 done
 
 umount /tmp 2>/dev/null || true
+# F77: desmontar restos de hornos muertos antes de limpiar (corre como root)
+mount | grep "/tobixu-iso/chroot/" | cut -d" " -f3 | sort -r | while read -r mp; do umount "$mp" 2>/dev/null || umount -l "$mp" 2>/dev/null || true; done
 lb clean --all >/dev/null 2>&1
 rm -f live-image-amd64.hybrid.iso SHA256SUMS "tobixu-0.1-sicaru-$(date +%Y%m%d)-amd64.iso"
 
