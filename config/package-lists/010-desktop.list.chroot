@@ -1,6 +1,8 @@
 # === GNOME (default desde rc24, D5) ===
-gnome-core gdm3 papirus-icon-theme gnome-tweaks gnome-shell-extension-appindicator gnome-shell-extension-dashtodock tobixu-gnome-look
+# Nota: tobixu-gnome-look se instala via hook 0400, no via apt aqui
+gnome-core gdm3 papirus-icon-theme gnome-tweaks gnome-shell-extension-appindicator gnome-shell-extension-dashtodock
 # === Plasma (alternativa, D5) ===
-kde-plasma-desktop sddm konsole dolphin plasma-nm network-manager tobixu-plasma-look
+# Nota: tobixu-plasma-look se instala via hook 0400, no via apt aqui
+kde-plasma-desktop sddm konsole dolphin plasma-nm network-manager
 # === Comun a ambos ===
 firefox-esr thunderbird vlc
