@@ -1,3 +1,0 @@
-
-# F74: forzar tamaño HDD grande (8000 MB) para evitar fallo de xorriso
-LB_HDD_SIZE="8000"
