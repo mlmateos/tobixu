@@ -737,6 +737,25 @@ Ordered by priority. All done **cold**, with the VM off and with acta.
   桌面；splash 仅 Plasma）。
 - **开放：** F53（VM rc23test）、F54（MacBook 2008）、Huawei 转储在途（工厂种子）。
 
+## 2026-10-09 (noche) — Saga F67-F77: ocho horneados muertos, una ISO viva
+
+### ES
+
+**rc24 nació con BAUTIZO COMPLETO tras 8 horneados muertos.** Cada muerte dejó una lección doctrinal:
+
+- **F67 "El package-list que pedía paquetes de identidad":** `010-desktop.list.chroot` listaba `tobixu-gnome-look` y `tobixu-plasma-look` como paquetes a instalar vía apt durante la fase chroot. Pero esos paquetes viven en `/opt/tobixu-debs/` sembrados por CAPA2 y se instalan vía hook 0400, no vía apt. Apt no lo… clean --all` 无法在其中删除。疗法：脚本开始时的预清理挂载（通过 sudoers 作为 root 运行）+ `trap ... EXIT`。
+
+**rc24 特性：**
+- 默认 GNOME（gdm3 + tobixu-gnome-look 0.1.1 带 EGO 扩展：appmenu-is-back、trayIconsReloaded）
+- Plasma 作为替代（SDDM + tobixu-plasma-look 0.3.2）
+- Hook 0400 带 `dpkg -i --force-confold --force-confdef`
+- `config/binary` 中 `LB_HDD_SIZE=8000`
+- 僵尸挂载预清理 + trap EXIT
+- SHA256：`ba5360a2ba8876d2a247205e112cfb1329acf7b20c4c46c1d60db8ab43bea9b5`
+- 大小：6.3 GB（D3 已验证：GNOME + Plasma 共存）
+
+**v0.2 债务：** 记录在 `docs/doctrina.md` 中。
+
 ---
 
 * * *
