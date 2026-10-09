@@ -756,6 +756,20 @@ Ordered by priority. All done **cold**, with the VM off and with acta.
 
 **v0.2 债务：** 记录在 `docs/doctrina.md` 中。
 
+## 2026-10-09 (cierre) — Lecciones de distribución post-bautizo
+
+### ES
+- **F78 "El índice que aún no llegaba":** `ia list` no muestra archivos recién subidos mientras `derive.php` está en cola; los archivos YA son servibles vía URL directa. Testigos que no mienten: `curl -sI` (302→200 con content-length exacto) y `ia metadata` (`files[]` con size/format/sha1). Cura: no diagnosticar con `ia list` durante el derive.
+- **F79 "El metadata que no viajó":** en items existentes, `ia upload --metadata` no modifica el metadata del item (queda la fecha y descripción viejas). Cura: `ia metadata <item> --modify="campo:valor"`.
+
+### EN
+- **F78 "The index that hadn't arrived":** `ia list` doesn't show freshly uploaded files while `derive.php` is queued; the files ARE already servable via direct URL. Honest witnesses: `curl -sI` (302→200 with exact content-length) and `ia metadata` (`files[]` with size/format/sha1). Cure: don't diagnose with `ia list` during derive.
+- **F79 "The metadata that didn't travel":** on existing items, `ia upload --metadata` doesn't modify item metadata (old date and description remain). Cure: `ia metadata <item> --modify="field:value"`.
+
+### ZH
+- **F78「尚未到达的索引」：** 当 `derive.php` 排队时，`ia list` 不显示新上传的文件；文件已可通过直接 URL 服务。诚实的证人：`curl -sI`（302→200 带精确 content-length）和 `ia metadata`（`files[]` 带 size/format/sha1）。疗法：derive 期间不要用 `ia list` 诊断。
+- **F79「未曾旅行的元数据」：** 对已存在的 item，`ia upload --metadata` 不修改 item 元数据（旧日期和描述保留）。疗法：`ia metadata <item> --modify="字段:值"`。
+
 ---
 
 * * *

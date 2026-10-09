@@ -111,3 +111,12 @@ hay que coordinar que no se pidan dos veces).
 
 - **2026-10-09:** Doctrina inicial sellada tras saga F67-F77 (8 horneados muertos,
   una ISO viva). Nueve reglas, cuatro deudas v0.2.
+
+### 10. Archive.org: testigos durante el derive
+`ia list` miente durante `derive.php`; los testigos que no mienten son
+`curl -sI` (302→200 + content-length) y `ia metadata` (files[] con sha1).
+(F78)
+
+### 11. Archive.org: metadata de items existentes
+`ia upload --metadata` solo crea; para modificar un item existente se usa
+`ia metadata <item> --modify="campo:valor"`. (F79)
