@@ -1,8 +1,4 @@
-# === GNOME (default desde rc24, D5) ===
-# Nota: tobixu-gnome-look se instala via hook 0400, no via apt aqui
-gnome-core gdm3 papirus-icon-theme gnome-tweaks gnome-shell-extension-appindicator gnome-shell-extension-dashtodock
-# === Plasma (alternativa, D5) ===
-# Nota: tobixu-plasma-look se instala via hook 0400, no via apt aqui
-kde-plasma-desktop sddm konsole dolphin plasma-nm network-manager
-# === Comun a ambos ===
-firefox-esr thunderbird vlc
+# TobiXu desktops instalados en la ISO (slim, ~1.2GB total)
+# GNOME y XFCE como alternativas principales
+tobixu-desktop-gnome
+tobixu-desktop-xfce

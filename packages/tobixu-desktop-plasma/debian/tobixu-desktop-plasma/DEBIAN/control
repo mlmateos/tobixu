@@ -1,0 +1,12 @@
+Package: tobixu-desktop-plasma
+Version: 0.1.0
+Architecture: all
+Maintainer: Manuel Lopez Mateos <mlmateos@tobixu.xyz>
+Installed-Size: 7
+Depends: plasma-desktop, sddm, konsole, qt-style-kvantum, tobixu-wallpapers, tobixu-keyboard, tobixu-sddm-theme, texstudio, texlive-base, frescobaldi, lilypond, libreoffice
+Recommends: tobi-xu-stem, tobi-xu-arts
+Section: metapackages
+Priority: optional
+Description: TobiXu Plasma desktop (instalación opcional vía apt)
+ KDE Plasma 6 con identidad TobiXu (SDDM theme, kvantum, wallpapers).
+ No viene en la ISO base; se instala con: apt install tobixu-desktop-plasma

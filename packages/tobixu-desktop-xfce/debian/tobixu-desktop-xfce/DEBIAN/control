@@ -1,0 +1,17 @@
+Package: tobixu-desktop-xfce
+Version: 0.1.0
+Architecture: all
+Maintainer: Manuel Lopez Mateos <mlmateos@tobixu.xyz>
+Installed-Size: 7
+Depends: xfce4, lightdm, xfce4-goodies, tobixu-wallpapers, tobixu-keyboard, texstudio, texlive-base, frescobaldi, lilypond, libreoffice
+Recommends: tobi-xu-stem, tobi-xu-arts, tobixu-desktop-plasma, tobixu-desktop-lxqt
+Section: metapackages
+Priority: optional
+Description: TobiXu XFCE desktop (slim rolling release)
+ XFCE 4 con identidad TobiXu (wallpapers, teclados)
+ más aplicaciones base (Texstudio, Frescobaldi, Lilypond, LibreOffice).
+ .
+ Para instalar STEM completo: apt install tobi-xu-stem
+ Para instalar ARTS completo: apt install tobi-xu-arts
+ Para instalar Plasma como alternativa: apt install tobixu-desktop-plasma
+ Para instalar LXQt como alternativa: apt install tobixu-desktop-lxqt

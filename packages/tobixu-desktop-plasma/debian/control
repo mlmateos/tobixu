@@ -1,0 +1,14 @@
+Source: tobixu-desktop-plasma
+Section: metapackages
+Priority: optional
+Maintainer: Manuel Lopez Mateos <mlmateos@tobixu.xyz>
+Build-Depends: debhelper-compat (= 13)
+Standards-Version: 4.6.2
+
+Package: tobixu-desktop-plasma
+Architecture: all
+Depends: ${misc:Depends}, plasma-desktop, sddm, konsole, qt-style-kvantum, tobixu-wallpapers, tobixu-keyboard, tobixu-sddm-theme, texstudio, texlive-base, frescobaldi, lilypond, libreoffice
+Recommends: tobi-xu-stem, tobi-xu-arts
+Description: TobiXu Plasma desktop (instalación opcional vía apt)
+ KDE Plasma 6 con identidad TobiXu (SDDM theme, kvantum, wallpapers).
+ No viene en la ISO base; se instala con: apt install tobixu-desktop-plasma

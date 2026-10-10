@@ -1,0 +1,6 @@
+tobixu-desktop-plasma (0.1.0) unstable; urgency=low
+
+  * Metapaquete para instalación opcional vía apt (no en ISO base)
+  * Plasma 6 + identidad TobiXu + apps base
+
+ -- Manuel Lopez Mateos <mlmateos@tobixu.xyz>  Fri, 10 Oct 2026 12:00:00 -0600

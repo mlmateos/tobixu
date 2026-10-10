@@ -1,0 +1,14 @@
+Source: tobixu-desktop-lxqt
+Section: metapackages
+Priority: optional
+Maintainer: Manuel Lopez Mateos <mlmateos@tobixu.xyz>
+Build-Depends: debhelper-compat (= 13)
+Standards-Version: 4.6.2
+
+Package: tobixu-desktop-lxqt
+Architecture: all
+Depends: ${misc:Depends}, lxqt, sddm, tobixu-wallpapers, tobixu-keyboard, tobixu-sddm-theme, texstudio, texlive-base, frescobaldi, lilypond, libreoffice
+Recommends: tobi-xu-stem, tobi-xu-arts
+Description: TobiXu LXQt desktop (instalación opcional vía apt)
+ LXQt con identidad TobiXu (SDDM theme, wallpapers).
+ No viene en la ISO base; se instala con: apt install tobixu-desktop-lxqt

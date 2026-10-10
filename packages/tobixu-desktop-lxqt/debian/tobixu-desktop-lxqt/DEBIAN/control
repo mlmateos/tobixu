@@ -1,0 +1,12 @@
+Package: tobixu-desktop-lxqt
+Version: 0.1.0
+Architecture: all
+Maintainer: Manuel Lopez Mateos <mlmateos@tobixu.xyz>
+Installed-Size: 7
+Depends: lxqt, sddm, tobixu-wallpapers, tobixu-keyboard, tobixu-sddm-theme, texstudio, texlive-base, frescobaldi, lilypond, libreoffice
+Recommends: tobi-xu-stem, tobi-xu-arts
+Section: metapackages
+Priority: optional
+Description: TobiXu LXQt desktop (instalación opcional vía apt)
+ LXQt con identidad TobiXu (SDDM theme, wallpapers).
+ No viene en la ISO base; se instala con: apt install tobixu-desktop-lxqt

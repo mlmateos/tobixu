@@ -1,0 +1,7 @@
+tobixu-desktop-gnome (0.1.0) unstable; urgency=low
+
+  * Metapaquete slim para ISO rolling release (~1.2GB)
+  * GNOME 47 + identidad TobiXu + apps base
+  * STEM/ARTS/Plasma/LXQt como Recommends (post-instalación vía apt)
+
+ -- Manuel Lopez Mateos <mlmateos@tobixu.xyz>  Fri, 10 Oct 2026 12:00:00 -0600
