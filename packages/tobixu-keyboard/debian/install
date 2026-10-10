@@ -1,5 +1,3 @@
 payload/us usr/share/tobixu-keyboard
 payload/tobixu-keyboard-check usr/bin
 payload/tobixu-keyboard-apply usr/bin
-payload/tobixu-keyboard-check usr/bin
-payload/tobixu-keyboard-apply usr/bin

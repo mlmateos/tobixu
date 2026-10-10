@@ -1,6 +1,7 @@
 #!/bin/sh
-# tobixu-keyboard-apply — aplica el layout modificado sin logout donde se puede.
-LAYOUT="us"
+# tobixu-keyboard-apply — aplica un layout modificado sin logout donde se puede.
+# Uso: tobixu-keyboard-apply [layout]   (por defecto: us)
+LAYOUT="${1:-us}"
 if [ -n "$WAYLAND_DISPLAY" ]; then
     case "${XDG_CURRENT_DESKTOP:-}" in
         *GNOME*)
@@ -9,14 +10,14 @@ if [ -n "$WAYLAND_DISPLAY" ]; then
                 gsettings set org.gnome.desktop.input-sources sources "[]"
                 sleep 1
                 gsettings set org.gnome.desktop.input-sources sources "$SRC"
-                echo "OK: Mutter recompilo el keymap (GNOME Wayland)"
+                echo "OK: Mutter recompilo el keymap (GNOME Wayland), layout $LAYOUT activo"
                 exit 0
             fi
             ;;
     esac
     echo "En este desktop Wayland: cierra sesion y vuelve a entrar."
 elif [ -n "$DISPLAY" ] && command -v setxkbmap >/dev/null 2>&1; then
-    setxkbmap -layout "$LAYOUT" && echo "OK: keymap recargado ahora (X11)"
+    setxkbmap -layout "$LAYOUT" && echo "OK: keymap $LAYOUT recargado ahora (X11)"
 else
-    echo "Cierra sesion y vuelve a entrar para aplicar el layout."
+    echo "Cierra sesion y vuelve a entrar para aplicar el layout $LAYOUT."
 fi

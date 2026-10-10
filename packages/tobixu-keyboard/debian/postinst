@@ -1,38 +1,43 @@
 #!/bin/sh
 set -e
-TARGET=/usr/share/X11/xkb/symbols/us
-SRC=/usr/share/tobixu-keyboard/us
+# Layouts que este paquete instala/reemplaza. Para anadir otro (p.ej. es):
+#   1) poner payload/es, 2) anadirlo a debian/install, 3) listarlo aqui.
+LAYOUTS="us"
 
-if [ "$1" = configure ]; then
-    # 1. Divertir el original e instalar el nuestro
-    if ! dpkg-divert --list | grep -q "$TARGET"; then
-        dpkg-divert --package tobixu-keyboard --divert "$TARGET.tobixu-orig" --rename "$TARGET"
-    fi
-    install -m 644 "$SRC" "$TARGET"
+for L in $LAYOUTS; do
+    TARGET="/usr/share/X11/xkb/symbols/$L"
+    SRC="/usr/share/tobixu-keyboard/$L"
 
-    # 2. Validar YA INSTALADO con la misma autoridad que valida en sesion
-    VALID=1
-    if command -v xkbcli >/dev/null 2>&1; then
-        xkbcli compile-keymap --layout us >/dev/null 2>&1 || VALID=0
-    elif command -v xkbcomp >/dev/null 2>&1; then
-        TMP=$(mktemp -d)
-        printf 'xkb_keymap {\n xkb_keycodes { include "evdev+aliases(qwerty)" };\n xkb_types { include "complete" };\n xkb_compat { include "complete" };\n xkb_symbols { include "us" };\n xkb_geometry { include "pc(pc105)" };\n};\n' > "$TMP/test.xkb"
-        xkbcomp "$TMP/test.xkb" "$TMP/test.xkm" >/dev/null 2>&1 || VALID=0
-        rm -rf "$TMP"
-    else
-        echo "tobixu-keyboard: sin validador (xkbcli/xkbcomp); omitiendo validacion" >&2
+    if [ "$1" = configure ]; then
+        # 1. Divertir el original e instalar el nuestro
+        if ! dpkg-divert --list | grep -q "$TARGET"; then
+            dpkg-divert --package tobixu-keyboard --divert "$TARGET.tobixu-orig" --rename "$TARGET"
+        fi
+        install -m 644 "$SRC" "$TARGET"
+
+        # 2. Validar YA INSTALADO con la misma autoridad que valida en sesion
         VALID=1
-    fi
+        if command -v xkbcli >/dev/null 2>&1; then
+            xkbcli compile-keymap --layout "$L" >/dev/null 2>&1 || VALID=0
+        elif command -v xkbcomp >/dev/null 2>&1; then
+            TMP=$(mktemp -d)
+            printf 'xkb_keymap {\n xkb_keycodes { include "evdev+aliases(qwerty)" };\n xkb_types { include "complete" };\n xkb_compat { include "complete" };\n xkb_symbols { include "%s" };\n xkb_geometry { include "pc(pc105)" };\n};\n' "$L" > "$TMP/test.xkb"
+            xkbcomp "$TMP/test.xkb" "$TMP/test.xkm" >/dev/null 2>&1 || VALID=0
+            rm -rf "$TMP"
+        else
+            echo "tobixu-keyboard: sin validador; omitiendo validacion de $L" >&2
+        fi
 
-    # 3. Si el layout esta roto: revertir al original y fallar ruidoso
-    if [ "$VALID" -eq 0 ]; then
-        rm -f "$TARGET"
-        cp -a "$TARGET.tobixu-orig" "$TARGET"
-        echo "tobixu-keyboard FATAL: el layout no compila; se restauro el original" >&2
-        exit 1
+        # 3. Si el layout esta roto: revertir al original y fallar ruidoso
+        if [ "$VALID" -eq 0 ]; then
+            rm -f "$TARGET"
+            cp -a "$TARGET.tobixu-orig" "$TARGET"
+            echo "tobixu-keyboard FATAL: el layout $L no compila; se restauro el original" >&2
+            exit 1
+        fi
     fi
+done
 
-    # 4. Purgar la cache compilada de X11 (evita keymap viejo en Xorg)
-    rm -f /var/lib/xkb/*.xkm 2>/dev/null || true
-fi
+# Purga de la cache compilada de X11 (evita keymap viejo en Xorg)
+rm -f /var/lib/xkb/*.xkm 2>/dev/null || true
 #DEBHELPER#
