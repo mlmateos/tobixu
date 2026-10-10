@@ -106,3 +106,89 @@ el keymap: sesión nueva en Wayland, arranque de X en X11 (con purga de
 logout-login. Los visores (gkbd-keyboard-display en GNOME, applet de Plasma,
 xkbprint como universal) leen los mismos datos xkb: si el dato es válido,
 el visor funciona. (Deuda v0.3 cerrada: teclados multi-desktop)
+### 13. Rolling release real: repo apt firmado
+Los metapaquetes propios (tobixu-gnome-look, tobixu-plasma-look, tobixu-wallpapers,
+tobixu-keyboard, tobixu-sddm-theme, tobixu-plymouth-theme, tobixu-pulsar, tobi-xu-arts,
+tobi-xu-stem) se publican en `https://mlmateos.github.io/tobixu-apt-repo` firmado
+con GPG (clave `2AF282649069E8636BBE1A0DAD896D6B738B45D9`, UID `TobiXu APT Signing Key <apt@tobixu.org>`).
+
+La ISO incluye:
+- `/etc/apt/sources.list.d/tobixu.list` apuntando al repo
+- `/etc/apt/keyrings/tobixu-apt-key.gpg` con la clave pública
+
+Resultado: `apt update && apt upgrade` actualiza TODO (Debian + TobiXu), sin
+reinstalar nunca. (Deuda v0.3 cerrada)
+
+**Uso post-instalación:**
+
+~~~bash
+apt update && apt upgrade
+apt install tobixu-gnome-look   # instala GNOME con identidad TobiXu
+apt install tobixu-plasma-look  # instala Plasma con identidad TobiXu
+~~~
+
+**Publicar nueva versión (flujo del mantenedor):**
+
+~~~bash
+cd ~/projects/tobixu-apt-repo
+
+# 1. Construir los .deb nuevos desde el repo principal
+cd ~/projects/tobixu/packages
+for pkg in tobixu-gnome-look tobixu-plasma-look tobixu-wallpapers tobixu-keyboard \
+           tobixu-sddm-theme tobixu-plymouth-theme tobixu-pulsar tobi-xu-arts tobi-xu-stem; do
+    [ -d "$pkg" ] && { cd "$pkg"; dpkg-buildpackage -us -uc -b 2>&1 | tail -1; cd ..; }
+done
+
+# 2. Copiar .deb nuevos al pool
+cp ~/projects/tobixu/packages/tobixu-*.deb ~/projects/tobixu-apt-repo/pool/
+cp ~/projects/tobixu/packages/tobi-xu-*.deb ~/projects/tobixu-apt-repo/pool/
+
+# 3. Regenerar índices
+cd ~/projects/tobixu-apt-repo/pool
+apt-ftparchive packages . > ../dists/stable/main/binary-amd64/Packages
+cd ..
+gzip -kf dists/stable/main/binary-amd64/Packages
+
+# 4. Regenerar y re-firmar Release
+cd dists/stable
+cat > Release <<'REL'
+Origin: TobiXu
+Label: TobiXu
+Suite: stable
+Codename: stable
+Version: 0.1
+Architectures: amd64 all
+Components: main
+Description: TobiXu rolling release repository
+REL
+apt-ftparchive release . >> Release
+cd ../..
+
+# 5. Firmar
+FPR=$(gpg --list-keys --with-colons apt@tobixu.org | awk -F: '/^fpr:/ {print $10; exit}')
+gpg --clearsign --default-key "$FPR" -o dists/stable/InRelease dists/stable/Release
+gpg --detach-sign --default-key "$FPR" -o dists/stable/Release.gpg dists/stable/Release
+
+# 6. Publicar
+git add -A
+git commit -m "repo: actualizar metapaquetes a vX.Y"
+git push
+~~~
+
+**Verificar que los usuarios ven la nueva versión:**
+
+~~~bash
+curl -s https://mlmateos.github.io/tobixu-apt-repo/dists/stable/main/binary-amd64/Packages | \
+  grep -A1 "^Package: tobixu-gnome-look$" | head -3
+~~~
+
+**Notas doctrinales:**
+- La clave GPG no tiene passphrase (`%no-protection`) para permitir firmado automatizado.
+  Esto es aceptable porque: (a) la clave vive solo en tetris (máquina del mantenedor),
+  (b) si se pierde, se revoca y se emite una nueva (los usuarios hacen `apt update`
+  con la nueva clave), (c) el repo es público y no requiere autenticación de usuarios.
+- La clave no expira (`Expire-Date: 0`). Para una versión v0.1 establecida, considerar
+  clave con expiración de 2 años y subclave rotativa.
+- Si un metapaquete nuevo se añade al repo principal, también debe publicarse aquí
+  para que `apt install` funcione post-instalación.
+
