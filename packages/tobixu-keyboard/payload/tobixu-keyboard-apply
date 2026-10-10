@@ -1,0 +1,22 @@
+#!/bin/sh
+# tobixu-keyboard-apply — aplica el layout modificado sin logout donde se puede.
+LAYOUT="us"
+if [ -n "$WAYLAND_DISPLAY" ]; then
+    case "${XDG_CURRENT_DESKTOP:-}" in
+        *GNOME*)
+            if command -v gsettings >/dev/null 2>&1; then
+                SRC=$(gsettings get org.gnome.desktop.input-sources sources)
+                gsettings set org.gnome.desktop.input-sources sources "[]"
+                sleep 1
+                gsettings set org.gnome.desktop.input-sources sources "$SRC"
+                echo "OK: Mutter recompilo el keymap (GNOME Wayland)"
+                exit 0
+            fi
+            ;;
+    esac
+    echo "En este desktop Wayland: cierra sesion y vuelve a entrar."
+elif [ -n "$DISPLAY" ] && command -v setxkbmap >/dev/null 2>&1; then
+    setxkbmap -layout "$LAYOUT" && echo "OK: keymap recargado ahora (X11)"
+else
+    echo "Cierra sesion y vuelve a entrar para aplicar el layout."
+fi

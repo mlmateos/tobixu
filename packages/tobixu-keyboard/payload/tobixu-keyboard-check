@@ -1,0 +1,26 @@
+#!/bin/sh
+# tobixu-keyboard-check — valida un layout xkb SIN cerrar sesion.
+# Uso: tobixu-keyboard-check [layout]   (por defecto: us)
+LAYOUT="${1:-us}"
+if command -v xkbcli >/dev/null 2>&1; then
+    if xkbcli compile-keymap --layout "$LAYOUT" >/dev/null 2>&1; then
+        echo "LAYOUT OK: $LAYOUT compila sin errores"
+    else
+        echo "LAYOUT ROTO: $LAYOUT no compila; corrige ANTES de cerrar sesion" >&2
+        xkbcli compile-keymap --layout "$LAYOUT" 2>&1 | head -10 >&2
+        exit 1
+    fi
+elif command -v xkbcomp >/dev/null 2>&1; then
+    TMP=$(mktemp -d)
+    printf 'xkb_keymap {\n xkb_keycodes { include "evdev+aliases(qwerty)" };\n xkb_types { include "complete" };\n xkb_compat { include "complete" };\n xkb_symbols { include "%s" };\n xkb_geometry { include "pc(pc105)" };\n};\n' "$LAYOUT" > "$TMP/test.xkb"
+    if xkbcomp "$TMP/test.xkb" "$TMP/test.xkm" >/dev/null 2>&1; then
+        echo "LAYOUT OK: $LAYOUT compila sin errores"
+    else
+        echo "LAYOUT ROTO: $LAYOUT no compila" >&2
+        rm -rf "$TMP"; exit 1
+    fi
+    rm -rf "$TMP"
+else
+    echo "Sin validador: instala libxkbcommon-tools (xkbcli) o x11-xkb-utils (xkbcomp)" >&2
+    exit 2
+fi

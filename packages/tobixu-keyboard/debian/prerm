@@ -4,4 +4,5 @@ if [ "$1" = remove ]; then
     rm -f /usr/share/X11/xkb/symbols/us
     dpkg-divert --package tobixu-keyboard --rename --remove /usr/share/X11/xkb/symbols/us
 fi
+rm -f /var/lib/xkb/*.xkm 2>/dev/null || true
 #DEBHELPER#

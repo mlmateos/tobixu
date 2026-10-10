@@ -86,3 +86,13 @@ Ninguna deuda crítica. La estructura es 100% sólida para agregar/quitar paquet
 ### 11. Archive.org: metadata de items existentes
 `ia upload --metadata` solo crea; para modificar un item existente se usa
 `ia metadata <item> --modify="campo:valor"`. (F79)
+
+### 12. Teclados xkb: validación y reconocimiento multi-desktop
+El que modifica un layout valida con `tobixu-keyboard-check` (xkbcli, la misma
+autoridad que Mutter/KWin usan en Wayland). El reconocimiento ocurre al compilar
+el keymap: sesión nueva en Wayland, arranque de X en X11 (con purga de
+`/var/lib/xkb/*.xkm`). Recarga inmediata: `setxkbmap` en X11;
+`tobixu-keyboard-apply` toca `input-sources` en GNOME-Wayland; en KDE-Wayland,
+logout-login. Los visores (gkbd-keyboard-display en GNOME, applet de Plasma,
+xkbprint como universal) leen los mismos datos xkb: si el dato es válido,
+el visor funciona. (Deuda v0.3 cerrada: teclados multi-desktop)
