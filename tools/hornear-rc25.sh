@@ -48,8 +48,9 @@ lb bootstrap --debug 2>&1 | tee -a "$LOG"; [ "${PIPESTATUS[0]}" -eq 0 ] || exit 
 echo "CAPA2: empaquetando tobixu-wallpapers..." | tee -a "$LOG"
 mkdir -p config/includes.chroot/opt/tobixu-debs
 rm -f config/includes.chroot/opt/tobixu-debs/*.deb
-for PKG in tobixu-desktop-gnome tobixu-desktop-xfce tobixu-desktop-plasma tobixu-desktop-lxqt \
-           tobixu-wallpapers tobixu-keyboard tobixu-sddm-theme tobixu-plymouth-theme tobixu-pulsar tobi-xu-arts tobi-xu-stem
+# Solo los paquetes que van en la ISO slim (plasma/lxqt/stem/arts son post-instalacion via apt)
+for PKG in tobixu-desktop-gnome tobixu-desktop-xfce \
+           tobixu-wallpapers tobixu-keyboard
 do
   [ -d "packages/$PKG" ] || { echo "CAPA2 FATAL: falta packages/$PKG" | tee -a "$LOG"; exit 1; }
   ( cd "packages/$PKG" && dpkg-buildpackage -us -uc -b ) 2>&1 | tail -n 3 | tee -a "$LOG"
