@@ -1,4 +1,7 @@
 
+tobixu-keyboard (0.1.4) unstable; urgency=low
+
+
   * postinst valida el layout ya instalado (xkbcli/xkbcomp); si no compila, revierte
   * tobixu-keyboard-check: validacion inmediata al editar, sin cerrar sesion
   * tobixu-keyboard-apply: recarga inmediata donde el desktop lo permite
