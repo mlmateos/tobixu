@@ -1,17 +1,38 @@
 #!/bin/sh
 set -e
 # Instala los paquetes de fabrica sembrados en /opt/tobixu-debs/ por CAPA2.
-# Doctrina: los paquetes de identidad viven en /opt durante el build, no en el
-# repo firmado (que el chroot no alcanza durante el horneado).
-# dpkg -i es mas robusto que apt-get install: no verifica dependencias contra
-# los repos (las dependencias ya estan instaladas via 010-desktop.list.chroot).
+# Deuda v0.2 #4 cerrada: dpkg -i con fallback apt-get install -f ya funciona;
+# este hook solo mejora el logging para diagnosticar fallos rapidamente.
 
 if [ -d /opt/tobixu-debs ] && ls /opt/tobixu-debs/*.deb >/dev/null 2>&1; then
     echo "=== 0400-install: instalando paquetes de fabrica ==="
     export DEBIAN_FRONTEND=noninteractive
-    dpkg -i --force-confold --force-confdef /opt/tobixu-debs/*.deb || apt-get install -f -y
-    echo "=== 0400-install: paquetes instalados ==="
+    
+    # Listar los .deb que se van a instalar (testigo explicito)
+    echo "Paquetes a instalar:"
+    ls -1 /opt/tobixu-debs/*.deb | sed 's|.*/||'
+    
+    # Intentar instalar con dpkg (no verifica dependencias contra repos)
+    if dpkg -i --force-confold --force-confdef /opt/tobixu-debs/*.deb; then
+        echo "=== 0400-install: todos los paquetes instalados sin fallback ==="
+    else
+        echo "=== 0400-install: dpkg fallo, intentando apt-get install -f ==="
+        # Fallback: apt-get install -f intenta resolver dependencias rotas
+        if apt-get install -f -y; then
+            echo "=== 0400-install: fallback apt-get install -f exitoso ==="
+        else
+            echo "=== 0400-install FATAL: apt-get install -f tambien fallo ===" >&2
+            echo "Paquetes en estado roto:" >&2
+            dpkg -l | grep -E "^i[HUFW]" >&2 || echo "(ninguno)" >&2
+            exit 1
+        fi
+    fi
+    
+    # Testigo final: listar los paquetes de identidad instalados
+    echo "=== 0400-install: paquetes de identidad instalados ==="
     dpkg -l | grep -E "tobixu-|tobi-xu-" | awk '{print $2, $3}'
+    
+    # Limpiar el directorio de .deb
     rm -rf /opt/tobixu-debs
     echo "=== 0400-install: /opt/tobixu-debs limpiado ==="
 else
