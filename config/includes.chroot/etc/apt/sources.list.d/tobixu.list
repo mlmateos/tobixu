@@ -1,0 +1,1 @@
+deb [signed-by=/etc/apt/keyrings/tobixu-apt-key.gpg] https://mlmateos.github.io/tobixu-apt-repo stable main
