@@ -1,4 +1,5 @@
-# TobiXu desktops instalados en la ISO (slim, ~1.2GB total)
-# GNOME y XFCE como alternativas principales
-tobixu-desktop-gnome
-tobixu-desktop-xfce
+# Paquetes base comunes (los metapaquetes desktop se instalan via hook 0400)
+firefox-esr
+thunderbird
+vlc
+papirus-icon-theme
