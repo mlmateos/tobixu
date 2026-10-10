@@ -52,60 +52,26 @@ Siempre verificar con autoridad que no miente.
 
 ---
 
-## Deudas v0.2 (cerrar cuando haya tiempo)
-
-### 1. Keys Qt6 se descargan de GitHub durante el build (F68)
-El hook 0050 hace `wget ... | gpg` cada vez que horneas. Si GitHub cae o la red
-del horno falla, el build muere. **Cura v0.2:** meter las keys como archivo
-estático en `config/includes.chroot/etc/apt/keyrings/`.
-
-### 2. `/etc/skel/.config/kdeglobals` tiene dos dueños (F73)
-Lo siembra `includes.chroot` como archivo estático Y lo trae `tobixu-plasma-look`
-como conffile. El hook 0400 con `--force-confold` resuelve el conflicto, pero
-es síntoma de deuda: **un archivo, un dueño**. **Cura v0.2:** decidir si vive
-en includes.chroot (semilla universal) o en el metapaquete (semilla modular),
-y quitarlo del otro.
-
-### 3. `locales` se instala vía hook reactivo, no declarado (F70)
-El hook 0200 hace `apt-get install locales` si no está. Funciona, pero es magia.
-**Cura v0.2:** añadir `locales` a `005-herramientas.list.chroot` junto a
-wget/curl/certs/gnupg, y dejar que dpkg lo declare como dependencia explícita.
-
-### 4. El hook 0400 usa `dpkg -i` sin resolver dependencias (F67)
-Si un metapaquete propio pide una dependencia que no está en el package-lists,
-dpkg falla y el fallback `apt-get install -f` intenta resolver. Funciona, pero
-es frágil. **Cura v0.2:** si los metapaquetes crecen en complejidad, considerar
-meterlos también en el package-lists (pero entonces volvemos al problema de F67:
-hay que coordinar que no se pidan dos veces).
 
 ---
 
-## Estructura sólida (agregar/quitar paquetes ya es trivial)
+## Deudas v0.2 — Estado al 2026-10-10
 
-**Para paquetes del repo firmado de Debian** (firefox, vlc, neovim, etc.):
-- Añadir el nombre al `010-desktop.list.chroot` (o al package-list que corresponda)
-- Commit + push + rsync a forja + hornear
-- **Fin.**
+### ✅ Cerradas
 
-**Para paquetes propios TobiXu** (metapaquetes modulares):
-- Añadir el paquete al bucle `for PKG in ...` en `tools/hornear.sh`
-- Crear `packages/nombre-del-paquete/` con su `debian/`
-- Bump del `debian/changelog` (entrada reciente arriba, F64 honrada)
-- Commit + push + hornear
-- **Fin.**
+1. **Keys Qt6 como archivos estáticos (F68 v3):** las keys ya no se descargan de GitHub durante el build; viven en `config/includes.chroot/etc/apt/keyrings/` como archivos estáticos del repo. El horno no depende de internet para artefactos propios.
 
-**Para cambios de semilla** (wallpapers, teclados, temas):
-- Editar el metapaquete correspondiente (`tobixu-wallpapers`, `tobixu-keyboard`, etc.)
-- Bump del changelog
-- Hornear
-- **Fin.**
+2. **`locales` declarado en package-lists (F70 declarativo):** `locales` ahora está en `005-herramientas.list.chroot` junto a wget/curl/certs/gnupg. El hook 0200 ya no necesita instalarlo reactivamente.
 
-**Para hooks del chroot:**
-- Crear/editar `config/hooks/normal/NNNN-nombre.hook.chroot`
-- Commit + push + hornear
-- El script se auto-sana (trap EXIT, pre-clean de montajes zombi)
+3. **kdeglobals con dueño único:** vive en `packages/tobixu-plasma-look/skel/.config/kdeglobals` (semilla modular), no en `includes.chroot`. El hook 0400 con `--force-confold --force-confdef` resuelve cualquier conflicto de conffile futuro.
 
----
+4. **Hook 0400 con mejor logging:** el fallback `apt-get install -f` ya funcionaba; ahora el hook lista explícitamente los paquetes a instalar y los paquetes en estado roto si el fallback falla. Diagnóstico rápido sin forense profundo.
+
+### 🔄 Pendientes (v0.3)
+
+Ninguna deuda crítica. La estructura es 100% sólida para agregar/quitar paquetes de forma rutinaria.
+
+
 
 ## Registro de cambios
 
