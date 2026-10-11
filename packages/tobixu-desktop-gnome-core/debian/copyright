@@ -1,0 +1,7 @@
+Format: https://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
+Upstream-Name: tobixu-desktop-gnome-core
+Upstream-Contact: Manuel Lopez Mateos <mlmateos@tobixu.xyz>
+
+Files: *
+Copyright: 2026 Manuel Lopez Mateos <mlmateos@tobixu.xyz>
+License: GPL-3+

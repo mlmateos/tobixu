@@ -1,5 +1,5 @@
-# Paquetes base comunes (los metapaquetes desktop se instalan via hook 0400)
 firefox-esr
 thunderbird
 vlc
 papirus-icon-theme
+polkit-gnome

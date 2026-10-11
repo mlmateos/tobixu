@@ -1,3 +1,19 @@
+tobixu-desktop-gnome (0.1.1+nmu2) UNRELEASED; urgency=medium
+
+  * Non-maintainer upload.
+  * Limpieza de Recommends y uso de gnome-core para optimizar tamaño del
+    ISO rc27.
+  * Ahora depende de tobixu-desktop-gnome-core + stack STEM/ARTS pesado.
+
+ -- Manuel LM <manuel@tetris>  Sat, 10 Oct 2026 21:47:03 -0600
+
+tobixu-desktop-gnome (0.1.1) unstable; urgency=low
+
+  * Añadir accounts-daemon a Depends (cura greeter sin usuarios)
+  * Añadir tobixu-gnome-look a Depends (identidad de vuelta)
+
+ -- Manuel Lopez Mateos <mlmateos@tobixu.xyz>  Fri, 10 Oct 2026 18:30:00 -0600
+
 tobixu-desktop-gnome (0.1.0) unstable; urgency=low
 
   * Metapaquete slim para ISO rolling release (~1.2GB)

@@ -1,3 +1,20 @@
+tobixu-desktop-xfce (0.1.1+nmu2) UNRELEASED; urgency=medium
+
+  * Non-maintainer upload.
+  * Unificación con gdm3 y limpieza de Recommends para optimizar tamaño
+    del ISO rc27.
+  * Ahora depende de tobixu-desktop-xfce-core + stack STEM/ARTS pesado.
+
+ -- Manuel LM <manuel@tetris>  Sat, 10 Oct 2026 21:47:42 -0600
+
+tobixu-desktop-xfce (0.1.1) unstable; urgency=low
+
+  * Quitar lightdm de Depends (gdm3 ofrece XFCE como sesión alternativa)
+  * Añadir accounts-daemon a Depends (cura greeter sin usuarios)
+  * Añadir tobixu-xfce-look a Depends (identidad de vuelta)
+
+ -- Manuel Lopez Mateos <mlmateos@tobixu.xyz>  Fri, 10 Oct 2026 18:30:00 -0600
+
 tobixu-desktop-xfce (0.1.0) unstable; urgency=low
 
   * Metapaquete slim para ISO rolling release (~1.2GB)
