@@ -1,4 +1,8 @@
 #!/bin/bash
+
+# Pre-limpieza de escombros root de builds previos (F83)
+echo "CAPA2: limpiando escombros root de builds previos..."
+sudo rm -rf packages/*/debian/.debhelper packages/*/debian/tobixu-* packages/*/debian/tobi-xu-* 2>/dev/null || true
 # ---- Caja negra F9 (v7.2): testigo automatico de estados D.
 # ---- Vive dentro del horno: unico lugar con root en forja dado el sudoers.
 # ---- Muere solo cuando muere el horno.
