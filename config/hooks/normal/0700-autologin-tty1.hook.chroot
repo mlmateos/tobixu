@@ -1,0 +1,25 @@
+#!/bin/sh
+set -e
+
+echo "=== 0700: Configurando autologin en TTY1 ==="
+
+# Crear directorio de override de systemd
+mkdir -p /etc/systemd/system/getty@tty1.service.d
+
+# Configurar autologin para el usuario "user"
+cat << 'AUTOLOGIN' > /etc/systemd/system/getty@tty1.service.d/override.conf
+[Service]
+ExecStart=
+ExecStart=-/sbin/agetty --autologin user --noclear %I $TERM
+AUTOLOGIN
+
+# Asegurar que el usuario "user" existe y tiene contraseña vacía
+if ! id user >/dev/null 2>&1; then
+    echo "Creando usuario 'user'..."
+    useradd -m -s /bin/bash user
+fi
+
+# Establecer contraseña vacía para autologin
+passwd -d user >/dev/null 2>&1 || true
+
+echo "=== 0700: Autologin configurado ==="

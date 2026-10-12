@@ -1,0 +1,22 @@
+tobixu-gnome-look (0.1.2) unstable; urgency=low
+
+  * Enviar /etc/dconf/profile/user: la sesion lee system-db:local
+
+ -- Manuel Lopez Mateos <mlmateos@tobixu.xyz>  Mon, 12 Oct 2026 10:00:00 -0600
+
+tobixu-gnome-look (0.1.1) unstable; urgency=low
+
+  * Embed EGO extensions appmenu-is-back and trayIconsReloaded as system
+    extensions for zero-click identity (Doctrine 3: Layer 3 coherence).
+  * The other two (dash-to-dock, appindicator) come from Debian repos.
+
+ -- Manuel Lopez Mateos <mlmateos@tobixu.xyz>  Thu, 09 Oct 2026 13:00:00 -0600
+
+tobixu-gnome-look (0.1.0) unstable; urgency=low
+
+  * Initial release: system seeds for the TobiXu GNOME session.
+  * Seeds: orbita-noche wallpaper, compose:rctrl + lv3:ralt_switch,
+    Adwaita-dark + Papirus, fractional scaling hint, favorite apps.
+  * Honors Doctrine 13: seeds, not chains.
+
+ -- Manuel Lopez Mateos <mlmateos@tobixu.xyz>  Wed, 08 Oct 2026 18:00:00 -0600

@@ -1,0 +1,27 @@
+Format: 1.8
+Date: Fri, 10 Oct 2026 18:30:00 -0600
+Source: tobixu-desktop-xfce
+Binary: tobixu-desktop-xfce
+Architecture: all
+Version: 0.1.1
+Distribution: unstable
+Urgency: low
+Maintainer: Manuel Lopez Mateos <mlmateos@tobixu.xyz>
+Changed-By: Manuel Lopez Mateos <mlmateos@tobixu.xyz>
+Description:
+ tobixu-desktop-xfce - TobiXu XFCE desktop (slim rolling release)
+Changes:
+ tobixu-desktop-xfce (0.1.1) unstable; urgency=low
+ .
+   * Quitar lightdm de Depends (gdm3 ofrece XFCE como sesión alternativa)
+   * Añadir accounts-daemon a Depends (cura greeter sin usuarios)
+   * Añadir tobixu-xfce-look a Depends (identidad de vuelta)
+Checksums-Sha1:
+ c301553008dfd0ec148fe9ee4c0d86741cf5c75b 1584 tobixu-desktop-xfce_0.1.1_all.deb
+ eeea6014f765e7d0f50b0fe8dd5ce4fa3e93187e 5209 tobixu-desktop-xfce_0.1.1_amd64.buildinfo
+Checksums-Sha256:
+ 1acb55d7913e0447c0f4348ae6b0d66b88a7d63f2aec4f3c33cf798a9d709d72 1584 tobixu-desktop-xfce_0.1.1_all.deb
+ 6c40802b9082e3edeb210c3e57567ddcf82d285419ed0f6e10446dd863618495 5209 tobixu-desktop-xfce_0.1.1_amd64.buildinfo
+Files:
+ 17e397e443544b7948ffb2f2f22adb83 1584 metapackages optional tobixu-desktop-xfce_0.1.1_all.deb
+ a2f8e082c8922842e6d900aeb9a7d5ae 5209 metapackages optional tobixu-desktop-xfce_0.1.1_amd64.buildinfo

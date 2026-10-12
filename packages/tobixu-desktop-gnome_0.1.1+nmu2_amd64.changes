@@ -1,0 +1,28 @@
+Format: 1.8
+Date: Sat, 10 Oct 2026 21:47:03 -0600
+Source: tobixu-desktop-gnome
+Binary: tobixu-desktop-gnome
+Architecture: all
+Version: 0.1.1+nmu2
+Distribution: UNRELEASED
+Urgency: medium
+Maintainer: Manuel Lopez Mateos <mlmateos@tobixu.xyz>
+Changed-By: Manuel LM <manuel@tetris>
+Description:
+ tobixu-desktop-gnome - TobiXu GNOME desktop (Full STEM/ARTS stack)
+Changes:
+ tobixu-desktop-gnome (0.1.1+nmu2) UNRELEASED; urgency=medium
+ .
+   * Non-maintainer upload.
+   * Limpieza de Recommends y uso de gnome-core para optimizar tamaño del
+     ISO rc27.
+   * Ahora depende de tobixu-desktop-gnome-core + stack STEM/ARTS pesado.
+Checksums-Sha1:
+ 3df6a5ffbf6789f07b3aa7a82a945d0321857366 1596 tobixu-desktop-gnome_0.1.1+nmu2_all.deb
+ f91b54a5570d62b2efe350a7d01a76149fe5ce8b 5234 tobixu-desktop-gnome_0.1.1+nmu2_amd64.buildinfo
+Checksums-Sha256:
+ 7e4db056b7ac841c7c15ccbecd82b3ee955815dcd41302ea4e17daa6262699cd 1596 tobixu-desktop-gnome_0.1.1+nmu2_all.deb
+ cabb779ba0d588dfb741fe7df27967049fbe0909cda8076b55b01760335e0df2 5234 tobixu-desktop-gnome_0.1.1+nmu2_amd64.buildinfo
+Files:
+ c192bf5fbb684229b2bd21736b4704a5 1596 metapackages optional tobixu-desktop-gnome_0.1.1+nmu2_all.deb
+ bd28688df5b19723e88b20f94155ca86 5234 metapackages optional tobixu-desktop-gnome_0.1.1+nmu2_amd64.buildinfo

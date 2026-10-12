@@ -1,0 +1,5 @@
+nohup: ignoring input
+=== Iniciando horneado de TobiXu rc27 (Modo Core < 2GB) ===
+Fecha: sáb 10 oct 2026 21:59:01 CST
+>>> Limpiando entorno de horneado...
+./hornear-rc27.sh: line 9: lb: command not found

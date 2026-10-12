@@ -1,0 +1,10 @@
+Package: tobixu-wallpapers
+Version: 0.1.0
+Architecture: all
+Maintainer: Manuel Lopez Mateos <mlmateos@tobixu.org>
+Installed-Size: 2506
+Section: graphics
+Priority: optional
+Description: Fondos de pantalla TobiXu (orbita-noche)
+ Wallpaper por defecto de TobiXu sicaru: orbita-noche en SVG y como
+ paquete de wallpaper de Plasma (metadata.desktop e imagenes).

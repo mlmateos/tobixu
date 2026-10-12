@@ -1,0 +1,18 @@
+Source: tobixu-xfce-look
+Section: metapackages
+Priority: optional
+Maintainer: Manuel Lopez Mateos <mlmateos@tobixu.xyz>
+Build-Depends: debhelper-compat (= 13)
+Standards-Version: 4.6.2
+
+Package: tobixu-xfce-look
+Architecture: all
+Depends: ${misc:Depends},
+         tobixu-wallpapers,
+         papirus-icon-theme,
+         xfce4-panel,
+         xfwm4-themes
+Description: TobiXu XFCE identity — system seeds
+ Default look and feel for the TobiXu XFCE session.
+ Includes wallpapers (órbita-noche), Papirus-Dark icons,
+ and base XFCE panel theming.

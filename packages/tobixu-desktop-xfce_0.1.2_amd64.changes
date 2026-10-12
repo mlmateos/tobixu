@@ -1,0 +1,25 @@
+Format: 1.8
+Date: Sun, 12 Oct 2026 10:00:00 -0600
+Source: tobixu-desktop-xfce
+Binary: tobixu-desktop-xfce
+Architecture: all
+Version: 0.1.2
+Distribution: unstable
+Urgency: low
+Maintainer: Manuel Lopez Mateos <mlmateos@tobixu.xyz>
+Changed-By: Manuel Lopez Mateos <mlmateos@tobixu.xyz>
+Description:
+ tobixu-desktop-xfce - TobiXu XFCE desktop (slim rolling release)
+Changes:
+ tobixu-desktop-xfce (0.1.2) unstable; urgency=low
+ .
+   * Sin particion -core: metapaquete simple para rc27
+Checksums-Sha1:
+ 7d40dee524a8bb38c3428a65618265ec972edf08 1756 tobixu-desktop-xfce_0.1.2_all.deb
+ 3478ce12b4e537e8b8d182402a0a55a0b19caca6 5209 tobixu-desktop-xfce_0.1.2_amd64.buildinfo
+Checksums-Sha256:
+ fa9a1819ea42fbab7c5427debb9453af17b3af3631a5669ae95692c5fcc44324 1756 tobixu-desktop-xfce_0.1.2_all.deb
+ a406be6a621ebacc725a1e6fc42cfe278607860d73b8d54174423679c7213c44 5209 tobixu-desktop-xfce_0.1.2_amd64.buildinfo
+Files:
+ 38053ecfdab4c2da40b6f4342ab92891 1756 metapackages optional tobixu-desktop-xfce_0.1.2_all.deb
+ 4de7d3fad1b2d0993e6f86486cf9bf3e 5209 metapackages optional tobixu-desktop-xfce_0.1.2_amd64.buildinfo

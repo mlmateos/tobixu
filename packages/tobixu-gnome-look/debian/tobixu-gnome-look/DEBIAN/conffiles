@@ -1,0 +1,4 @@
+/etc/dconf/db/local.d/99-tobixu-gnome
+/etc/dconf/db/local.d/locks/tobixu-gnome
+/etc/dconf/profile/user
+/etc/skel/.config/gnome-initial-setup-done

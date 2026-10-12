@@ -1,5 +1,11 @@
 tobixu-desktop-gnome (0.1.2) unstable; urgency=low
 
+  * Depends definitivos: accounts-daemon y gnome-look; sin polkit-gnome
+
+ -- Manuel Lopez Mateos <mlmateos@tobixu.xyz>  Mon, 12 Oct 2026 21:00:00 -0600
+
+tobixu-desktop-gnome (0.1.2) unstable; urgency=low
+
   * Sin particion -core: metapaquete simple para rc27
 
  -- Manuel Lopez Mateos <mlmateos@tobixu.xyz>  Sun, 12 Oct 2026 10:00:00 -0600

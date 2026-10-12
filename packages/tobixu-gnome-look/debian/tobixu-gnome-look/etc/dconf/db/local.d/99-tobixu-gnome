@@ -1,0 +1,29 @@
+# TobiXu GNOME defaults — semillas de sistema, no cadenas.
+# El usuario cosecha via gnome-tweaks o dconf-editor.
+# Actualiza la DB tras cambios: dconf update
+
+[org/gnome/desktop/background]
+picture-uri='file:///usr/share/wallpapers/TobiXu-Orbita-Noche/contents/images/orbita-noche.png'
+picture-uri-dark='file:///usr/share/wallpapers/TobiXu-Orbita-Noche/contents/images/orbita-noche.png'
+
+[org/gnome/desktop/input-sources]
+sources=[('xkb', 'us'), ('xkb', 'es')]
+xkb-options=['compose:rctrl', 'lv3:ralt_switch']
+show-all-sources=true
+
+[org/gnome/desktop/interface]
+gtk-theme='Adwaita-dark'
+icon-theme='Papirus'
+cursor-theme='Adwaita'
+
+[org/gnome/desktop/wm/preferences]
+theme='Adwaita'
+num-workspaces=4
+
+[org/gnome/mutter]
+dynamic-workspaces=true
+experimental-features=['scale-monitor-framebuffer']
+
+[org/gnome/shell]
+favorite-apps=['org.gnome.Nautilus.desktop', 'org.kde.konsole.desktop', 'texstudio.desktop', 'org.gnome.gedit.desktop', 'frescobaldi.desktop', 'pulsar.desktop', 'com.obsproject.Studio.desktop', 'libreoffice-writer.desktop', 'webcamoid.desktop', 'org.gnome.tweaks.desktop', 'firefox-esr.desktop']
+enabled-extensions=['appmenu-is-back@fthx', 'appindicatorsupport@rgcjonas.gmail.com', 'trayIconsReloaded@selfmade.pl', 'dash-to-dock@micxgx.gmail.com']

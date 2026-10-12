@@ -1,0 +1,25 @@
+Format: 1.8
+Date: Mon, 28 Sep 2026 18:38:00 -0600
+Source: tobixu-wallpapers
+Binary: tobixu-wallpapers
+Architecture: all
+Version: 0.1.0
+Distribution: sicaru
+Urgency: low
+Maintainer: Manuel Lopez Mateos <mlmateos@tobixu.org>
+Changed-By: Manuel Lopez Mateos <mlmateos@tobixu.org>
+Description:
+ tobixu-wallpapers - Fondos de pantalla TobiXu (orbita-noche)
+Changes:
+ tobixu-wallpapers (0.1.0) sicaru; urgency=low
+ .
+   * Primer empaquetado: orbita-noche (svg + paquete de wallpaper Plasma).
+Checksums-Sha1:
+ 6de0c2fea2a05b64d8d9494dacbce0003e171b89 2554484 tobixu-wallpapers_0.1.0_all.deb
+ 9b743acda7b32736baf75ceb8ad587f0200afd90 5208 tobixu-wallpapers_0.1.0_amd64.buildinfo
+Checksums-Sha256:
+ 421c25e0e62e7cab983111d4fcbcdcfd73c08438e2223e1190b301252e625dbf 2554484 tobixu-wallpapers_0.1.0_all.deb
+ 2453bd876a117272ca38d98f60786734323c14294351a03f774b15f84064f435 5208 tobixu-wallpapers_0.1.0_amd64.buildinfo
+Files:
+ 38aaa1b7371842dc1478f4c74ced775f 2554484 graphics optional tobixu-wallpapers_0.1.0_all.deb
+ c5102b36b099a574d29fe5356084c9cb 5208 graphics optional tobixu-wallpapers_0.1.0_amd64.buildinfo

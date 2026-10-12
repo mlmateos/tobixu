@@ -1,0 +1,12 @@
+Package: tobixu-xfce-look
+Version: 0.1.0
+Architecture: all
+Maintainer: Manuel Lopez Mateos <mlmateos@tobixu.xyz>
+Installed-Size: 7
+Depends: tobixu-wallpapers, papirus-icon-theme, xfce4-panel, xfwm4-themes
+Section: metapackages
+Priority: optional
+Description: TobiXu XFCE identity — system seeds
+ Default look and feel for the TobiXu XFCE session.
+ Includes wallpapers (órbita-noche), Papirus-Dark icons,
+ and base XFCE panel theming.

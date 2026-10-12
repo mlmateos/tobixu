@@ -55,14 +55,7 @@ echo "CAPA2: empaquetando tobixu-wallpapers..." | tee -a "$LOG"
 mkdir -p config/includes.chroot/opt/tobixu-debs
 rm -f config/includes.chroot/opt/tobixu-debs/*.deb
 # Solo los paquetes que van en la ISO slim (plasma/lxqt/stem/arts son post-instalacion via apt)
-for PKG in tobixu-desktop-gnome \
-           tobixu-gnome-look \
-           tobixu-wallpapers tobixu-keyboard
-do
-  [ -d "packages/$PKG" ] || { echo "CAPA2 FATAL: falta packages/$PKG" | tee -a "$LOG"; exit 1; }
-  ( cd "packages/$PKG" && dpkg-buildpackage -us -uc -b ) 2>&1 | tail -n 3 | tee -a "$LOG"
-  cp "$(ls -t packages/${PKG}_*.deb | head -1)" config/includes.chroot/opt/tobixu-debs/
-done
+echo "CAPA2 retirado (F92): los metapaquetes entran via repo apt"
 ls -l config/includes.chroot/opt/tobixu-debs/ | tee -a "$LOG"
 lb chroot    --debug 2>&1 | tee -a "$LOG"; [ "${PIPESTATUS[0]}" -eq 0 ] || exit 1
 

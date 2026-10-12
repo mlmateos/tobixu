@@ -1,0 +1,25 @@
+Format: 1.8
+Date: Mon, 12 Oct 2026 21:00:00 -0600
+Source: tobixu-desktop-gnome
+Binary: tobixu-desktop-gnome
+Architecture: all
+Version: 0.1.2
+Distribution: unstable
+Urgency: low
+Maintainer: Manuel Lopez Mateos <mlmateos@tobixu.xyz>
+Changed-By: Manuel Lopez Mateos <mlmateos@tobixu.xyz>
+Description:
+ tobixu-desktop-gnome - TobiXu GNOME desktop (slim rolling release)
+Changes:
+ tobixu-desktop-gnome (0.1.2) unstable; urgency=low
+ .
+   * Depends definitivos: accounts-daemon y gnome-look; sin polkit-gnome
+Checksums-Sha1:
+ f9c34fc1911fd82e484ab3e0a50e43bbbe1fc958 1624 tobixu-desktop-gnome_0.1.2_all.deb
+ ddaf45c77502f8097c86ed4e7ced4498575b5fd0 5214 tobixu-desktop-gnome_0.1.2_amd64.buildinfo
+Checksums-Sha256:
+ ab6475c918a2878c3bb1644cefee0ffc9d7358438e22e40d275a6976b4340c87 1624 tobixu-desktop-gnome_0.1.2_all.deb
+ d833132ac7c272bd70eccaaa9107bc9f4ede8fd5e1a46e1885df9e0f779c7cbd 5214 tobixu-desktop-gnome_0.1.2_amd64.buildinfo
+Files:
+ 953964c1f7cb5b92622acae7b9bcfff2 1624 metapackages optional tobixu-desktop-gnome_0.1.2_all.deb
+ 254d830e9326d8fb3596e01f596b9f19 5214 metapackages optional tobixu-desktop-gnome_0.1.2_amd64.buildinfo

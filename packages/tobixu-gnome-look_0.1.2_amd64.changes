@@ -1,0 +1,25 @@
+Format: 1.8
+Date: Mon, 12 Oct 2026 10:00:00 -0600
+Source: tobixu-gnome-look
+Binary: tobixu-gnome-look
+Architecture: all
+Version: 0.1.2
+Distribution: unstable
+Urgency: low
+Maintainer: Manuel Lopez Mateos <mlmateos@tobixu.xyz>
+Changed-By: Manuel Lopez Mateos <mlmateos@tobixu.xyz>
+Description:
+ tobixu-gnome-look - TobiXu GNOME identity — system seeds
+Changes:
+ tobixu-gnome-look (0.1.2) unstable; urgency=low
+ .
+   * Enviar /etc/dconf/profile/user: la sesion lee system-db:local
+Checksums-Sha1:
+ 2bf3e04ecc771fff94243187f534df0ab7c62464 24788 tobixu-gnome-look_0.1.2_all.deb
+ a10bbdc2ced4fc153700bdabc76baf1ca1f2ee06 5202 tobixu-gnome-look_0.1.2_amd64.buildinfo
+Checksums-Sha256:
+ 11c556ed290924fce518f8002397a3913c80369192b36a1af8686070834ea647 24788 tobixu-gnome-look_0.1.2_all.deb
+ 5a13241c049ba08c8ff03f9631fe4a527f4e1d39c84f03ea80ee3ced0191bc97 5202 tobixu-gnome-look_0.1.2_amd64.buildinfo
+Files:
+ 39497d62ddced1b37c2023b451e3a756 24788 x11 optional tobixu-gnome-look_0.1.2_all.deb
+ e462760170e392a139e21bb81c6e70ed 5202 x11 optional tobixu-gnome-look_0.1.2_amd64.buildinfo

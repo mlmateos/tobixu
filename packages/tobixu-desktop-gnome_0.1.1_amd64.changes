@@ -1,0 +1,26 @@
+Format: 1.8
+Date: Fri, 10 Oct 2026 18:30:00 -0600
+Source: tobixu-desktop-gnome
+Binary: tobixu-desktop-gnome
+Architecture: all
+Version: 0.1.1
+Distribution: unstable
+Urgency: low
+Maintainer: Manuel Lopez Mateos <mlmateos@tobixu.xyz>
+Changed-By: Manuel Lopez Mateos <mlmateos@tobixu.xyz>
+Description:
+ tobixu-desktop-gnome - TobiXu GNOME desktop (slim rolling release)
+Changes:
+ tobixu-desktop-gnome (0.1.1) unstable; urgency=low
+ .
+   * Añadir accounts-daemon a Depends (cura greeter sin usuarios)
+   * Añadir tobixu-gnome-look a Depends (identidad de vuelta)
+Checksums-Sha1:
+ 362f6a7aef5872751054e8e88a933bcc8f1149d8 1596 tobixu-desktop-gnome_0.1.1_all.deb
+ 21f2344a688d6ec371f0a6a2a4892d4c98e3aceb 5214 tobixu-desktop-gnome_0.1.1_amd64.buildinfo
+Checksums-Sha256:
+ 0189eb494043c9dee562b44a87cb6e67915619b5c1f885e6a546c3328fdde3af 1596 tobixu-desktop-gnome_0.1.1_all.deb
+ 474943edf36187c82e873f9920655cd3b6e75f74ab7c52f459b48f1343f336fe 5214 tobixu-desktop-gnome_0.1.1_amd64.buildinfo
+Files:
+ 6e00355e1e93c27f15c555c1ca849859 1596 metapackages optional tobixu-desktop-gnome_0.1.1_all.deb
+ 4221d771d189845dadd12ce1d58dd152 5214 metapackages optional tobixu-desktop-gnome_0.1.1_amd64.buildinfo
