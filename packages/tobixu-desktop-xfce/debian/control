@@ -7,13 +7,12 @@ Standards-Version: 4.6.2
 
 Package: tobixu-desktop-xfce
 Architecture: all
-Depends: ${misc:Depends}, xfce4, lightdm, xfce4-goodies, tobixu-wallpapers, tobixu-keyboard, texstudio, texlive-base, frescobaldi, lilypond, libreoffice
-Recommends: tobi-xu-stem, tobi-xu-arts, tobixu-desktop-plasma, tobixu-desktop-lxqt
+Depends: ${misc:Depends},
+         xfce4, xfce4-goodies,
+         accounts-daemon,
+         tobixu-xfce-look,
+         tobixu-wallpapers, tobixu-keyboard,
+         firefox-esr, thunderbird, vlc,
+         papirus-icon-theme
 Description: TobiXu XFCE desktop (slim rolling release)
- XFCE 4 con identidad TobiXu (wallpapers, teclados)
- más aplicaciones base (Texstudio, Frescobaldi, Lilypond, LibreOffice).
- .
- Para instalar STEM completo: apt install tobi-xu-stem
- Para instalar ARTS completo: apt install tobi-xu-arts
- Para instalar Plasma como alternativa: apt install tobixu-desktop-plasma
- Para instalar LXQt como alternativa: apt install tobixu-desktop-lxqt
+ XFCE 4 con identidad TobiXu. GDM3 provee el display-manager.
