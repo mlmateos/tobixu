@@ -7,14 +7,13 @@ Standards-Version: 4.6.2
 
 Package: tobixu-desktop-gnome
 Architecture: all
-Depends: ${misc:Depends},
-         tobixu-desktop-gnome-core,
-         texstudio,
-         texlive-base,
-         frescobaldi,
-         lilypond,
-         libreoffice
-Recommends: tobi-xu-stem, tobi-xu-arts
-Description: TobiXu GNOME desktop (Full STEM/ARTS stack)
- Metapaquete completo que añade el stack STEM/ARTS al core de GNOME.
- Requiere conexión a red para descargar las dependencias pesadas.
+Depends: ${misc:Depends}, gnome-shell, gdm3, gnome-tweaks, gnome-shell-extension-appindicator, gnome-shell-extension-dashtodock, tobixu-wallpapers, tobixu-keyboard, texstudio, texlive-base, frescobaldi, lilypond, libreoffice
+Recommends: tobi-xu-stem, tobi-xu-arts, tobixu-desktop-plasma, tobixu-desktop-lxqt
+Description: TobiXu GNOME desktop (slim rolling release)
+ GNOME 47 con identidad TobiXu (órbita-noche, glifo, extensiones EGO)
+ más aplicaciones base (Texstudio, Frescobaldi, Lilypond, LibreOffice).
+ .
+ Para instalar STEM completo: apt install tobi-xu-stem
+ Para instalar ARTS completo: apt install tobi-xu-arts
+ Para instalar Plasma como alternativa: apt install tobixu-desktop-plasma
+ Para instalar LXQt como alternativa: apt install tobixu-desktop-lxqt
