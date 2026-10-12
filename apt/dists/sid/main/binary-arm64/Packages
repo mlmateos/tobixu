@@ -21,6 +21,83 @@ Description: Tobi Xu base: Debian Sid con snapshots
  Plymouth obscuro. El escritorio (Plasma 6 o LXQt, ambos Qt6) se
  elige en el instalador; la marca Iguana dia/noche va en Recommends.
 
+Package: tobixu-desktop-gnome
+Version: 0.1.1+nmu2
+Architecture: all
+Maintainer: Manuel Lopez Mateos <mlmateos@tobixu.xyz>
+Installed-Size: 7
+Depends: tobixu-desktop-gnome-core, texstudio, texlive-base, frescobaldi, lilypond, libreoffice
+Recommends: tobi-xu-stem, tobi-xu-arts
+Priority: optional
+Section: metapackages
+Filename: pool/main/t/tobixu-desktop-gnome/tobixu-desktop-gnome_0.1.1+nmu2_all.deb
+Size: 1596
+SHA256: 7e4db056b7ac841c7c15ccbecd82b3ee955815dcd41302ea4e17daa6262699cd
+SHA1: 3df6a5ffbf6789f07b3aa7a82a945d0321857366
+MD5sum: c192bf5fbb684229b2bd21736b4704a5
+Description: TobiXu GNOME desktop (Full STEM/ARTS stack)
+ Metapaquete completo que añade el stack STEM/ARTS al core de GNOME.
+ Requiere conexión a red para descargar las dependencias pesadas.
+
+Package: tobixu-desktop-gnome-core
+Version: 0.1.0
+Architecture: all
+Maintainer: Manuel Lopez Mateos <mlmateos@tobixu.xyz>
+Installed-Size: 8
+Depends: gnome-core, gdm3, gnome-tweaks, gnome-shell-extension-appindicator, gnome-shell-extension-dashtodock, accounts-daemon, firefox-esr, thunderbird, vlc, papirus-icon-theme, adwaita-icon-theme, tobixu-gnome-look, tobixu-wallpapers, tobixu-keyboard, tobixu-plymouth-theme
+Priority: optional
+Section: metapackages
+Filename: pool/main/t/tobixu-desktop-gnome-core/tobixu-desktop-gnome-core_0.1.0_all.deb
+Size: 1612
+SHA256: 4da7eb3b0a54408ba14bfcbd557cbb169cc6428885b609bb1c80a63ce58f91af
+SHA1: b1e86df6e665b37e039a69e4a92090d0c0337058
+MD5sum: 1b795980e6cbf19c7d1e5e7d34457956
+Description: TobiXu GNOME core desktop (for ISO rc27)
+ GNOME core con identidad TobiXu (órbita-noche, glifo, extensiones EGO)
+ más aplicaciones esenciales (Firefox, Thunderbird, VLC).
+ .
+ Este es el paquete que se instala en el ISO rc27.
+ Para el stack STEM/ARTS completo, instale tobixu-desktop-gnome.
+
+Package: tobixu-desktop-xfce
+Version: 0.1.1+nmu2
+Architecture: all
+Maintainer: Manuel Lopez Mateos <mlmateos@tobixu.xyz>
+Installed-Size: 7
+Depends: tobixu-desktop-xfce-core, texstudio, texlive-base, frescobaldi, lilypond, libreoffice
+Recommends: tobi-xu-stem, tobi-xu-arts
+Priority: optional
+Section: metapackages
+Filename: pool/main/t/tobixu-desktop-xfce/tobixu-desktop-xfce_0.1.1+nmu2_all.deb
+Size: 1636
+SHA256: 158ac705087cd862b2e8bcbf91fc83c1c6e1bfa3e8cd90390f883947ad5a61bd
+SHA1: 48077077d88050b47f589098a63db5317d622dec
+MD5sum: d19e2e937ec1df51be5b7979275e3b8b
+Description: TobiXu XFCE desktop (Full STEM/ARTS stack, X11)
+ Metapaquete completo que añade el stack STEM/ARTS al core de XFCE.
+ Requiere conexión a red para descargar las dependencias pesadas.
+
+Package: tobixu-desktop-xfce-core
+Version: 0.1.0
+Architecture: all
+Maintainer: Manuel Lopez Mateos <mlmateos@tobixu.xyz>
+Installed-Size: 8
+Depends: xfce4, xfce4-goodies, gdm3, accounts-daemon, firefox-esr, thunderbird, vlc, papirus-icon-theme, adwaita-icon-theme, tobixu-xfce-look, tobixu-wallpapers, tobixu-keyboard, tobixu-plymouth-theme
+Priority: optional
+Section: metapackages
+Filename: pool/main/t/tobixu-desktop-xfce-core/tobixu-desktop-xfce-core_0.1.0_all.deb
+Size: 1616
+SHA256: ef67f173130995a52a0fd75c572b45af9ab2e10cc2116fabddcd07b70b44c49a
+SHA1: 80699061f9af0bf5e6e2c4525401a6f1d40d49af
+MD5sum: a2293f943cec446520fd858da9c3df01
+Description: TobiXu XFCE core desktop (for ISO rc27, X11)
+ XFCE 4 core con identidad TobiXu (wallpapers, teclados) y GDM3 unificado.
+ Aplicaciones esenciales (Firefox, Thunderbird, VLC).
+ La sesión XFCE se ejecuta de forma nativa y estable en X11.
+ .
+ Este es el paquete que se instala en el ISO rc27.
+ Para el stack STEM/ARTS completo, instale tobixu-desktop-xfce.
+
 Package: tobixu-gnome-look
 Version: 0.1.1
 Architecture: all

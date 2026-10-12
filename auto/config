@@ -20,5 +20,5 @@ lb config noauto \
     --iso-preparer "Manuel Lopez Mateos" \
     --iso-publisher "Tobi Xu - STEM & Arts = STEAM" \
     --apt-options "--option Acquire::Check-Valid-Until=false -o APT::Get::Assume-Yes=true" --net-tarball false \
-    --bootappend-live "boot=live components locales=en_US.UTF-8 keyboard-layouts=us timezone=America/Mexico_City" \
+    --bootappend-live "boot=live components username=user locales=en_US.UTF-8 keyboard-layouts=us timezone=America/Mexico_City" \
     "${@}"
