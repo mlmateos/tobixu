@@ -2,10 +2,17 @@
 set -e
 echo "=== 0400-install: instalando paquetes de fabrica ==="
 cd /opt/tobixu-debs || exit 1
-if ! dpkg -i ./*.deb 2>&1; then
-    echo "=== 0400-install: dpkg fallo, apt-get install -f especifico ==="
-    apt-get install -f -y --no-install-recommends ./*.deb || {
-        echo "=== 0400-install FATAL ==="; exit 1; }
-fi
+
+# Intentar dpkg -i primero (fallara por dependencias)
+dpkg -i ./*.deb 2>&1 || echo "dpkg fallo (esperado), siguiendo..."
+
+# Resolver dependencias rotas SIN argumentos (solo repara, no reinstala)
+echo "=== 0400-install: apt-get install -f (sin argumentos) ==="
+apt-get install -f -y --no-install-recommends
+
+# Configurar paquetes pendientes
+dpkg --configure -a || echo "WARN: dpkg --configure fallo"
+
+# Verificar
 echo "=== 0400-install: verificacion ==="
 dpkg -l tobixu-desktop-gnome tobixu-gnome-look | grep "^ii" || echo "WARN: faltan paquetes"
