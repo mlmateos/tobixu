@@ -1,5 +1,38 @@
 #!/bin/bash
 
+# Pre-limpieza de escombros root de builds previos (F83)
+echo "CAPA2: limpiando escombros root de builds previos..."
+sudo rm -rf /home/manuel/tobixu-iso/packages/*/debian/.debhelper /home/manuel/tobixu-iso/packages/*/debian/tobixu-* /home/manuel/tobixu-iso/packages/*/debian/tobi-xu-* 2>/dev/null || true
+# ---- Caja negra F9 (v7.2): testigo automatico de estados D.
+# ---- Vive dentro del horno: unico lugar con root en forja dado el sudoers.
+# ---- Muere solo cuando muere el horno.
+CAJA_PADRE=$$
+(
+  set +e
+  sysctl -w kernel.hung_task_timeout_secs=60 >/dev/null 2>&1
+  while kill -0 "$CAJA_PADRE" 2>/dev/null; do
+    n=$(ps -eo stat= | awk '/^D/{c++} END{print c+0}')
+    if [ "$n" -gt 0 ]; then
+      {
+        echo "== $(date -Is) procesos en D: $n =="
+        ps -eo pid,ppid,stat,etime,time,cmd | awk 'NR==1 || $3 ~ /D/'
+        dmesg -T | grep -B2 -A28 'blocked for more than' | tail -n 120
+        for p in $(ps -eo pid=,stat= | awk '$2 ~ /^D/ {print $1}'); do
+          echo "-- stack del $p --"
+          cat /proc/$p/stack 2>/dev/null || echo '(sin stack)'
+        done
+      } >> /home/manuel/tobixu-iso/caja-negra.log
+      sleep 300
+    fi
+    sleep 10
+  done
+) &
+# ---- fin caja negra ----
+# Horno v7: limpieza a fondo, purga verificada ANTES del binary, bautizo automatico.
+cd /home/manuel/tobixu-iso || exit 1
+trap 'mount | grep "/tobixu-iso/chroot/" | cut -d" " -f3 | sort -r | while read -r mp; do umount "$mp" 2>/dev/null || umount -l "$mp" 2>/dev/null || true; done' EXIT
+[ "$(id -u)" -ne 0 ] && { echo "HORNO: sudo"; exit 1; }
+
 for f in etc/environment etc/apt/sources.list etc/sddm.conf.d/tobixu-autologin.conf etc/skel/.config/kdeglobals; do
   [ -f "config/includes.chroot/$f" ] || { echo "PREFLIGHT FALTO: $f"; exit 1; }
 done
