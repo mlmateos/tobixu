@@ -15,6 +15,5 @@ Depends: ${misc:Depends},
          tobixu-gnome-look,
          tobixu-wallpapers, tobixu-keyboard,
          firefox-esr, thunderbird, vlc,
-         papirus-icon-theme, polkit-gnome
 Description: TobiXu GNOME desktop (slim rolling release)
  GNOME 47 con identidad TobiXu.
