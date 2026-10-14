@@ -9,7 +9,8 @@ ISO_NOMBRE="tobixu-rolling-${FECHA}-amd64.iso"
 
 echo "=== Hornear TobiXu v0.2 snapshot ${FECHA} ==="
 
-cd ~/tobixu-iso || exit 1
+# Usar ruta absoluta para evitar que sudo cambie ~ a /root
+cd /home/manuel/tobixu-iso || exit 1
 
 # Limpiar builds anteriores
 echo "[1/5] Limpiando builds anteriores..."
