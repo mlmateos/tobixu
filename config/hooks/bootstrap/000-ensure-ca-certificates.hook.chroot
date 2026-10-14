@@ -1,0 +1,7 @@
+#!/bin/sh
+set -e
+echo "=== Hook bootstrap: instalando ca-certificates para HTTPS ==="
+apt-get update
+apt-get install -y ca-certificates
+update-ca-certificates --fresh
+echo "=== Certificados CA listos ==="
