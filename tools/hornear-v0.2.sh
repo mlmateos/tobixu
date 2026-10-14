@@ -17,11 +17,13 @@ echo "[1/5] Limpiando builds anteriores..."
 lb clean --all
 
 # Configurar live-build
+# LB_BOOTSTRAP_INCLUDE asegura que ca-certificates esté disponible antes de cualquier apt update
 echo "[2/5] Configurando live-build..."
+export LB_BOOTSTRAP_INCLUDE="ca-certificates"
+
 lb config \
     --distribution sid \
     --archive-areas "main contrib non-free non-free-firmware" \
-    --bootstraps "ca-certificates" \
     --apt-indices false \
     --apt-recommends false \
     --iso-application "TobiXu Rolling v0.2" \
