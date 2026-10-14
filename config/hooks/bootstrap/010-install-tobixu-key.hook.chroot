@@ -1,0 +1,7 @@
+#!/bin/sh
+set -e
+echo "=== Hook bootstrap: instalando clave TobiXu ==="
+mkdir -p /etc/apt/keyrings
+cp /usr/share/tobixu/tobixu-apt-key.gpg /etc/apt/keyrings/tobixu-apt-key.gpg
+chmod 644 /etc/apt/keyrings/tobixu-apt-key.gpg
+echo "Clave instalada en /etc/apt/keyrings/tobixu-apt-key.gpg"
