@@ -1,6 +1,0 @@
-./etc/dconf/db/local.d/99-tobixu-gnome
-./etc/dconf/db/local.d/locks/tobixu-gnome
-./etc/skel/.config/gnome-initial-setup-done
-./usr/share/gnome-shell/extensions/appmenu-is-back@fthx
-./usr/share/gnome-shell/extensions/trayIconsReloaded@selfmade.pl
-./etc/dconf/profile/user
