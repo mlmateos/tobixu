@@ -28,7 +28,7 @@ lb config \
   --distribution sid \
   --archive-areas "main contrib non-free non-free-firmware" \
   --binary-images iso-hybrid \
-  --bootappend-live "boot=live components quiet splash" \
+  --bootappend-live "boot=live components quiet splash username=user user-password=live" \
   --debian-installer false \
   --memtest none \
   --iso-application "TobiXu" \
