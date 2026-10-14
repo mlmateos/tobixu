@@ -15,7 +15,7 @@ cd ~/tobixu-iso || exit 1
 echo "[1/5] Limpiando builds anteriores..."
 lb clean --all
 
-# Configurar live-build con ca-certificates en bootstrap (resuelve SSL)
+# Configurar live-build
 echo "[2/5] Configurando live-build..."
 lb config \
     --distribution sid \
