@@ -118,6 +118,8 @@ galculator
 gvfs-backends
 EOF
 
+mkdir -p config/includes.chroot/lib/live/config
+
 # --- Hook: contraseña del usuario live ---
 cat > config/includes.chroot/lib/live/config/2000-passwd <<'EOF'
 #!/bin/sh
