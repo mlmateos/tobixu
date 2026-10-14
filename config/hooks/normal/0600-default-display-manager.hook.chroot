@@ -1,26 +1,11 @@
 #!/bin/sh
 set -e
-# D5: gdm3 como DM por defecto; arbitraje fuerte + cleanup de sesion viva.
-
-# 1. Enlazar display-manager.service a gdm3 (autoridad de systemd)
+# Forzar gdm3 como display-manager
+systemctl disable lightdm sddm 2>/dev/null || true
+systemctl enable gdm3 || true
+# Crear enlace simbólico
 ln -sf /lib/systemd/system/gdm3.service /etc/systemd/system/display-manager.service
-
-# 2. Debconf
-debconf-set-selections <<EOF_DEBCONF
-gdm3 shared/default-x-display-manager select gdm3
-EOF_DEBCONF
-
-# 3. Deshabilitar DMs rivales (lightdm, sddm) si existen
-for dm in lightdm sddm; do
-    if systemctl list-unit-files | grep -q "^${dm}.service"; then
-        systemctl disable "$dm" 2>/dev/null || true
-        systemctl mask "$dm" 2>/dev/null || true
-    fi
-done
-
-# 4. Cleanup: si hay sesion viva del usuario live, terminarla
-loginctl terminate-user user 2>/dev/null || true
-loginctl terminate-user live 2>/dev/null || true
-
-# 5. Asegurar que gdm3 esta habilitado
-systemctl enable gdm3 2>/dev/null || true
+# Reiniciar display-manager si ya está corriendo
+if systemctl is-active --quiet display-manager; then
+    systemctl restart display-manager || true
+fi

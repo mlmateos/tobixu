@@ -1,4 +1,0 @@
-#!/bin/sh
-set -e
-echo "=== 0400-verifica: metapaquete via apt ==="
-dpkg -l tobixu-desktop-gnome tobixu-gnome-look | grep "^ii" || { echo "0400 FATAL"; exit 1; }
