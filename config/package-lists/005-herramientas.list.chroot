@@ -1,4 +1,0 @@
-wget curl ca-certificates gnupg
-locales
-libxkbcommon-tools x11-xkb-utils
-live-config-systemd
