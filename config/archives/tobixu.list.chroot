@@ -1,1 +1,1 @@
-deb [trusted=yes] https://mlmateos.github.io/tobixu-apt-repo stable main
+deb [signed-by=/usr/share/keyrings/tobixu-archive-keyring.gpg] https://mlmateos.github.io/tobixu-apt-repo stable main
