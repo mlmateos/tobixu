@@ -3,7 +3,6 @@
 # Uso: sudo ./tools/hornear-v00.sh
 set -euo pipefail
 
-REPO_DIR="$(cd "$(dirname "$0")/.." && pwd)"
 WORK_DIR="${WORK_DIR:-/home/manuel/tobixu-v00}"
 FECHA="$(date +%Y%m%d)"
 ISO_NOMBRE="tobixu-v00-${FECHA}-amd64.iso"
@@ -16,7 +15,6 @@ LOG="${WORK_DIR}/build-v00-$(date +%Y%m%d-%H%M).log"
 exec > >(tee -a "$LOG") 2>&1
 
 echo "=== hornear v0.0 — $(date) ==="
-echo "REPO_DIR=$REPO_DIR"
 echo "WORK_DIR=$WORK_DIR"
 
 # --- Limpieza total ---
@@ -37,9 +35,15 @@ lb config \
   --linux-flavours amd64 \
   --apt-recommends false
 
-# --- Listas de paquetes ---
+# --- Estructura base ---
 mkdir -p config/package-lists
+mkdir -p config/hooks/normal
+mkdir -p config/includes.chroot/etc/lightdm/lightdm.conf.d
+mkdir -p config/includes.chroot/etc/skel
 
+# ============================================================
+# LISTAS DE PAQUETES
+# ============================================================
 cat > config/package-lists/00-base.list.chroot <<'EOF'
 linux-image-amd64
 live-boot
@@ -93,6 +97,7 @@ lightdm
 lightdm-gtk-greeter
 dbus-x11
 xinit
+xfce-polkit
 EOF
 
 cat > config/package-lists/40-audio.list.chroot <<'EOF'
@@ -118,30 +123,9 @@ galculator
 gvfs-backends
 EOF
 
-# --- Hook correcto: contraseña del usuario live (ruta moderna) ---
-mkdir -p config/hooks/normal
-cat > config/hooks/normal/0200-set-live-password.hook.chroot <<'EOF'
-#!/bin/sh
-set -e
-
-# Aseguramos que el usuario live existe (live-boot lo crea, pero por si acaso)
-if ! id -u user >/dev/null 2>&1; then
-    useradd -m -s /bin/bash user
-fi
-
-# Establecemos la contraseña "live" para el usuario "user"
-echo "user:live" | chpasswd
-
-# Damos permisos de sudo sin contraseña para el live
-echo "user ALL=(ALL) NOPASSWD: ALL" > /etc/sudoers.d/live
-chmod 0440 /etc/sudoers.d/live
-
-exit 0
-EOF
-chmod +x config/hooks/normal/0200-set-live-password.hook.chroot
-
-
-# --- Archivos base ---
+# ============================================================
+# CONFIGURACIÓN PERSISTENTE (includes.chroot)
+# ============================================================
 mkdir -p config/includes.chroot/etc
 
 echo "tobixu" > config/includes.chroot/etc/hostname
@@ -158,24 +142,55 @@ cat > config/includes.chroot/etc/environment <<'EOF'
 PATH="/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
 EOF
 
-mkdir -p config/includes.chroot/etc/skel
+cat > config/includes.chroot/etc/lightdm/lightdm.conf.d/50-tobixu-autologin.conf <<'EOF'
+[Seat:*]
+autologin-user=user
+autologin-user-timeout=0
+autologin-session=xfce
+EOF
 
-# --- Hook mínimo ---
-mkdir -p config/hooks/normal
-
+# ============================================================
+# HOOKS (se ejecutan dentro del chroot, en orden numérico)
+# ============================================================
 cat > config/hooks/normal/0100-enable-services.hook.chroot <<'EOF'
 #!/bin/sh
 set -e
 systemctl enable lightdm.service || true
 systemctl set-default graphical.target
 systemctl enable NetworkManager.service || true
-echo "live ALL=(ALL) NOPASSWD: ALL" > /etc/sudoers.d/live
-chmod 0440 /etc/sudoers.d/live
 exit 0
 EOF
 chmod +x config/hooks/normal/0100-enable-services.hook.chroot
 
-# --- Build ---
+cat > config/hooks/normal/0200-set-live-password.hook.chroot <<'EOF'
+#!/bin/sh
+set -e
+if ! id -u user >/dev/null 2>&1; then
+    useradd -m -s /bin/bash user
+fi
+echo "user:live" | chpasswd
+echo "user ALL=(ALL) NOPASSWD: ALL" > /etc/sudoers.d/live
+chmod 0440 /etc/sudoers.d/live
+exit 0
+EOF
+chmod +x config/hooks/normal/0200-set-live-password.hook.chroot
+
+cat > config/hooks/normal/0300-rename-calamares.hook.chroot <<'EOF'
+#!/bin/sh
+set -e
+for d in /usr/share/applications/*calamares*.desktop; do
+  [ -f "$d" ] || continue
+  sed -i -e 's/^Name=.*/Name=Install Tobi Xu/' "$d"
+  grep -q '^Name\[es\]='     "$d" || echo 'Name[es]=Instalar Tobi Xu'    >> "$d"
+  grep -q '^Name\[zh_CN\]='  "$d" || echo 'Name[zh_CN]=安装 Tobi Xu'      >> "$d"
+done
+exit 0
+EOF
+chmod +x config/hooks/normal/0300-rename-calamares.hook.chroot
+
+# ============================================================
+# BUILD
+# ============================================================
 echo "=== lb build ==="
 lb build
 
