@@ -73,7 +73,8 @@ EOF
 
 cat > config/package-lists/20-red.list.chroot <<'EOF'
 network-manager
-network-manager-gnome
+network-manager-applet
+nm-connection-editor
 wireless-tools
 wpasupplicant
 rfkill
