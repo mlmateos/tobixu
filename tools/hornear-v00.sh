@@ -118,16 +118,27 @@ galculator
 gvfs-backends
 EOF
 
-mkdir -p config/includes.chroot/lib/live/config
-
-# --- Hook: contraseña del usuario live ---
-cat > config/includes.chroot/lib/live/config/2000-passwd <<'EOF'
+# --- Hook correcto: contraseña del usuario live (ruta moderna) ---
+mkdir -p config/hooks/normal
+cat > config/hooks/normal/0200-set-live-password.hook.chroot <<'EOF'
 #!/bin/sh
-# Establece la contraseña del usuario live a "live"
+set -e
+
+# Aseguramos que el usuario live existe (live-boot lo crea, pero por si acaso)
+if ! id -u user >/dev/null 2>&1; then
+    useradd -m -s /bin/bash user
+fi
+
+# Establecemos la contraseña "live" para el usuario "user"
 echo "user:live" | chpasswd
+
+# Damos permisos de sudo sin contraseña para el live
+echo "user ALL=(ALL) NOPASSWD: ALL" > /etc/sudoers.d/live
+chmod 0440 /etc/sudoers.d/live
+
 exit 0
 EOF
-chmod +x config/includes.chroot/lib/live/config/2000-passwd
+chmod +x config/hooks/normal/0200-set-live-password.hook.chroot
 
 
 # --- Archivos base ---
