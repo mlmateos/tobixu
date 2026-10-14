@@ -1,3 +1,0 @@
-// Deshabilitar verificación SSL para repositorios externos durante build
-Acquire::https::Verify-Peer "false";
-Acquire::https::Verify-Host "false";
