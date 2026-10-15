@@ -1,0 +1,7 @@
+#!/bin/sh
+set -e
+# Habilita la unidad de usuario vivo dentro del chroot (autoridad: el chroot, no Git)
+mkdir -p /etc/systemd/system/multi-user.target.wants
+ln -sf /etc/systemd/system/tobixu-live-user.service \
+  /etc/systemd/system/multi-user.target.wants/tobixu-live-user.service
+echo "=== Hook 0401: unidad live-user habilitada ==="

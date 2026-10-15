@@ -145,6 +145,7 @@ FAIL=0
 [ "$M_SUD" = "440" ] || { echo "PUERTA: sudoers con modo $M_SUD" | tee -a "$LOG"; FAIL=1; }
 [ -f chroot/etc/systemd/system/tobixu-live-user.service ] || { echo "PUERTA: unidad live-user ausente" | tee -a "$LOG"; FAIL=1; }
 [ -f chroot/usr/local/bin/tobixu-calamares-wrap ] || { echo "PUERTA: wrapper calamares ausente" | tee -a "$LOG"; FAIL=1; }
+[ -L chroot/etc/systemd/system/multi-user.target.wants/tobixu-live-user.service ] || { echo "PUERTA: unidad live-user NO habilitada en chroot" | tee -a "$LOG"; FAIL=1; }
 
 umount chroot/dev/pts 2>/dev/null || true; umount chroot/dev 2>/dev/null || true
 umount chroot/sys 2>/dev/null || true; umount chroot/proc 2>/dev/null || true
