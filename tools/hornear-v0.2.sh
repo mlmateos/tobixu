@@ -136,12 +136,15 @@ M_SUD=$(stat -c %a chroot/etc/sudoers.d/tobixu-live 2>/dev/null || echo none)
 echo "TESTIGO: modo sudoers=$M_SUD" | tee -a "$LOG"
 chroot chroot sh -c 'command -v ptyxis >/dev/null 2>&1 && update-alternatives --install /usr/bin/x-terminal-emulator x-terminal-emulator "$(command -v ptyxis)" 50' 2>/dev/null || true
 
+N_ROT=$(chroot chroot dpkg -l 2>/dev/null | grep -cE "^i[UFH] " || true)
+echo "TESTIGO: paquetes rotos en chroot=$N_ROT" | tee -a "$LOG"
 FAIL=0
 { [ "$N_II" -eq 0 ] && [ "$N_ANY" -eq 0 ] && [ "$N_SES" -eq 0 ]; } || { echo "PUERTA: residuos LXQt" | tee -a "$LOG"; FAIL=1; }
 [ "$N_ID" -eq "$N_PAQ" ] || { echo "PUERTA: identidad incompleta ($N_ID/$N_PAQ)" | tee -a "$LOG"; FAIL=1; }
 [ "$N_OK" -ge 1 ] || { echo "PUERTA: puerta Calamares sin renombrar" | tee -a "$LOG"; FAIL=1; }
 [ "$N_PTY" -ge 1 ] || { echo "PUERTA: ptyxis ausente" | tee -a "$LOG"; FAIL=1; }
 [ "$M_SUD" = "440" ] || { echo "PUERTA: sudoers con modo $M_SUD" | tee -a "$LOG"; FAIL=1; }
+[ "$N_ROT" -eq 0 ] || { echo "PUERTA: dependencias sin satisfacer en chroot" | tee -a "$LOG"; FAIL=1; }
 [ -f chroot/etc/systemd/system/tobixu-live-user.service ] || { echo "PUERTA: unidad live-user ausente" | tee -a "$LOG"; FAIL=1; }
 [ -L chroot/etc/systemd/system/multi-user.target.wants/tobixu-live-user.service ] || { echo "PUERTA: unidad live-user NO habilitada en chroot" | tee -a "$LOG"; FAIL=1; }
 [ -f chroot/usr/local/bin/tobixu-calamares-wrap ] || { echo "PUERTA: wrapper calamares ausente" | tee -a "$LOG"; FAIL=1; }
