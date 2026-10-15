@@ -81,18 +81,9 @@ lb config \
 echo "[1/5] lb bootstrap" | tee -a "$LOG"
 lb bootstrap --debug 2>&1 | tee -a "$LOG"; [ "${PIPESTATUS[0]}" -eq 0 ] || exit 1
 
-# === CAPA 2: hornear paquetes TobiXu y sembrarlos (F28 fail-fast, F34 despensa limpia) ===
-echo "[2/5] CAPA2: empaquetando identidad v0.2..." | tee -a "$LOG"
-mkdir -p config/includes.chroot/opt/tobixu-debs
-rm -f config/includes.chroot/opt/tobixu-debs/*.deb
-for PKG in $PAQUETES_V02; do
-  [ -d "packages/$PKG" ] || { echo "CAPA2 FATAL: falta packages/$PKG" | tee -a "$LOG"; exit 1; }
-  ( cd "packages/$PKG" && dpkg-buildpackage -us -uc -b ) 2>&1 | tail -n 3 | tee -a "$LOG"
-  cp "$(ls -t packages/${PKG}_*.deb | head -1)" config/includes.chroot/opt/tobixu-debs/
-done
-ls -l config/includes.chroot/opt/tobixu-debs/ | tee -a "$LOG"
+# === CAPA 2: ELIMINADA (F92: paquetes ya publicados en repo) ===
+echo "[2/5] CAPA2: omitida (paquetes en repo GitHub)" | tee -a "$LOG"
 
-# === lb chroot ===
 echo "[3/5] lb chroot" | tee -a "$LOG"
 lb chroot --debug 2>&1 | tee -a "$LOG"; [ "${PIPESTATUS[0]}" -eq 0 ] || exit 1
 
