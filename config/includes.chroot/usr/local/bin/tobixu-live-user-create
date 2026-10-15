@@ -1,10 +1,10 @@
 #!/bin/sh
-# TobiXu v0.2: usuario vivo con contrasena valida ANTES de que GDM despierte
+# TobiXu v0.2: usuario vivo con contraseña válida ANTES de que GDM despierte
 set -e
 if ! id user >/dev/null 2>&1; then
 useradd -m -s /bin/bash user
 usermod -aG sudo,audio,video,plugdev,netdev,cdrom user 2>/dev/null || true
 fi
-# Siempre: contrasena valida y cuenta desbloqueada (PAM lo exige, autologin incluido)
+# Siempre: contraseña válida y cuenta desbloqueada (PAM lo exige, autologin incluido)
 echo 'user:live' | chpasswd
 exit 0
