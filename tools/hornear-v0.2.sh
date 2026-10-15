@@ -151,6 +151,14 @@ CALBIN=$(chroot chroot sh -c 'command -v calamares' 2>/dev/null || true)
 echo "TESTIGO: binario calamares=$CALBIN" | tee -a "$LOG"
 chroot chroot ptyxis --version >/dev/null 2>&1 && echo "TESTIGO: ptyxis ejecuta" | tee -a "$LOG" || echo "AVISO: ptyxis no ejecuta headless" | tee -a "$LOG"
 FAIL=0
+for d in chroot/usr/share/applications/*calamares*.desktop; do
+[ -f "$d" ] || continue
+sed -i 's|^Exec=.*|Exec=/usr/local/bin/tobixu-install-launcher|' "$d"
+done
+echo "TESTIGO: Exec calamares=$(grep -h '^Exec' chroot/usr/share/applications/*calamares*.desktop 2>/dev/null | head -1)" | tee -a "$LOG"
+{ [ -f chroot/usr/share/tobixu/glyph.png ] && echo "TESTIGO: glifo presente" || { echo "PUERTA: glifo ausente"; FAIL=1; }; } | tee -a "$LOG"
+{ [ -f chroot/var/lib/AccountsService/users/user ] && echo "TESTIGO: rostro AccountsService presente" || { echo "PUERTA: rostro ausente"; FAIL=1; }; } | tee -a "$LOG"
+{ grep -q 'tobixu-live-desktop-setup' chroot/etc/xdg/autostart/tobixu-live-desktop.desktop && echo "TESTIGO: autostart apunta al setup" || { echo "PUERTA: autostart roto"; FAIL=1; }; } | tee -a "$LOG"
 { [ "$N_II" -eq 0 ] && [ "$N_ANY" -eq 0 ] && [ "$N_SES" -eq 0 ]; } || { echo "PUERTA: residuos LXQt" | tee -a "$LOG"; FAIL=1; }
 [ "$N_ID" -eq "$N_PAQ" ] || { echo "PUERTA: identidad incompleta ($N_ID/$N_PAQ)" | tee -a "$LOG"; FAIL=1; }
 [ "$N_OK" -ge 1 ] || { echo "PUERTA: puerta Calamares sin renombrar" | tee -a "$LOG"; FAIL=1; }

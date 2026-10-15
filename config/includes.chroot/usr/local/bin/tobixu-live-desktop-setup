@@ -1,10 +1,11 @@
 #!/bin/sh
-# TobiXu v0.2: velo en cualquier sistema con tobixu-wallpapers
+# Velo en cualquier sistema con tobixu-wallpapers
 WALL="$(dpkg -L tobixu-wallpapers 2>/dev/null | grep -m1 -E '\.(png|jpe?g)$')"
 if [ -n "$WALL" ]; then
 gsettings set org.gnome.desktop.background picture-uri "file://$WALL" 2>/dev/null || true
 gsettings set org.gnome.desktop.background picture-uri-dark "file://$WALL" 2>/dev/null || true
 fi
+update-desktop-database /usr/share/applications 2>/dev/null || true
 # Resto: solo sesion viva
 grep -q "boot=live" /proc/cmdline || exit 0
 sleep 5
