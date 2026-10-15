@@ -1,0 +1,6 @@
+network-manager
+network-manager-applet
+nm-connection-editor
+wireless-tools
+wpasupplicant
+rfkill

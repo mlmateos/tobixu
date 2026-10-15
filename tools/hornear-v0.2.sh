@@ -107,7 +107,7 @@ N_SES=$(find chroot/usr/share/xsessions chroot/usr/share/wayland-sessions -iname
 echo "PUERTA: ii=$N_II any=$N_ANY sesiones=$N_SES" | tee -a "$LOG"
 
 # Testigos v0.2: GNOME vivo + identidad de fabrica
-chroot chroot dpkg -l 2>/dev/null | grep -E "^ii  (gdm3|gnome-session|tobixu-gnome-look|tobi-xu-core) " | tee -a "$LOG"
+chroot chroot dpkg -l 2>/dev/null | grep -E "^ii  (gdm3|gnome-session|tobixu-gnome-look|tobixu-desktop-gnome) " | tee -a "$LOG"
 
 # Renombrado de la puerta del instalador (trilingüe)
 for d in chroot/usr/share/applications/*calamares*.desktop; do

@@ -149,6 +149,20 @@ autologin-user-timeout=0
 autologin-session=xfce
 EOF
 
+# --- Regla polkit: usuario live del grupo sudo eleva sin prompt ---
+mkdir -p config/includes.chroot/etc/polkit-1/rules.d
+cat > config/includes.chroot/etc/polkit-1/rules.d/49-tobixu-live.rules <<'EOF'
+// TobiXu: en el live, permitir al grupo sudo elevar privilegios vía pkexec
+// y lanzar Calamares sin pedir contraseña de root.
+polkit.addRule(function(action, subject) {
+    if (subject.isInGroup("sudo") &&
+        (action.id == "org.freedesktop.policykit.exec" ||
+         action.id.indexOf("com.github.calamares") === 0)) {
+        return polkit.Result.YES;
+    }
+});
+EOF
+
 # ============================================================
 # HOOKS (se ejecutan dentro del chroot, en orden numérico)
 # ============================================================
