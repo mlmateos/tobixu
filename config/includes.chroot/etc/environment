@@ -1,2 +1,3 @@
-# TobiXu - entorno base del sistema
-PATH="/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
+LANG=en_US.UTF-8
+LC_TIME=en_DK.UTF-8
+LC_MEASUREMENT=es_MX.UTF-8
