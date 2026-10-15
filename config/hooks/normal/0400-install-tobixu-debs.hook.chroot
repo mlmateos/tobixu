@@ -1,0 +1,8 @@
+#!/bin/sh
+set -e
+echo "=== Hook 0400: instalando identidad TobiXu desde /opt/tobixu-debs ==="
+if [ -d /opt/tobixu-debs ] && ls /opt/tobixu-debs/*.deb >/dev/null 2>&1; then
+dpkg -i /opt/tobixu-debs/*.deb || apt-get install -f -y
+rm -rf /opt/tobixu-debs
+fi
+echo "=== Hook 0400 completado ==="

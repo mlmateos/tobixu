@@ -1,5 +1,11 @@
 #!/bin/sh
-# TobiXu v0.2: prepara el escritorio de la sesion viva (solo live)
+# TobiXu v0.2: velo en cualquier sistema con tobixu-wallpapers
+WALL="$(dpkg -L tobixu-wallpapers 2>/dev/null | grep -m1 -E '\.(png|jpe?g)$')"
+if [ -n "$WALL" ]; then
+gsettings set org.gnome.desktop.background picture-uri "file://$WALL" 2>/dev/null || true
+gsettings set org.gnome.desktop.background picture-uri-dark "file://$WALL" 2>/dev/null || true
+fi
+# Resto: solo sesion viva
 grep -q "boot=live" /proc/cmdline || exit 0
 sleep 5
 gnome-extensions enable ding@rastersoft.com 2>/dev/null || true
