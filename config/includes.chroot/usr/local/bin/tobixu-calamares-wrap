@@ -1,6 +1,41 @@
 #!/bin/sh
 # Reconstruye el entorno Wayland del usuario vivo desde SUDO_UID (lado root)
-export XDG_RUNTIME_DIR="/run/user/${SUDO_UID:-1000}"
-export WAYLAND_DISPLAY="${WAYLAND_DISPLAY:-wayland-0}"
+# Descubrimiento dinámico: no asume valores hardcodeados
+
+# Descubrir XDG_RUNTIME_DIR
+if [ -z "$XDG_RUNTIME_DIR" ]; then
+  UID_USER="${SUDO_UID:-1000}"
+  export XDG_RUNTIME_DIR="/run/user/$UID_USER"
+fi
+
+# Descubrir socket Wayland real
+if [ -z "$WAYLAND_DISPLAY" ]; then
+  SOCKET=$(ls "$XDG_RUNTIME_DIR"/wayland-* 2>/dev/null | grep -v '\.lock' | head -1)
+  if [ -n "$SOCKET" ]; then
+    export WAYLAND_DISPLAY=$(basename "$SOCKET")
+  else
+    export WAYLAND_DISPLAY=wayland-0
+  fi
+fi
+
+# Forzar Qt a usar Wayland
 export QT_QPA_PLATFORM=wayland
-exec /usr/sbin/calamares "$@"
+
+# Descubrir binario de Calamares
+CALAMARES_BIN=$(command -v calamares 2>/dev/null)
+if [ -z "$CALAMARES_BIN" ]; then
+  # Fallbacks comunes
+  for path in /usr/sbin/calamares /usr/bin/calamares; do
+    if [ -x "$path" ]; then
+      CALAMARES_BIN="$path"
+      break
+    fi
+  done
+fi
+
+if [ -z "$CALAMARES_BIN" ] || [ ! -x "$CALAMARES_BIN" ]; then
+  echo "ERROR: No se encontró el binario de Calamares" >&2
+  exit 1
+fi
+
+exec "$CALAMARES_BIN" "$@"
