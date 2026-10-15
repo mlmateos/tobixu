@@ -3,7 +3,11 @@ gdm3
 gnome-tweaks
 gnome-shell-extension-appindicator
 gnome-shell-extension-dashtodock
+gnome-shell-extension-desktop-icons-ng
 firefox-esr
 thunderbird
 papirus-icon-theme
 calamares
+live-boot
+live-config
+sudo

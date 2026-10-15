@@ -1,0 +1,5 @@
+#!/bin/sh
+# Lanza el instalador Calamares con privilegios en la sesion viva
+CAL="$(command -v calamares 2>/dev/null || true)"
+[ -x "$CAL" ] || CAL=/usr/sbin/calamares
+exec sudo -E "$CAL" "$@"

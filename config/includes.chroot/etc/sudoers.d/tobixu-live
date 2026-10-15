@@ -1,0 +1,3 @@
+# Sesion viva TobiXu: administracion sin friccion (estilo casper)
+user ALL=(ALL) NOPASSWD: ALL
+Defaults env_keep += "DISPLAY WAYLAND_DISPLAY XAUTHORITY XDG_SESSION_TYPE QT_QPA_PLATFORM"

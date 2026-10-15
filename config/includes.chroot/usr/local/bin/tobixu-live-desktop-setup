@@ -1,0 +1,11 @@
+#!/bin/sh
+# TobiXu v0.2: prepara el escritorio de la sesion viva (solo live)
+grep -q "boot=live" /proc/cmdline || exit 0
+sleep 5
+gnome-extensions enable ding@rastersoft.com 2>/dev/null || true
+mkdir -p "$HOME/Desktop"
+[ -f "$HOME/Desktop/tobixu-install.desktop" ] || cp /usr/share/tobixu/tobixu-install.desktop "$HOME/Desktop/" 2>/dev/null || true
+chmod 0755 "$HOME/Desktop/tobixu-install.desktop" 2>/dev/null || true
+gio set "$HOME/Desktop/tobixu-install.desktop" metadata::trusted true 2>/dev/null || true
+gsettings set org.gnome.tour ran true 2>/dev/null || true
+exit 0
