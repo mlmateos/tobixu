@@ -1,8 +1,0 @@
-#!/bin/sh
-set -e
-echo "=== Hook 0400: instalando paquetes TobiXu desde /opt/tobixu-debs ==="
-if [ -d /opt/tobixu-debs ] && [ "$(ls -A /opt/tobixu-debs/*.deb 2>/dev/null)" ]; then
-    dpkg -i /opt/tobixu-debs/*.deb || apt-get install -f -y
-    rm -rf /opt/tobixu-debs
-fi
-echo "=== Hook 0400 completado ==="
