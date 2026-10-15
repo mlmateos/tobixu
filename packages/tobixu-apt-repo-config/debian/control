@@ -1,0 +1,12 @@
+Source: tobixu-apt-repo-config
+Section: admin
+Priority: optional
+Maintainer: Manuel López Mateos <manuel.lopez.mateos@gmail.com>
+Build-Depends: debhelper-compat (= 13)
+Standards-Version: 4.6.0
+
+Package: tobixu-apt-repo-config
+Architecture: all
+Depends: ${misc:Depends}
+Description: Configuración del repositorio APT de TobiXu
+ Siembra el repositorio firmado de GitHub Pages para actualizaciones rolling.

@@ -11,7 +11,7 @@ FECHA=$(date +%Y.%m.%d)
 ISO_NOMBRE="tobixu-rolling-${FECHA}-amd64.iso"
 
 # Paquetes de identidad v0.2 (base firme: sistema + look&feel + GNOME)
-PAQUETES_V02="tobixu-wallpapers tobixu-keyboard tobixu-gnome-look tobixu-desktop-gnome"
+PAQUETES_V02="tobixu-wallpapers tobixu-keyboard tobixu-gnome-look tobixu-desktop-gnome tobixu-apt-repo-config"
 
 # ---- Caja negra F9: testigo automatico de estados D ----
 CAJA_PADRE=$$
