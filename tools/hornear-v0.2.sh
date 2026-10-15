@@ -1,12 +1,13 @@
 #!/bin/bash
+# ============================================================
 # TobiXu v0.2 - Rolling release con GNOME + identidad
-# hornear-v0.2.sh v3.0 - Lógica nativa de live-build (config/packages.chroot)
+# hornear-v0.2.sh v3.1 - FIX ROBUSTO DE PUERTA
+# ============================================================
 set -e
-
 FECHA=$(date +%Y.%m.%d)
 ISO_NOMBRE="tobixu-rolling-${FECHA}-amd64.iso"
 
-# CORRECCIÓN CRÍTICA: tobixu-desktop-gnome no existe, el real es tobixu-desktop-gnome
+# Paquetes de identidad v0.2 (CORREGIDO: tobixu-desktop-gnome)
 PAQUETES_V02="tobixu-wallpapers tobixu-keyboard tobixu-gnome-look tobixu-desktop-gnome"
 
 # ---- Caja negra F9 ----
@@ -34,6 +35,7 @@ done
 # ---- fin caja negra ----
 
 cd /home/manuel/tobixu-iso || exit 1
+
 trap 'mount | grep "/tobixu-iso/chroot/" | cut -d" " -f3 | sort -r | while read -r mp; do umount "$mp" 2>/dev/null || umount -l "$mp" 2>/dev/null || true; done' EXIT
 [ "$(id -u)" -ne 0 ] && { echo "HORNO: corre con sudo"; exit 1; }
 
@@ -53,44 +55,40 @@ lb clean --all >/dev/null 2>&1
 rm -f live-image-amd64.hybrid.iso SHA256SUMS SHA256SUMS-* tobixu-rolling-*.iso
 { df -h /tmp | tail -n 1; df -h /home | tail -n 1; } > "$LOG"
 
-# === Configurar live-build ===
 echo "[cfg] lb config v0.2 rolling" | tee -a "$LOG"
 export LB_BOOTSTRAP_INCLUDE="ca-certificates"
 lb config \
-    --distribution sid \
-    --archive-areas "main contrib non-free non-free-firmware" \
-    --apt-indices false \
-    --apt-recommends false \
-    --iso-application "TobiXu Rolling v0.2" \
-    --iso-volume "TOBIXU_ROLLING" \
-    --iso-preparer "Manuel Lopez Mateos" \
-    --iso-publisher "TobiXu" \
-    --memtest none \
-    --firmware-binary false \
-    --firmware-chroot false
+--distribution sid \
+--archive-areas "main contrib non-free non-free-firmware" \
+--apt-indices false \
+--apt-recommends false \
+--iso-application "TobiXu Rolling v0.2" \
+--iso-volume "TOBIXU_ROLLING" \
+--iso-preparer "Manuel Lopez Mateos" \
+--iso-publisher "TobiXu" \
+--memtest none \
+--firmware-binary false \
+--firmware-chroot false
 
-# === [1/5] lb bootstrap ===
 echo "[1/5] lb bootstrap" | tee -a "$LOG"
 lb bootstrap --debug 2>&1 | tee -a "$LOG"; [ "${PIPESTATUS[0]}" -eq 0 ] || exit 1
 
-# === [2/5] CAPA 2: Sembrar en config/packages.chroot (mecanismo nativo) ===
-echo "[2/5] CAPA2: compilando y sembrando en packages.chroot..." | tee -a "$LOG"
-mkdir -p config/packages.chroot
-rm -f config/packages.chroot/*.deb
+echo "[2/5] CAPA2: empaquetando identidad v0.2..." | tee -a "$LOG"
+mkdir -p config/includes.chroot/opt/tobixu-debs
+rm -f config/includes.chroot/opt/tobixu-debs/*.deb
 for PKG in $PAQUETES_V02; do
 [ -d "packages/$PKG" ] || { echo "CAPA2 FATAL: falta packages/$PKG" | tee -a "$LOG"; exit 1; }
 ( cd "packages/$PKG" && dpkg-buildpackage -us -uc -b ) 2>&1 | tail -n 3 | tee -a "$LOG"
-cp "$(ls -t packages/${PKG}_*.deb | head -1)" config/packages.chroot/
+cp "$(ls -t packages/${PKG}_*.deb | head -1)" config/includes.chroot/opt/tobixu-debs/
 done
-ls -l config/packages.chroot/ | tee -a "$LOG"
+ls -l config/includes.chroot/opt/tobixu-debs/ | tee -a "$LOG"
 
-# === [3/5] lb chroot (instalará nativamente los .deb de packages.chroot) ===
 echo "[3/5] lb chroot" | tee -a "$LOG"
 lb chroot --debug 2>&1 | tee -a "$LOG"; [ "${PIPESTATUS[0]}" -eq 0 ] || exit 1
 
-# === [4/5] PUERTA ===
+# === PUERTA ROBUSTA (con || true y mkdir -p) ===
 echo "[4/5] PUERTA" | tee -a "$LOG"
-mkdir -p chroot/proc chroot/sys chroot/dev chroot/dev/pts
+mkdir -p chroot/proc chroot/sys chroot/dev chroot/dev/pts 2>/dev/null || true
 mount -t proc proc chroot/proc 2>/dev/null || true
 mount -t sysfs sysfs chroot/sys 2>/dev/null || true
 mount --bind /dev chroot/dev 2>/dev/null || true
@@ -109,7 +107,7 @@ N_ANY=$(chroot chroot dpkg -l 2>/dev/null | grep -ciE "lxqt|pcmanfm-qt|qterminal
 N_SES=$(find chroot/usr/share/xsessions chroot/usr/share/wayland-sessions -iname "*lxqt*" 2>/dev/null | wc -l)
 echo "PUERTA: ii=$N_II any=$N_ANY sesiones=$N_SES" | tee -a "$LOG"
 
-# Testigos v0.2
+# Testigos v0.2 (CORREGIDO: tobixu-desktop-gnome)
 chroot chroot dpkg -l 2>/dev/null | grep -E "^ii  (gdm3|gnome-session|tobixu-gnome-look|tobixu-desktop-gnome) " | tee -a "$LOG"
 
 for d in chroot/usr/share/applications/*calamares*.desktop; do
@@ -128,7 +126,6 @@ echo "PUERTA CERRADA: ii=$N_II any=$N_ANY ses=$N_SES nombre=$N_OK" | tee -a "$LO
 fi
 echo "PUERTA ABIERTA" | tee -a "$LOG"
 
-# === [5/5] lb binary ===
 echo "[5/5] lb binary" | tee -a "$LOG"
 lb binary --debug 2>&1 | tee -a "$LOG"
 rc=${PIPESTATUS[0]}
