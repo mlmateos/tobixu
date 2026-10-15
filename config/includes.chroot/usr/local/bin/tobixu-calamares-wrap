@@ -1,0 +1,6 @@
+#!/bin/sh
+# Reconstruye el entorno Wayland del usuario vivo desde SUDO_UID (lado root)
+export XDG_RUNTIME_DIR="/run/user/${SUDO_UID:-1000}"
+export WAYLAND_DISPLAY="${WAYLAND_DISPLAY:-wayland-0}"
+export QT_QPA_PLATFORM=wayland
+exec /usr/sbin/calamares "$@"
