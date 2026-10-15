@@ -1,9 +1,8 @@
 #!/bin/bash
 # ============================================================
-# TobiXu v0.2 - hornear-v0.2.sh v4.0 - LA CURA
-# Logica estricta: todo fallo legitimo va guardado con || true;
-# todo contrato de la cura se verifica en PREFLIGHT (fuentes)
-# y en PUERTA (chroot). El porton ahora SI mira la identidad.
+# TobiXu v0.2 - hornear-v0.2.sh v4.1 - LA CURA COMPLETA
+# Logica estricta: PREFLIGHT solo exige lo que Git custodia;
+# PUERTA verifica el symlink habilitado dentro del chroot.
 # ============================================================
 set -e
 FECHA=$(date +%Y.%m.%d)
@@ -40,12 +39,11 @@ trap 'mount | grep "/tobixu-iso/chroot/" | cut -d" " -f3 | sort -r | while read 
 [ "$(id -u)" -ne 0 ] && { echo "HORNO: corre con sudo"; exit 1; }
 LOG="build-v02-$(date +%Y%m%d-%H%M).log"
 
-# === PREFLIGHT: el contrato de la cura en las fuentes ===
+# === PREFLIGHT: solo lo que Git custodia (NO el symlink colgante) ===
 for f in etc/environment etc/apt/sources.list \
 etc/gdm3/custom.conf \
 etc/sudoers.d/tobixu-live \
 etc/systemd/system/tobixu-live-user.service \
-etc/systemd/system/multi-user.target.wants/tobixu-live-user.service \
 etc/skel/Desktop/tobixu-install.desktop \
 etc/xdg/autostart/tobixu-live-desktop.desktop \
 usr/local/bin/tobixu-live-user-create \
@@ -55,6 +53,7 @@ usr/local/bin/tobixu-calamares-wrap ; do
 [ -f "config/includes.chroot/$f" ] || { echo "PREFLIGHT FALTO: includes.chroot/$f" | tee -a "$LOG"; exit 1; }
 done
 [ -x config/hooks/normal/0400-install-tobixu-debs.hook.chroot ] || { echo "PREFLIGHT FALTO: hook 0400 instalador de identidad" | tee -a "$LOG"; exit 1; }
+[ -x config/hooks/normal/0401-enable-live-user.hook.chroot ] || { echo "PREFLIGHT FALTO: hook 0401 habilitador de unidad" | tee -a "$LOG"; exit 1; }
 for PKG in $PAQUETES_V02; do
 [ -d "packages/$PKG" ] || { echo "PREFLIGHT FALTO: packages/$PKG" | tee -a "$LOG"; exit 1; }
 done
@@ -93,10 +92,10 @@ cp "$(ls -t packages/${PKG}_*.deb | head -1)" config/includes.chroot/opt/tobixu-
 done
 ls -l config/includes.chroot/opt/tobixu-debs/ | tee -a "$LOG"
 
-echo "[3/5] lb chroot (hook 0400 instala la identidad al cierre)" | tee -a "$LOG"
+echo "[3/5] lb chroot (hooks 0400+0401 instalan identidad y habilitan unidad)" | tee -a "$LOG"
 lb chroot --debug 2>&1 | tee -a "$LOG"; [ "${PIPESTATUS[0]}" -eq 0 ] || exit 1
 
-# === PUERTA v4.0: auxiliar guardado, porton estricto ===
+# === PUERTA v4.1: verifica symlink habilitado DENTRO del chroot ===
 echo "[4/5] PUERTA" | tee -a "$LOG"
 mkdir -p chroot/proc chroot/sys chroot/dev chroot/dev/pts 2>/dev/null || true
 mount -t proc proc chroot/proc 2>/dev/null || true
@@ -144,8 +143,8 @@ FAIL=0
 [ "$N_PTY" -ge 1 ] || { echo "PUERTA: ptyxis ausente" | tee -a "$LOG"; FAIL=1; }
 [ "$M_SUD" = "440" ] || { echo "PUERTA: sudoers con modo $M_SUD" | tee -a "$LOG"; FAIL=1; }
 [ -f chroot/etc/systemd/system/tobixu-live-user.service ] || { echo "PUERTA: unidad live-user ausente" | tee -a "$LOG"; FAIL=1; }
-[ -f chroot/usr/local/bin/tobixu-calamares-wrap ] || { echo "PUERTA: wrapper calamares ausente" | tee -a "$LOG"; FAIL=1; }
 [ -L chroot/etc/systemd/system/multi-user.target.wants/tobixu-live-user.service ] || { echo "PUERTA: unidad live-user NO habilitada en chroot" | tee -a "$LOG"; FAIL=1; }
+[ -f chroot/usr/local/bin/tobixu-calamares-wrap ] || { echo "PUERTA: wrapper calamares ausente" | tee -a "$LOG"; FAIL=1; }
 
 umount chroot/dev/pts 2>/dev/null || true; umount chroot/dev 2>/dev/null || true
 umount chroot/sys 2>/dev/null || true; umount chroot/proc 2>/dev/null || true
