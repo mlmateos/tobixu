@@ -6,7 +6,7 @@ set -e
 FECHA=$(date +%Y.%m.%d)
 ISO_NOMBRE="tobixu-rolling-${FECHA}-amd64.iso"
 
-# CORRECCIÓN CRÍTICA: tobi-xu-core no existe, el real es tobixu-desktop-gnome
+# CORRECCIÓN CRÍTICA: tobixu-desktop-gnome no existe, el real es tobixu-desktop-gnome
 PAQUETES_V02="tobixu-wallpapers tobixu-keyboard tobixu-gnome-look tobixu-desktop-gnome"
 
 # ---- Caja negra F9 ----
@@ -90,10 +90,11 @@ lb chroot --debug 2>&1 | tee -a "$LOG"; [ "${PIPESTATUS[0]}" -eq 0 ] || exit 1
 
 # === [4/5] PUERTA ===
 echo "[4/5] PUERTA" | tee -a "$LOG"
-mount -t proc proc chroot/proc 2>/dev/null
-mount -t sysfs sysfs chroot/sys 2>/dev/null
-mount --bind /dev chroot/dev 2>/dev/null
-mount --bind /dev/pts chroot/dev/pts 2>/dev/null
+mkdir -p chroot/proc chroot/sys chroot/dev chroot/dev/pts
+mount -t proc proc chroot/proc 2>/dev/null || true
+mount -t sysfs sysfs chroot/sys 2>/dev/null || true
+mount --bind /dev chroot/dev 2>/dev/null || true
+mount --bind /dev/pts chroot/dev/pts 2>/dev/null || true
 
 chroot chroot apt-get purge --yes 'lxqt-*' 'liblxqt*' 'libdbusmenu-lxqt*' >/dev/null 2>&1 || true
 chroot chroot apt-get autoremove --purge --yes >/dev/null 2>&1 || true
