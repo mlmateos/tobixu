@@ -1,14 +1,6 @@
 #!/bin/sh
-# Reconstruye el entorno Wayland del usuario vivo desde SUDO_UID (lado root)
+# Wrapper para Calamares con entorno Wayland reconstruido
 [ -n "$XDG_RUNTIME_DIR" ] || export XDG_RUNTIME_DIR="/run/user/${SUDO_UID:-1000}"
-if [ -z "$WAYLAND_DISPLAY" ]; then
-SOCK=$(ls "$XDG_RUNTIME_DIR"/wayland-* 2>/dev/null | grep -v '\.lock$' | head -1)
-[ -n "$SOCK" ] && export WAYLAND_DISPLAY=$(basename "$SOCK") || export WAYLAND_DISPLAY=wayland-0
-fi
+[ -n "$WAYLAND_DISPLAY" ] || export WAYLAND_DISPLAY="wayland-0"
 export QT_QPA_PLATFORM=wayland
-CAL=$(command -v calamares 2>/dev/null || true)
-if [ ! -x "$CAL" ]; then
-for p in /usr/sbin/calamares /usr/bin/calamares; do [ -x "$p" ] && CAL=$p && break; done
-fi
-[ -x "$CAL" ] || { echo "tobixu-wrap: calamares no encontrado" >&2; exit 127; }
-exec "$CAL" "$@"
+exec /usr/bin/calamares "$@"

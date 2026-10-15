@@ -4,3 +4,4 @@ etc/skel/.config/gnome-initial-setup-done etc/skel/.config/
 usr/share/gnome-shell/extensions/appmenu-is-back@fthx usr/share/gnome-shell/extensions/
 usr/share/gnome-shell/extensions/trayIconsReloaded@selfmade.pl usr/share/gnome-shell/extensions/
 etc/dconf/profile/user etc/dconf/profile/
+usr/share/tobixu/glyph.png usr/share/tobixu/

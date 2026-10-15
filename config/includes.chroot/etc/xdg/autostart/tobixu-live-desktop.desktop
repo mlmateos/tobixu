@@ -1,6 +1,6 @@
 [Desktop Entry]
 Type=Application
 Name=TobiXu Live Desktop Setup
-Exec=/usr/local/bin/tobixu-live-desktop-setup
+Exec=/bin/sh -c "sleep 3; update-desktop-database /usr/share/applications 2>/dev/null || true; gsettings set org.gnome.shell disable-user-extensions false 2>/dev/null || true"
 NoDisplay=true
 X-GNOME-Autostart-enabled=true
