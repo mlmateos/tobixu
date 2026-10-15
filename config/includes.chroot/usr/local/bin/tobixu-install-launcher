@@ -1,5 +1,7 @@
 #!/bin/sh
-# Lanza el instalador Calamares con privilegios en la sesion viva
+# TobiXu: lanza Calamares como root dentro de la sesion Wayland viva
+[ -n "$XDG_RUNTIME_DIR" ] || export XDG_RUNTIME_DIR="/run/user/${SUDO_UID:-1000}"
+[ -n "$WAYLAND_DISPLAY" ] || export WAYLAND_DISPLAY=wayland-0
 CAL="$(command -v calamares 2>/dev/null || true)"
 [ -x "$CAL" ] || CAL=/usr/sbin/calamares
 exec sudo -E "$CAL" "$@"
