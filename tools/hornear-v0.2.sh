@@ -138,6 +138,18 @@ chroot chroot sh -c 'command -v ptyxis >/dev/null 2>&1 && update-alternatives --
 
 N_ROT=$(chroot chroot dpkg -l 2>/dev/null | grep -cE "^i[UFH] " || true)
 echo "TESTIGO: paquetes rotos en chroot=$N_ROT" | tee -a "$LOG"
+GLYPH=$(chroot chroot sh -c 'dpkg -L tobixu-gnome-look tobixu-wallpapers 2>/dev/null | grep -m1 -iE "(glyph|glifo|logo).*\.(png|svg)$"' || true)
+if [ -n "$GLYPH" ]; then
+mkdir -p chroot/usr/share/tobixu chroot/var/lib/AccountsService/users
+cp "chroot$GLYPH" chroot/usr/share/tobixu/glyph.png 2>/dev/null || true
+printf '[User]\nIcon=/usr/share/tobixu/glyph.png\n' > chroot/var/lib/AccountsService/users/user
+echo "TESTIGO: glifo sembrado desde $GLYPH" | tee -a "$LOG"
+else
+echo "AVISO: glifo no encontrado en paquetes de identidad" | tee -a "$LOG"
+fi
+CALBIN=$(chroot chroot sh -c 'command -v calamares' 2>/dev/null || true)
+echo "TESTIGO: binario calamares=$CALBIN" | tee -a "$LOG"
+chroot chroot ptyxis --version >/dev/null 2>&1 && echo "TESTIGO: ptyxis ejecuta" | tee -a "$LOG" || echo "AVISO: ptyxis no ejecuta headless" | tee -a "$LOG"
 FAIL=0
 { [ "$N_II" -eq 0 ] && [ "$N_ANY" -eq 0 ] && [ "$N_SES" -eq 0 ]; } || { echo "PUERTA: residuos LXQt" | tee -a "$LOG"; FAIL=1; }
 [ "$N_ID" -eq "$N_PAQ" ] || { echo "PUERTA: identidad incompleta ($N_ID/$N_PAQ)" | tee -a "$LOG"; FAIL=1; }
