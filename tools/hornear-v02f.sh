@@ -36,7 +36,7 @@ done
 cd /home/manuel/tobixu-iso || exit 1
 trap 'mount | grep "/tobixu-iso/chroot/" | cut -d" " -f3 | sort -r | while read -r mp; do umount "$mp" 2>/dev/null || umount -l "$mp" 2>/dev/null || true; done' EXIT
 [ "$(id -u)" -ne 0 ] && { echo "HORNO: corre con sudo"; exit 1; }
-LOG="build-v02e-$(date +%Y%m%d-%H%M).log"
+LOG="build-v02f-$(date +%Y%m%d-%H%M).log"
 
 # === PREFLIGHT ===
 for f in etc/environment etc/apt/sources.list \
