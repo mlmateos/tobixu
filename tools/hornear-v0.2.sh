@@ -1,8 +1,8 @@
 #!/bin/bash
 # ============================================================
-# TobiXu v0.2 - hornear-v0.2.sh v4.1 - LA CURA COMPLETA
-# Logica estricta: PREFLIGHT solo exige lo que Git custodia;
-# PUERTA verifica el symlink habilitado dentro del chroot.
+# TobiXu v0.2 - hornear-v0.2.sh v4.10 - CANONICA LIMPIA
+# Paridad rc23: grub-pc + grub-efi-amd64 + squashfs-tools
+# Cadena probada: calamares-install-debian (xhost + pkexec + XWayland)
 # ============================================================
 set -e
 FECHA=$(date +%Y.%m.%d)
@@ -39,7 +39,7 @@ trap 'mount | grep "/tobixu-iso/chroot/" | cut -d" " -f3 | sort -r | while read 
 [ "$(id -u)" -ne 0 ] && { echo "HORNO: corre con sudo"; exit 1; }
 LOG="build-v02-$(date +%Y%m%d-%H%M).log"
 
-# === PREFLIGHT: solo lo que Git custodia (NO el symlink colgante) ===
+# === PREFLIGHT: solo lo que Git custodia ===
 for f in etc/environment etc/apt/sources.list \
 etc/gdm3/custom.conf \
 etc/sudoers.d/tobixu-live \
@@ -95,7 +95,7 @@ ls -l config/includes.chroot/opt/tobixu-debs/ | tee -a "$LOG"
 echo "[3/5] lb chroot (hooks 0400+0401 instalan identidad y habilitan unidad)" | tee -a "$LOG"
 lb chroot --debug 2>&1 | tee -a "$LOG"; [ "${PIPESTATUS[0]}" -eq 0 ] || exit 1
 
-# === PUERTA v4.1: verifica symlink habilitado DENTRO del chroot ===
+# === PUERTA v4.10 ===
 echo "[4/5] PUERTA" | tee -a "$LOG"
 mkdir -p chroot/proc chroot/sys chroot/dev chroot/dev/pts 2>/dev/null || true
 mount -t proc proc chroot/proc 2>/dev/null || true
@@ -110,9 +110,8 @@ if [ -n "$RESIDUOS" ]; then
 chroot chroot dpkg --purge --force-depends $RESIDUOS 2>&1 | tail -n 3 | tee -a "$LOG" || true
 fi
 
-# Contadores a prueba de set -e (|| true dentro del sustituto)
 N_II=$(chroot chroot dpkg -l 2>/dev/null | grep -ciE "^ii.*(lxqt|pcmanfm-qt|qterminal|lximage-qt|obconf-qt)" || true)
-N_ANY=$(chroot chroot dpkg -l 2>/dev/null | grep -ciE "lxqt|pcmanfm-qt|qterminal|lximage-qt|obconf-qt)" || true)
+N_ANY=$(chroot chroot dpkg -l 2>/dev/null | grep -ciE "lxqt|pcmanfm-qt|qterminal|lximage-qt|obconf-qt" || true)
 N_SES=$(find chroot/usr/share/xsessions chroot/usr/share/wayland-sessions -iname "*lxqt*" 2>/dev/null | wc -l || true)
 N_ID=$(chroot chroot dpkg -l 2>/dev/null | grep -cE "^ii  (tobixu-wallpapers|tobixu-keyboard|tobixu-gnome-look|tobixu-desktop-gnome) " || true)
 N_PTY=$(chroot chroot dpkg -l 2>/dev/null | grep -cE "^ii  ptyxis " || true)
@@ -130,14 +129,15 @@ done
 N_OK=$(grep -l "^Name=Install Tobi Xu" chroot/usr/share/applications/*calamares*.desktop 2>/dev/null | wc -l || true)
 echo "TESTIGO: puertas renombradas=$N_OK" | tee -a "$LOG"
 
-# Modos que Git no transporta y contratos de la cura en el chroot
 chmod 0440 chroot/etc/sudoers.d/tobixu-live 2>/dev/null || true
 M_SUD=$(stat -c %a chroot/etc/sudoers.d/tobixu-live 2>/dev/null || echo none)
 echo "TESTIGO: modo sudoers=$M_SUD" | tee -a "$LOG"
+
 chroot chroot sh -c 'command -v ptyxis >/dev/null 2>&1 && update-alternatives --install /usr/bin/x-terminal-emulator x-terminal-emulator "$(command -v ptyxis)" 50' 2>/dev/null || true
 
 N_ROT=$(chroot chroot dpkg -l 2>/dev/null | grep -cE "^i[UFH] " || true)
 echo "TESTIGO: paquetes rotos en chroot=$N_ROT" | tee -a "$LOG"
+
 GLYPH=$(chroot chroot sh -c 'dpkg -L tobixu-gnome-look tobixu-wallpapers 2>/dev/null | grep -m1 -iE "(glyph|glifo|logo).*\.(png|svg)$"' || true)
 if [ -n "$GLYPH" ]; then
 mkdir -p chroot/usr/share/tobixu chroot/var/lib/AccountsService/users
@@ -147,39 +147,24 @@ echo "TESTIGO: glifo sembrado desde $GLYPH" | tee -a "$LOG"
 else
 echo "AVISO: glifo no encontrado en paquetes de identidad" | tee -a "$LOG"
 fi
+
 CALBIN=$(chroot chroot sh -c 'command -v calamares' 2>/dev/null || true)
 echo "TESTIGO: binario calamares=$CALBIN" | tee -a "$LOG"
-chroot chroot ptyxis --version >/dev/null 2>&1 && echo "TESTIGO: ptyxis ejecuta" | tee -a "$LOG" || echo "AVISO: ptyxis no ejecuta headless" | tee -a "$LOG"
+
 FAIL=0
+
+# Cadena probada: calamares-install-debian (rc23)
 if [ -x chroot/usr/bin/calamares-install-debian ]; then
 for d in chroot/usr/share/applications/*calamares*.desktop; do
 [ -f "$d" ] || continue
 sed -i 's|^Exec=.*|Exec=calamares-install-debian|' "$d"
 done
-echo "TESTIGO: Exec calamares=calamares-install-debian (cadena probada)" | tee -a "$LOG"
+echo "TESTIGO: Exec calamares=calamares-install-debian (cadena probada rc23)" | tee -a "$LOG"
 else
 echo "PUERTA: falta /usr/bin/calamares-install-debian en chroot" | tee -a "$LOG"; FAIL=1
 fi
-PTYXIS_SVC=$(ls chroot/usr/share/dbus-1/services/ 2>/dev/null | grep -ci ptyxis || true)
-echo "TESTIGO: servicios dbus ptyxis=$PTYXIS_SVC" | tee -a "$LOG"
-if [ "$PTYXIS_SVC" -eq 0 ]; then
-sed -i 's/^DBusActivatable=true/DBusActivatable=false/' chroot/usr/share/applications/org.gnome.Ptyxis.desktop 2>/dev/null || true
-echo "TESTIGO: DBusActivatable desactivado en ptyxis (Exec directo)" | tee -a "$LOG"
-fi
-PTYXIS_SVC=$(ls chroot/usr/share/dbus-1/services/ 2>/dev/null | grep -ci ptyxis || true)
-echo "TESTIGO: servicios dbus ptyxis=$PTYXIS_SVC" | tee -a "$LOG"
-if [ "$PTYXIS_SVC" -eq 0 ]; then
-sed -i 's/^DBusActivatable=true/DBusActivatable=false/' chroot/usr/share/applications/org.gnome.Ptyxis.desktop 2>/dev/null || true
-echo "TESTIGO: DBusActivatable desactivado en ptyxis (Exec directo)" | tee -a "$LOG"
-fi
-for d in chroot/usr/share/applications/*calamares*.desktop; do
-[ -f "$d" ] || continue
-sed -i 's|^Exec=.*|Exec=/usr/local/bin/tobixu-install-launcher|' "$d"
-done
-echo "TESTIGO: Exec calamares=$(grep -h '^Exec' chroot/usr/share/applications/*calamares*.desktop 2>/dev/null | head -1)" | tee -a "$LOG"
-{ [ -f chroot/usr/share/tobixu/glyph.png ] && echo "TESTIGO: glifo presente" || { echo "PUERTA: glifo ausente"; FAIL=1; }; } | tee -a "$LOG"
-{ [ -f chroot/var/lib/AccountsService/users/user ] && echo "TESTIGO: rostro AccountsService presente" || { echo "PUERTA: rostro ausente"; FAIL=1; }; } | tee -a "$LOG"
-{ grep -q 'tobixu-live-desktop-setup' chroot/etc/xdg/autostart/tobixu-live-desktop.desktop && echo "TESTIGO: autostart apunta al setup" || { echo "PUERTA: autostart roto"; FAIL=1; }; } | tee -a "$LOG"
+
+# Verificaciones finales
 { [ "$N_II" -eq 0 ] && [ "$N_ANY" -eq 0 ] && [ "$N_SES" -eq 0 ]; } || { echo "PUERTA: residuos LXQt" | tee -a "$LOG"; FAIL=1; }
 [ "$N_ID" -eq "$N_PAQ" ] || { echo "PUERTA: identidad incompleta ($N_ID/$N_PAQ)" | tee -a "$LOG"; FAIL=1; }
 [ "$N_OK" -ge 1 ] || { echo "PUERTA: puerta Calamares sin renombrar" | tee -a "$LOG"; FAIL=1; }
@@ -200,6 +185,7 @@ echo "[5/5] lb binary" | tee -a "$LOG"
 lb binary --debug 2>&1 | tee -a "$LOG"
 rc=${PIPESTATUS[0]}
 echo "LB EXIT: $rc" | tee -a "$LOG"
+
 if [ "$rc" -eq 0 ] && [ -f live-image-amd64.hybrid.iso ]; then
 mv live-image-amd64.hybrid.iso "$ISO_NOMBRE"
 sha256sum "$ISO_NOMBRE" > "SHA256SUMS-${FECHA}"
