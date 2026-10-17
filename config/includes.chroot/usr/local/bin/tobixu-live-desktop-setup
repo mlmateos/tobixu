@@ -16,8 +16,5 @@ chmod 0755 "$HOME/Desktop/tobixu-install.desktop" 2>/dev/null || true
 gio set "$HOME/Desktop/tobixu-install.desktop" metadata::trusted true 2>/dev/null || true
 gsettings set org.gnome.tour ran true 2>/dev/null || true
 # === TESTIGOS DE RUNTIME (v4.6): la sesion entrega el error por escrito ===
-{ ptyxis --version > "$HOME/Desktop/test-ptyxis.txt" 2>&1 || echo "rc=$?" >> "$HOME/Desktop/test-ptyxis.txt"; }
 exit 0
 # Testigo full-run: si ptyxis vive 8s, su ventana debio verse; si muere, el stderr queda escrito
-timeout 8 ptyxis > /dev/null 2> "$HOME/Desktop/test-ptyxis-full.txt"
-echo "rc=$?" >> "$HOME/Desktop/test-ptyxis-full.txt"
