@@ -1,0 +1,6 @@
+#!/bin/sh
+set -e
+mkdir -p /etc/systemd/system/multi-user.target.wants
+ln -sf /etc/systemd/system/tobixu-firstboot.service \
+  /etc/systemd/system/multi-user.target.wants/tobixu-firstboot.service
+echo "=== Hook 0402: unidad firstboot habilitada ==="

@@ -1,0 +1,11 @@
+[Unit]
+Description=TobiXu: identidad de primer arranque (rostro de usuario)
+ConditionPathExists=!/etc/tobixu-firstboot-done
+Before=display-manager.service
+
+[Service]
+Type=oneshot
+ExecStart=/usr/local/sbin/tobixu-firstboot.sh
+
+[Install]
+WantedBy=multi-user.target
