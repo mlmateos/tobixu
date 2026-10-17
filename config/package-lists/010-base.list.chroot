@@ -16,3 +16,4 @@ vlc
 qt6-wayland
 calamares-settings-debian
 x11-xserver-utils
+squashfs-tools

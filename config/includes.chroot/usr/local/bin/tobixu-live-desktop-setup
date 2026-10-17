@@ -16,8 +16,6 @@ chmod 0755 "$HOME/Desktop/tobixu-install.desktop" 2>/dev/null || true
 gio set "$HOME/Desktop/tobixu-install.desktop" metadata::trusted true 2>/dev/null || true
 gsettings set org.gnome.tour ran true 2>/dev/null || true
 # === TESTIGOS DE RUNTIME (v4.6): la sesion entrega el error por escrito ===
-{ /usr/local/bin/tobixu-calamares-wrap --version > "$HOME/Desktop/test-calamares.txt" 2>&1 || echo "rc=$?" >> "$HOME/Desktop/test-calamares.txt"; }
-{ sudo -n true > "$HOME/Desktop/test-sudo.txt" 2>&1 && echo "sudo OK" >> "$HOME/Desktop/test-sudo.txt" || echo "rc=$?" >> "$HOME/Desktop/test-sudo.txt"; }
 { ptyxis --version > "$HOME/Desktop/test-ptyxis.txt" 2>&1 || echo "rc=$?" >> "$HOME/Desktop/test-ptyxis.txt"; }
 exit 0
 # Testigo full-run: si ptyxis vive 8s, su ventana debio verse; si muere, el stderr queda escrito
