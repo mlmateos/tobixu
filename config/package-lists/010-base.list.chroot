@@ -18,3 +18,4 @@ calamares-settings-debian
 x11-xserver-utils
 squashfs-tools
 grub-efi-amd64
+grub-pc-bin
