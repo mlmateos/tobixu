@@ -6,6 +6,8 @@ SOCK=$(ls "$XDG_RUNTIME_DIR"/wayland-* 2>/dev/null | grep -v '\.lock$' | head -1
 [ -n "$SOCK" ] && export WAYLAND_DISPLAY=$(basename "$SOCK") || export WAYLAND_DISPLAY=wayland-0
 fi
 export QT_QPA_PLATFORM=wayland
+export LANG="${LANG:-C.UTF-8}"
+export LC_ALL="${LC_ALL:-C.UTF-8}"
 CAL=$(command -v calamares 2>/dev/null || true)
 if [ ! -x "$CAL" ]; then
 for p in /usr/bin/calamares /usr/sbin/calamares; do [ -x "$p" ] && CAL=$p && break; done

@@ -13,3 +13,4 @@ live-boot
 live-config
 sudo
 vlc
+qt6-wayland
