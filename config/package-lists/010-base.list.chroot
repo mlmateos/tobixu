@@ -19,3 +19,6 @@ x11-xserver-utils
 squashfs-tools
 grub-efi-amd64
 grub-pc-bin
+live-boot-doc
+live-config-doc
+live-tools
