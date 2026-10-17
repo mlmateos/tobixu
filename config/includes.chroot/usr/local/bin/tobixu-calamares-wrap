@@ -1,16 +1,3 @@
 #!/bin/sh
-# Reconstruye el entorno Wayland del usuario vivo desde SUDO_UID (lado root)
-[ -n "$XDG_RUNTIME_DIR" ] || export XDG_RUNTIME_DIR="/run/user/${SUDO_UID:-1000}"
-if [ -z "$WAYLAND_DISPLAY" ]; then
-SOCK=$(ls "$XDG_RUNTIME_DIR"/wayland-* 2>/dev/null | grep -v '\.lock$' | head -1)
-[ -n "$SOCK" ] && export WAYLAND_DISPLAY=$(basename "$SOCK") || export WAYLAND_DISPLAY=wayland-0
-fi
-export QT_QPA_PLATFORM=wayland
-export LANG="${LANG:-C.UTF-8}"
-export LC_ALL="${LC_ALL:-C.UTF-8}"
-CAL=$(command -v calamares 2>/dev/null || true)
-if [ ! -x "$CAL" ]; then
-for p in /usr/bin/calamares /usr/sbin/calamares; do [ -x "$p" ] && CAL=$p && break; done
-fi
-[ -x "$CAL" ] || { echo "tobixu-wrap: calamares no encontrado" >&2; exit 127; }
-exec "$CAL" "$@"
+# JUBILADO v4.8: delega en la cadena probada (calamares-settings-debian)
+exec calamares-install-debian "$@"

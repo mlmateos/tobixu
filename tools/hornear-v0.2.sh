@@ -151,6 +151,21 @@ CALBIN=$(chroot chroot sh -c 'command -v calamares' 2>/dev/null || true)
 echo "TESTIGO: binario calamares=$CALBIN" | tee -a "$LOG"
 chroot chroot ptyxis --version >/dev/null 2>&1 && echo "TESTIGO: ptyxis ejecuta" | tee -a "$LOG" || echo "AVISO: ptyxis no ejecuta headless" | tee -a "$LOG"
 FAIL=0
+if [ -x chroot/usr/bin/calamares-install-debian ]; then
+for d in chroot/usr/share/applications/*calamares*.desktop; do
+[ -f "$d" ] || continue
+sed -i 's|^Exec=.*|Exec=calamares-install-debian|' "$d"
+done
+echo "TESTIGO: Exec calamares=calamares-install-debian (cadena probada)" | tee -a "$LOG"
+else
+echo "PUERTA: falta /usr/bin/calamares-install-debian en chroot" | tee -a "$LOG"; FAIL=1
+fi
+PTYXIS_SVC=$(ls chroot/usr/share/dbus-1/services/ 2>/dev/null | grep -ci ptyxis || true)
+echo "TESTIGO: servicios dbus ptyxis=$PTYXIS_SVC" | tee -a "$LOG"
+if [ "$PTYXIS_SVC" -eq 0 ]; then
+sed -i 's/^DBusActivatable=true/DBusActivatable=false/' chroot/usr/share/applications/org.gnome.Ptyxis.desktop 2>/dev/null || true
+echo "TESTIGO: DBusActivatable desactivado en ptyxis (Exec directo)" | tee -a "$LOG"
+fi
 PTYXIS_SVC=$(ls chroot/usr/share/dbus-1/services/ 2>/dev/null | grep -ci ptyxis || true)
 echo "TESTIGO: servicios dbus ptyxis=$PTYXIS_SVC" | tee -a "$LOG"
 if [ "$PTYXIS_SVC" -eq 0 ]; then

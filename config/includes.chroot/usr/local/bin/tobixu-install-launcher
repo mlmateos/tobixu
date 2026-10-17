@@ -1,2 +1,3 @@
 #!/bin/sh
-exec sudo /usr/local/bin/tobixu-calamares-wrap "$@"
+# JUBILADO v4.8: delega en la cadena probada (calamares-settings-debian)
+exec calamares-install-debian "$@"

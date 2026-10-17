@@ -14,3 +14,5 @@ live-config
 sudo
 vlc
 qt6-wayland
+calamares-settings-debian
+x11-xserver-utils
