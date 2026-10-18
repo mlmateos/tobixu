@@ -30,3 +30,6 @@ gnome-maps
 gnome-calendar
 gnome-connections
 gnome-software
+fonts-noto-core
+fonts-noto-cjk
+bash-completion
