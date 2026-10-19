@@ -23,6 +23,17 @@ DEB822
 if [ -f /usr/share/tobixu/tobixu.list ]; then
 cp /usr/share/tobixu/tobixu.list /etc/apt/sources.list.d/tobixu.list
 fi
+if command -v gtk-update-icon-cache >/dev/null 2>&1; then
+for theme in /usr/share/icons/*; do
+[ -d "$theme" ] && gtk-update-icon-cache -f "$theme" 2>/dev/null || true
+done
+fi
+# === Cache de iconos (cura cosmética): asegurar que GTK/GNOME vea los iconos ya presentes
+if command -v gtk-update-icon-cache >/dev/null 2>&1; then
+for theme in /usr/share/icons/*; do
+[ -d "$theme" ] && gtk-update-icon-cache -f "$theme" 2>/dev/null || true
+done
+fi
 touch /etc/tobixu-river-done
 fi
 touch /etc/tobixu-firstboot-done
