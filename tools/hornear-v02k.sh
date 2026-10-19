@@ -6,7 +6,7 @@
 set -e
 FECHA=$(date +%Y.%m.%d)
 ISO_NOMBRE="tobixu-rolling-${FECHA}-amd64.iso"
-PAQUETES_V02="tobixu-wallpapers tobixu-keyboard tobixu-gnome-look tobixu-desktop-gnome tobixu-apt-repo-config"
+PAQUETES_V02="tobixu-wallpapers tobixu-keyboard tobixu-gnome-look tobixu-desktop-gnome"
 N_PAQ=$(echo $PAQUETES_V02 | wc -w)
 
 # ---- Caja negra F9 ----
@@ -272,7 +272,7 @@ chroot chroot dpkg -s "$f" >/dev/null 2>&1 || { echo "PUERTA: falta $f en chroot
 done
 echo "TESTIGO: fuentes Noto y bash-completion presentes" | tee -a "$LOG"
 [ -f chroot/usr/share/keyrings/tobixu-archive-keyring.gpg ] || { echo "PUERTA: keyring tobixu ausente" | tee -a "$LOG"; FAIL=1; }
-[ -f chroot/etc/apt/sources.list.d/tobixu.list ] || { echo "PUERTA: fuente tobixu ausente" | tee -a "$LOG"; FAIL=1; }
+# tobixu.list NO debe estar en chroot (el trigger lo instala en el sistema instalado)
 grep -q 'tobixu-river-done' chroot/usr/local/sbin/tobixu-firstboot.sh || { echo "PUERTA: trigger sin seccion rio" | tee -a "$LOG"; FAIL=1; }
 [ -f chroot/usr/share/keyrings/debian-archive-keyring.gpg ] || { echo "PUERTA: keyring debian ausente (deb822 no firmable)" | tee -a "$LOG"; FAIL=1; }
 echo "TESTIGO: rio presente (keyring+fuente tobixu+trigger con rio)" | tee -a "$LOG"
