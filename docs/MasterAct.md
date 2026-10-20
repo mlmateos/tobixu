@@ -770,7 +770,55 @@ Ordered by priority. All done **cold**, with the VM off and with acta.
 - **F78「尚未到达的索引」：** 当 `derive.php` 排队时，`ia list` 不显示新上传的文件；文件已可通过直接 URL 服务。诚实的证人：`curl -sI`（302→200 带精确 content-length）和 `ia metadata`（`files[]` 带 size/format/sha1）。疗法：derive 期间不要用 `ia list` 诊断。
 - **F79「未曾旅行的元数据」：** 对已存在的 item，`ia upload --metadata` 不修改 item 元数据（旧日期和描述保留）。疗法：`ia metadata <item> --modify="字段:值"`。
 
----
+## 2026-10-19 →  ( Era de la familia, Family era, 家族时代 )
+
+### ES
+Esquema de nombres: `tobixu-<entorno>-rolling-AAAAMMDD-amd64.iso`.
+Identifiers en archive.org: `tobixu-plasma`, `tobixu-gnome`
+(`tobixu-xfce` y `tobixu-lxqt` en camino).
+
+| Canon | Entorno | Carácter | SHA256 (inicio) |
+|---|---|---|---|
+| v0.1-sicaru rc23 → tobixu-plasma | KDE Plasma 6 | completa (todo instalado) | c5fa1276… |
+| v0.2.1 → tobixu-gnome | GNOME 47 | base (stem/arts instalables) | 3486ab15… |
+
+Vitrina: tobixu-web con canal i18n (template.html + i18n/*.yaml + build.py),
+trilingüe es/en/zh, despliegue por push a GitHub Pages.
+Repo APT: índices con rutas pool/, InRelease con Suite: stable, firmado con
+AD896D6B738B45D9; rolling verificado en vivo (apt upgrade sin 404 ni warnings).
+Colaboración: Qwen (Alibaba Tongyi Lab).
+
+### EN
+Naming scheme: `tobixu-<desktop>-rolling-YYYYMMDD-amd64.iso`.
+Archive.org identifiers: `tobixu-plasma`, `tobixu-gnome`
+(`tobixu-xfce` and `tobixu-lxqt` on the way).
+
+| Canon | Desktop | Character | SHA256 (prefix) |
+|---|---|---|---|
+| v0.1-sicaru rc23 → tobixu-plasma | KDE Plasma 6 | complete (all installed) | c5fa1276… |
+| v0.2.1 → tobixu-gnome | GNOME 47 | base (stem/arts installable) | 3486ab15… |
+
+Showcase: tobixu-web with i18n channel (template.html + i18n/*.yaml + build.py),
+trilingual es/en/zh, deployment via push to GitHub Pages.
+APT repo: indexes with pool/ paths, InRelease with Suite: stable, signed with
+AD896D6B738B45D9; rolling verified live (apt upgrade without 404 or warnings).
+Collaboration: Qwen (Alibaba Tongyi Lab).
+
+### ZH
+命名方案：`tobixu-<桌面>-rolling-YYYYMMDD-amd64.iso`。
+Archive.org 标识符：`tobixu-plasma`、`tobixu-gnome`
+（`tobixu-xfce` 和 `tobixu-lxqt` 即将推出）。
+
+| 规范 | 桌面 | 特征 | SHA256（前缀） |
+|---|---|---|---|
+| v0.1-sicaru rc23 → tobixu-plasma | KDE Plasma 6 | 完整（全部预装） | c5fa1276… |
+| v0.2.1 → tobixu-gnome | GNOME 47 | 基础（stem/arts 可安装） | 3486ab15… |
+
+展示：tobixu-web 配备 i18n 通道（template.html + i18n/*.yaml + build.py），
+三语 es/en/zh，通过 push 到 GitHub Pages 部署。
+APT 仓库：索引使用 pool/ 路径，InRelease 带 Suite: stable，由
+AD896D6B738B45D9 签名；滚动已在实际使用中验证（apt upgrade 无 404 或警告）。
+协作：Qwen（阿里巴巴通义实验室）。
 
 * * *
 
