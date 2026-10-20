@@ -38,7 +38,7 @@ cd /home/manuel/tobixu-iso || exit 1
 # === Cambio de listas por escritorio ===
 rm -f config/package-lists/010-*.list.chroot config/package-lists/015-*.list.chroot config/package-lists/20-*.list.chroot
 cp tools/listas/${ESCRITORIO}/*.list.chroot config/package-lists/
-ls config/package-lists/*.chroot 2>/dev/null | tee -a "$LOG"
+ls config/package-lists/*.chroot 2>/dev/null
 trap 'mount | grep "/tobixu-iso/chroot/" | cut -d" " -f3 | sort -r | while read -r mp; do umount "$mp" 2>/dev/null || umount -l "$mp" 2>/dev/null || true; done' EXIT
 [ "$(id -u)" -ne 0 ] && { echo "HORNO: corre con sudo"; exit 1; }
 LOG="build-v03a-xfce-$(date +%Y%m%d-%H%M).log"
