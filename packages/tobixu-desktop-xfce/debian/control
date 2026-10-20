@@ -15,4 +15,4 @@ Depends: ${misc:Depends},
          firefox-esr, thunderbird, vlc,
          papirus-icon-theme
 Description: TobiXu XFCE desktop (slim rolling release)
- XFCE 4 con identidad TobiXu. GDM3 provee el display-manager.
+ XFCE 4 con identidad TobiXu. LightDM provee el display-manager.
