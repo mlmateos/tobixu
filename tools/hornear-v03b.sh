@@ -129,16 +129,16 @@ fi
 N_II=$(chroot chroot dpkg -l 2>/dev/null | grep -ciE "^ii.*(lxqt|pcmanfm-qt|qterminal|lximage-qt|obconf-qt)" || true)
 N_ANY=$(chroot chroot dpkg -l 2>/dev/null | grep -ciE "lxqt|pcmanfm-qt|qterminal|lximage-qt|obconf-qt" || true)
 N_SES=$(find chroot/usr/share/xsessions chroot/usr/share/wayland-sessions -iname "*lxqt*" 2>/dev/null | wc -l || true)
-# === PUERTA-3: re-siembra de identidad tras purgas (colaterales F91) ===
+# === PUERTA-3: re-siembra de identidad tras purgas (F91/F92) ===
 if [ -d config/includes.chroot/opt/tobixu-debs ]; then
   cp config/includes.chroot/opt/tobixu-debs/*.deb chroot/tmp/ 2>/dev/null || true
   if ls chroot/tmp/*.deb >/dev/null 2>&1; then
-    chroot chroot sh -c 'dpkg -i /tmp/*.deb' 2>&1 | tail -n 3 | tee -a "$LOG" || true
+    chroot chroot sh -c 'dpkg -i /tmp/*.deb; apt-get install -f -y' 2>&1 | tee -a "$LOG" | tail -n 4
     chroot chroot sh -c 'rm -f /tmp/*.deb'
+    echo "TESTIGO: PUERTA-3 identidad re-sembrada y reconciliada" | tee -a "$LOG"
   else
     echo "PUERTA-3: SIN debs en chroot/tmp" | tee -a "$LOG"
   fi
-  echo "TESTIGO: PUERTA-3 identidad re-sembrada tras purgas" | tee -a "$LOG"
 fi
 N_ID=$(chroot chroot dpkg -l 2>/dev/null | grep -cE "^ii  (tobixu-wallpapers|tobixu-keyboard|tobixu-xfce-look|tobixu-desktop-xfce) " || true)
 N_PTY=$(chroot chroot dpkg -l 2>/dev/null | grep -cE "^ii  xfce4-terminal " || true)
