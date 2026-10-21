@@ -119,7 +119,7 @@ mount --bind /dev/pts chroot/dev/pts 2>/dev/null || true
 
 chroot chroot apt-get purge --yes 'lxqt-*' 'liblxqt*' 'libdbusmenu-lxqt*' >/dev/null 2>&1 || true
 CINLIST=$(chroot chroot dpkg-query -W -f='${Package}\n' 2>/dev/null | grep -E '^(cinnamon|libcinnamon|muffin|nemo)' || true)
-if [ -n "$CINLIST" ]; then echo "PURGA EXPLICITA: $CINLIST" | tee -a "$LOG"; chroot chroot apt-get purge --yes $CINLIST 2>&1 | grep -E "^(Remv|Purge)" | tee -a "$LOG" || true; fi
+if [ -n "$CINLIST" ]; then echo "PURGA EXPLICITA: $CINLIST" | tee -a "$LOG"; chroot chroot dpkg --purge --force-depends $CINLIST 2>&1 | tail -n 3 | tee -a "$LOG" || true; fi
 chroot chroot apt-get autoremove --purge --yes >/dev/null 2>&1 || true
 RESIDUOS=$(chroot chroot dpkg -l 2>/dev/null | awk '/lxqt|pcmanfm-qt|qterminal|lximage-qt|obconf-qt/{print $2}' || true)
 if [ -n "$RESIDUOS" ]; then
