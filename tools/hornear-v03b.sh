@@ -67,7 +67,8 @@ done
 umount /tmp 2>/dev/null || true
 mount | grep "/tobixu-iso/chroot/" | cut -d" " -f3 | sort -r | while read -r mp; do umount "$mp" 2>/dev/null || umount -l "$mp" 2>/dev/null || true; done
 lb clean --all 2>&1 | tail -n 3 | tee -a "$LOG" || true
-{ [ -d chroot ] || [ -d cache ] || [ -d binary ]; } && { echo "TESTIGO: residuos tras clean, borrando como root" | tee -a "$LOG"; rm -rf chroot cache binary .build; } || echo "TESTIGO: arbol limpio tras clean" | tee -a "$LOG"
+rm -rf chroot cache binary .build 2>/dev/null || true
+echo "TESTIGO: arbol barrido como root tras lb clean" | tee -a "$LOG"
 rm -f live-image-amd64.hybrid.iso SHA256SUMS SHA256SUMS-* tobixu-rolling-*.iso
 { df -h /tmp | tail -n 1; df -h /home | tail -n 1; } > "$LOG"
 
@@ -117,7 +118,8 @@ mount --bind /dev chroot/dev 2>/dev/null || true
 mount --bind /dev/pts chroot/dev/pts 2>/dev/null || true
 
 chroot chroot apt-get purge --yes 'lxqt-*' 'liblxqt*' 'libdbusmenu-lxqt*' >/dev/null 2>&1 || true
-chroot chroot apt-get purge --yes 'cinnamon*' 'libcinnamon*' 'muffin*' 'nemo*' >/dev/null 2>&1 || true
+CINLIST=$(chroot chroot dpkg-query -W -f='${Package}\n' 2>/dev/null | grep -E '^(cinnamon|libcinnamon|muffin|nemo)' || true)
+if [ -n "$CINLIST" ]; then echo "PURGA EXPLICITA: $CINLIST" | tee -a "$LOG"; chroot chroot apt-get purge --yes $CINLIST 2>&1 | grep -E "^(Remv|Purge)" | tee -a "$LOG" || true; fi
 chroot chroot apt-get autoremove --purge --yes >/dev/null 2>&1 || true
 RESIDUOS=$(chroot chroot dpkg -l 2>/dev/null | awk '/lxqt|pcmanfm-qt|qterminal|lximage-qt|obconf-qt/{print $2}' || true)
 if [ -n "$RESIDUOS" ]; then
@@ -127,6 +129,13 @@ fi
 N_II=$(chroot chroot dpkg -l 2>/dev/null | grep -ciE "^ii.*(lxqt|pcmanfm-qt|qterminal|lximage-qt|obconf-qt)" || true)
 N_ANY=$(chroot chroot dpkg -l 2>/dev/null | grep -ciE "lxqt|pcmanfm-qt|qterminal|lximage-qt|obconf-qt" || true)
 N_SES=$(find chroot/usr/share/xsessions chroot/usr/share/wayland-sessions -iname "*lxqt*" 2>/dev/null | wc -l || true)
+# === PUERTA-3: re-siembra de identidad tras purgas (colaterales F91) ===
+if [ -d config/includes.chroot/opt/tobixu-debs ]; then
+  cp config/includes.chroot/opt/tobixu-debs/*.deb chroot/tmp/ 2>/dev/null || true
+  chroot chroot dpkg -i /tmp/*.deb 2>&1 | tail -n 3 | tee -a "$LOG" || true
+  chroot chroot rm -f /tmp/*.deb
+  echo "TESTIGO: PUERTA-3 identidad re-sembrada tras purgas" | tee -a "$LOG"
+fi
 N_ID=$(chroot chroot dpkg -l 2>/dev/null | grep -cE "^ii  (tobixu-wallpapers|tobixu-keyboard|tobixu-xfce-look|tobixu-desktop-xfce) " || true)
 N_PTY=$(chroot chroot dpkg -l 2>/dev/null | grep -cE "^ii  xfce4-terminal " || true)
 echo "PUERTA: ii=$N_II any=$N_ANY sesiones=$N_SES" | tee -a "$LOG"
