@@ -48,7 +48,6 @@ for f in etc/environment etc/apt/sources.list \
 etc/lightdm/lightdm.conf \
 etc/sudoers.d/tobixu-live \
 etc/systemd/system/tobixu-live-user.service \
-etc/skel/Desktop/tobixu-install.desktop \
 etc/xdg/autostart/tobixu-live-desktop.desktop \
 usr/local/bin/tobixu-live-user-create \
 usr/local/bin/tobixu-live-desktop-setup \
@@ -101,6 +100,8 @@ for PKG in $PAQUETES_V02; do
 cp "$(ls -t packages/${PKG}_*.deb | head -1)" config/includes.chroot/opt/tobixu-debs/
 done
 ls -l config/includes.chroot/opt/tobixu-debs/ | tee -a "$LOG"
+for PKG in $PAQUETES_V02; do rm -rf "packages/$PKG/debian/.debhelper" "packages/$PKG/debian/files" "packages/$PKG/debian/$PKG" "packages/$PKG/debian/$PKG.substvars" "packages/$PKG/debian/$PKG.debhelper.log" 2>/dev/null || true; done
+echo "TESTIGO: artefactos de build purgados tras CAPA2" | tee -a "$LOG"
 
 echo "[3/5] lb chroot (hooks 0400+0401)" | tee -a "$LOG"
 lb chroot --debug 2>&1 | tee -a "$LOG"
