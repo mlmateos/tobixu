@@ -1,6 +1,6 @@
 #!/bin/bash
 # ============================================================
-# TobiXu v0.3a (XFCE) - hornear-v03a.sh
+# TobiXu v0.3b (XFCE) - hornear-v03b.sh
 # Basado en v3.1 (probado en v02b) + paridad rc23 + cadena probada
 # ============================================================
 set -e
@@ -41,7 +41,7 @@ cp tools/listas/${ESCRITORIO}/*.list.chroot config/package-lists/
 ls config/package-lists/*.chroot 2>/dev/null
 trap 'mount | grep "/tobixu-iso/chroot/" | cut -d" " -f3 | sort -r | while read -r mp; do umount "$mp" 2>/dev/null || umount -l "$mp" 2>/dev/null || true; done' EXIT
 [ "$(id -u)" -ne 0 ] && { echo "HORNO: corre con sudo"; exit 1; }
-LOG="build-v03a-xfce-$(date +%Y%m%d-%H%M).log"
+LOG="build-v03b-xfce-$(date +%Y%m%d-%H%M).log"
 
 # === PREFLIGHT ===
 for f in etc/environment etc/apt/sources.list \
@@ -116,6 +116,7 @@ mount --bind /dev chroot/dev 2>/dev/null || true
 mount --bind /dev/pts chroot/dev/pts 2>/dev/null || true
 
 chroot chroot apt-get purge --yes 'lxqt-*' 'liblxqt*' 'libdbusmenu-lxqt*' >/dev/null 2>&1 || true
+chroot chroot apt-get purge --yes 'cinnamon*' 'libcinnamon*' 'muffin*' 'nemo*' >/dev/null 2>&1 || true
 chroot chroot apt-get autoremove --purge --yes >/dev/null 2>&1 || true
 RESIDUOS=$(chroot chroot dpkg -l 2>/dev/null | awk '/lxqt|pcmanfm-qt|qterminal|lximage-qt|obconf-qt/{print $2}' || true)
 if [ -n "$RESIDUOS" ]; then
@@ -276,6 +277,9 @@ grep -q 'sources.list.d/tobixu.list' chroot/usr/local/sbin/tobixu-firstboot.sh |
 echo "TESTIGO: rio presente (keyring+fuente inerte+trigger que activa)" | tee -a "$LOG"
 # Verificaciones finales
 { [ "$N_II" -eq 0 ] && [ "$N_ANY" -eq 0 ] && [ "$N_SES" -eq 0 ]; } || { echo "PUERTA: residuos LXQt" | tee -a "$LOG"; FAIL=1; }
+N_CIN=$(chroot chroot dpkg -l 2>/dev/null | grep -ciE "cinnamon|muffin|nemo" || true)
+echo "PUERTA: residuos cinnamon=$N_CIN" | tee -a "$LOG"
+[ "$N_CIN" -eq 0 ] || { echo "PUERTA: residuos cinnamon" | tee -a "$LOG"; FAIL=1; }
 [ "$N_ID" -eq "$N_PAQ" ] || { echo "PUERTA: identidad incompleta ($N_ID/$N_PAQ)" | tee -a "$LOG"; FAIL=1; }
 [ "$N_OK" -ge 1 ] || { echo "PUERTA: puerta Calamares sin renombrar" | tee -a "$LOG"; FAIL=1; }
 [ "$N_PTY" -ge 1 ] || { echo "PUERTA: xfce4-terminal ausente" | tee -a "$LOG"; FAIL=1; }

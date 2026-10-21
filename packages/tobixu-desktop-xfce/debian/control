@@ -9,7 +9,7 @@ Package: tobixu-desktop-xfce
 Architecture: all
 Depends: ${misc:Depends},
          xfce4, xfce4-goodies,
-         accounts-daemon,
+         accountsservice,
          tobixu-xfce-look,
          tobixu-wallpapers, tobixu-keyboard,
          firefox-esr, thunderbird, vlc,

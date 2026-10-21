@@ -37,3 +37,7 @@ fi
 touch /etc/tobixu-river-done
 fi
 touch /etc/tobixu-firstboot-done
+# --- Mision 4: sesion por escritorio (F86) ---
+if [ -f /etc/lightdm/lightdm.conf ] && dpkg -s lightdm >/dev/null 2>&1 && dpkg -s tobixu-desktop-xfce >/dev/null 2>&1; then
+  sed -i "s|^user-session=.*|user-session=xfce|" /etc/lightdm/lightdm.conf
+fi

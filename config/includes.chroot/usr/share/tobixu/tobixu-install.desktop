@@ -5,6 +5,7 @@ Name[es]=Instalar Tobi Xu
 Name[zh_CN]=安装 Tobi Xu
 Comment=Install TobiXu to disk (Calamares)
 Exec=calamares-install-debian
+StartupNotify=false
 Icon=calamares
 Terminal=false
 Categories=System;

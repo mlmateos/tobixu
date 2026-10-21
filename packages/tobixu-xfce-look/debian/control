@@ -10,8 +10,7 @@ Architecture: all
 Depends: ${misc:Depends},
          tobixu-wallpapers,
          papirus-icon-theme,
-         xfce4-panel,
-         xfwm4-themes
+         xfce4-panel
 Description: TobiXu XFCE identity — system seeds
  Default look and feel for the TobiXu XFCE session.
  Includes wallpapers (órbita-noche), Papirus-Dark icons,

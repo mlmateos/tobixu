@@ -1,0 +1,28 @@
+Format: 1.8
+Date: Wed, 21 Oct 2026 15:02:49 -0600
+Source: tobixu-desktop-xfce
+Binary: tobixu-desktop-xfce
+Architecture: all
+Version: 0.1.3
+Distribution: sid
+Urgency: medium
+Maintainer: Manuel Lopez Mateos <mlmateos@tobixu.xyz>
+Changed-By: Manuel Lopez Mateos <mlmateos@tobixu.xyz>
+Description:
+ tobixu-desktop-xfce - TobiXu XFCE desktop (slim rolling release)
+Changes:
+ tobixu-desktop-xfce (0.1.3) sid; urgency=medium
+ .
+   * Base pura publicada: el 0.1.2 del aire arrastraba texstudio/texlive/
+     frescobaldi/lilypond/libreoffice en Depends y stem/arts + desktop-plasma/
+     desktop-lxqt en Recommends (fosil pre-contrato). El control maestro ya era
+     limpio; 0.1.3 lo pone en el aire.
+Checksums-Sha1:
+ 5329678f31429916dbba0da2df07f5c5bef20e9e 1852 tobixu-desktop-xfce_0.1.3_all.deb
+ c680f530c22beaa6a4b1fe02d2545cad30c620fe 5209 tobixu-desktop-xfce_0.1.3_amd64.buildinfo
+Checksums-Sha256:
+ dff88608f4bc7167923faf00fbe92004f41ab2a8ffb95c6f4b6f577da972f491 1852 tobixu-desktop-xfce_0.1.3_all.deb
+ 5ddf65f1e96384ee5f150a169517460def0c4f1be4b22d66325cc0dda52529f3 5209 tobixu-desktop-xfce_0.1.3_amd64.buildinfo
+Files:
+ 9f3b3f85798541d323467d96eb34d5f3 1852 metapackages optional tobixu-desktop-xfce_0.1.3_all.deb
+ 74d5dfbd47258648c68a1b8a4ad1e752 5209 metapackages optional tobixu-desktop-xfce_0.1.3_amd64.buildinfo
