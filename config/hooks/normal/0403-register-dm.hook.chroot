@@ -1,0 +1,15 @@
+#!/bin/sh
+set -e
+DM_BIN=""; DM_SVC=""
+if dpkg -s gdm3 >/dev/null 2>&1; then DM_BIN=/usr/sbin/gdm3; DM_SVC=gdm3.service
+elif dpkg -s lightdm >/dev/null 2>&1; then DM_BIN=/usr/sbin/lightdm; DM_SVC=lightdm.service
+elif dpkg -s sddm >/dev/null 2>&1; then DM_BIN=/usr/bin/sddm; DM_SVC=sddm.service
+fi
+if [ -n "$DM_BIN" ]; then
+  mkdir -p /etc/X11 /etc/systemd/system
+  printf '%s\n' "$DM_BIN" > /etc/X11/default-display-manager
+  ln -sf "/lib/systemd/system/$DM_SVC" /etc/systemd/system/display-manager.service
+  echo "0403: puerta registrada: $DM_SVC"
+else
+  echo "0403: AVISO: ningun display-manager instalado"
+fi

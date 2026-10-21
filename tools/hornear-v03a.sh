@@ -67,7 +67,8 @@ done
 
 umount /tmp 2>/dev/null || true
 mount | grep "/tobixu-iso/chroot/" | cut -d" " -f3 | sort -r | while read -r mp; do umount "$mp" 2>/dev/null || umount -l "$mp" 2>/dev/null || true; done
-lb clean --all >/dev/null 2>&1
+lb clean --all 2>&1 | tail -n 3 | tee -a "$LOG" || true
+{ [ -d chroot ] || [ -d cache ] || [ -d binary ]; } && { echo "TESTIGO: residuos tras clean, borrando como root" | tee -a "$LOG"; rm -rf chroot cache binary .build; } || echo "TESTIGO: arbol limpio tras clean" | tee -a "$LOG"
 rm -f live-image-amd64.hybrid.iso SHA256SUMS SHA256SUMS-* tobixu-rolling-*.iso
 { df -h /tmp | tail -n 1; df -h /home | tail -n 1; } > "$LOG"
 
