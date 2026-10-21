@@ -132,8 +132,12 @@ N_SES=$(find chroot/usr/share/xsessions chroot/usr/share/wayland-sessions -iname
 # === PUERTA-3: re-siembra de identidad tras purgas (colaterales F91) ===
 if [ -d config/includes.chroot/opt/tobixu-debs ]; then
   cp config/includes.chroot/opt/tobixu-debs/*.deb chroot/tmp/ 2>/dev/null || true
-  chroot chroot dpkg -i /tmp/*.deb 2>&1 | tail -n 3 | tee -a "$LOG" || true
-  chroot chroot rm -f /tmp/*.deb
+  if ls chroot/tmp/*.deb >/dev/null 2>&1; then
+    chroot chroot sh -c 'dpkg -i /tmp/*.deb' 2>&1 | tail -n 3 | tee -a "$LOG" || true
+    chroot chroot sh -c 'rm -f /tmp/*.deb'
+  else
+    echo "PUERTA-3: SIN debs en chroot/tmp" | tee -a "$LOG"
+  fi
   echo "TESTIGO: PUERTA-3 identidad re-sembrada tras purgas" | tee -a "$LOG"
 fi
 N_ID=$(chroot chroot dpkg -l 2>/dev/null | grep -cE "^ii  (tobixu-wallpapers|tobixu-keyboard|tobixu-xfce-look|tobixu-desktop-xfce) " || true)
