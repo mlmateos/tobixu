@@ -1,3 +1,10 @@
+tobixu-xfce-look (0.1.1) sid; urgency=medium
+
+  * Siembra el glifo de familia en /usr/share/tobixu/glyph.png (FRENTE 2 del horno v03a).
+  * debian/install nuevo con la ruta del glifo.
+
+ -- Manuel Lopez Mateos <mlmateos@tobixu.xyz>  Wed, 21 Oct 2026 11:51:27 -0600
+
 tobixu-xfce-look (0.1.0) unstable; urgency=low
 
   * Identidad XFCE de TobiXu: wallpapers + iconos + panel base
