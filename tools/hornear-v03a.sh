@@ -285,6 +285,14 @@ echo "TESTIGO: rio presente (keyring+fuente inerte+trigger que activa)" | tee -a
 [ -L chroot/etc/systemd/system/multi-user.target.wants/tobixu-live-user.service ] || { echo "PUERTA: unidad live-user NO habilitada en chroot" | tee -a "$LOG"; FAIL=1; }
 [ -f chroot/usr/local/bin/tobixu-calamares-wrap ] || { echo "PUERTA: wrapper calamares ausente" | tee -a "$LOG"; FAIL=1; }
 
+# === PUERTA-2: registro de puerta, ultima escritura gana ===
+if chroot chroot dpkg -s lightdm >/dev/null 2>&1; then
+  chroot chroot sh -c 'printf "/usr/sbin/lightdm\n" > /etc/X11/default-display-manager; ln -sf /lib/systemd/system/lightdm.service /etc/systemd/system/display-manager.service'
+  echo "TESTIGO: puerta registrada en PUERTA-2: lightdm" | tee -a "$LOG"
+elif chroot chroot dpkg -s gdm3 >/dev/null 2>&1; then
+  chroot chroot sh -c 'printf "/usr/sbin/gdm3\n" > /etc/X11/default-display-manager; ln -sf /lib/systemd/system/gdm3.service /etc/systemd/system/display-manager.service'
+  echo "TESTIGO: puerta registrada en PUERTA-2: gdm3" | tee -a "$LOG"
+fi
 umount chroot/dev/pts 2>/dev/null || true; umount chroot/dev 2>/dev/null || true
 umount chroot/sys 2>/dev/null || true; umount chroot/proc 2>/dev/null || true
 

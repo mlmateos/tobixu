@@ -5,3 +5,4 @@ lightdm-gtk-greeter
 xfce4-terminal
 accountsservice
 xserver-xorg-core
+xserver-xorg-input-libinput
