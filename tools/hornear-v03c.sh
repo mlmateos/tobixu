@@ -138,6 +138,7 @@ if [ -d config/includes.chroot/opt/tobixu-debs ]; then
   cp config/includes.chroot/opt/tobixu-debs/*.deb chroot/tmp/ 2>/dev/null || true
   if ls chroot/tmp/*.deb >/dev/null 2>&1; then
     chroot chroot sh -c 'dpkg -i /tmp/*.deb' 2>&1 | tee -a "$LOG" | tail -n 4
+    chroot chroot sh -c 'apt-get install -y xfce4-notifyd policykit-1-gnome' 2>&1 | tail -n 3 | tee -a "$LOG" || true
     chroot chroot sh -c 'rm -f /tmp/*.deb'
     echo "TESTIGO: PUERTA-3 identidad re-sembrada y reconciliada" | tee -a "$LOG"
   else
