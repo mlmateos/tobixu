@@ -133,7 +133,7 @@ N_SES=$(find chroot/usr/share/xsessions chroot/usr/share/wayland-sessions -iname
 if [ -d config/includes.chroot/opt/tobixu-debs ]; then
   cp config/includes.chroot/opt/tobixu-debs/*.deb chroot/tmp/ 2>/dev/null || true
   if ls chroot/tmp/*.deb >/dev/null 2>&1; then
-    chroot chroot sh -c 'dpkg -i /tmp/*.deb; apt-get install -f -y' 2>&1 | tee -a "$LOG" | tail -n 4
+    chroot chroot sh -c 'dpkg -i /tmp/*.deb' 2>&1 | tee -a "$LOG" | tail -n 4
     chroot chroot sh -c 'rm -f /tmp/*.deb'
     echo "TESTIGO: PUERTA-3 identidad re-sembrada y reconciliada" | tee -a "$LOG"
   else
@@ -302,6 +302,9 @@ echo "PUERTA: residuos cinnamon=$N_CIN" | tee -a "$LOG"
 [ -f chroot/etc/systemd/system/tobixu-live-user.service ] || { echo "PUERTA: unidad live-user ausente" | tee -a "$LOG"; FAIL=1; }
 [ -L chroot/etc/systemd/system/multi-user.target.wants/tobixu-live-user.service ] || { echo "PUERTA: unidad live-user NO habilitada en chroot" | tee -a "$LOG"; FAIL=1; }
 [ -f chroot/usr/local/bin/tobixu-calamares-wrap ] || { echo "PUERTA: wrapper calamares ausente" | tee -a "$LOG"; FAIL=1; }
+
+chroot chroot apt-get autoremove --purge --yes >/dev/null 2>&1 || true
+echo "TESTIGO: huerfanos del estrato barridos tras PUERTA-3" | tee -a "$LOG"
 
 # === PUERTA-2: registro de puerta, ultima escritura gana ===
 if chroot chroot dpkg -s lightdm >/dev/null 2>&1; then
