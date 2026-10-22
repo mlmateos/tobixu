@@ -138,8 +138,19 @@ if [ -d config/includes.chroot/opt/tobixu-debs ]; then
   cp config/includes.chroot/opt/tobixu-debs/*.deb chroot/tmp/ 2>/dev/null || true
   if ls chroot/tmp/*.deb >/dev/null 2>&1; then
     chroot chroot sh -c 'dpkg -i /tmp/*.deb' 2>&1 | tee -a "$LOG" | tail -n 4
-    chroot chroot sh -c 'apt-get install -y xfce4-notifyd || true; apt-get install -y network-manager-applet nm-connection-editor || { apt-get purge -y network-manager-applet nm-connection-editor; apt-get install -y network-manager-applet nm-connection-editor || true; }' 2>&1 | tail -n 4 | tee -a "$LOG"
-    echo "TESTIGO: F100bis rotos reconciliados tras purgas" | tee -a "$LOG"
+    # === F104: refresca listas e instala satisfactores vivos (xfce4-notifyd y polkitd) ===
+    chroot chroot apt-get update -qq 2>&1 | tail -n 2 | tee -a "$LOG"
+    if chroot chroot apt-get install -y xfce4-notifyd polkitd 2>&1 | tee -a "$LOG"; then
+      echo "TESTIGO: F104 satisfactores instalados" | tee -a "$LOG"
+    else
+      echo "F104: purga y reinstala nm-* para resolver el fosil policykit-1-gnome" | tee -a "$LOG"
+      chroot chroot sh -c 'apt-get purge -y network-manager-applet nm-connection-editor && apt-get install -y network-manager-applet nm-connection-editor' 2>&1 | tee -a "$LOG"
+    fi
+    if chroot chroot apt-get check 2>&1 | tee -a "$LOG"; then
+      echo "TESTIGO: inventario sano antes de binary" | tee -a "$LOG"
+    else
+      echo "FALLO: inventario roto, PUERTA CERRADA" | tee -a "$LOG"; FAIL=1
+    fi
     chroot chroot sh -c 'rm -f /tmp/*.deb'
     echo "TESTIGO: PUERTA-3 identidad re-sembrada y reconciliada" | tee -a "$LOG"
   else
