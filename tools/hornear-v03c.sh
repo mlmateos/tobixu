@@ -295,9 +295,6 @@ grep -q 'sources.list.d/tobixu.list' chroot/usr/local/sbin/tobixu-firstboot.sh |
 echo "TESTIGO: rio presente (keyring+fuente inerte+trigger que activa)" | tee -a "$LOG"
 # Verificaciones finales
 { [ "$N_II" -eq 0 ] && [ "$N_ANY" -eq 0 ] && [ "$N_SES" -eq 0 ]; } || { echo "PUERTA: residuos LXQt" | tee -a "$LOG"; FAIL=1; }
-N_CIN=$(chroot chroot dpkg -l 2>/dev/null | grep -ciE "cinnamon|muffin|nemo" || true)
-echo "PUERTA: residuos cinnamon=$N_CIN" | tee -a "$LOG"
-[ "$N_CIN" -eq 0 ] || { echo "PUERTA: residuos cinnamon" | tee -a "$LOG"; FAIL=1; }
 [ "$N_ID" -eq "$N_PAQ" ] || { echo "PUERTA: identidad incompleta ($N_ID/$N_PAQ)" | tee -a "$LOG"; FAIL=1; }
 [ "$N_OK" -ge 1 ] || { echo "PUERTA: puerta Calamares sin renombrar" | tee -a "$LOG"; FAIL=1; }
 [ "$N_PTY" -ge 1 ] || { echo "PUERTA: xfce4-terminal ausente" | tee -a "$LOG"; FAIL=1; }
@@ -309,6 +306,9 @@ echo "PUERTA: residuos cinnamon=$N_CIN" | tee -a "$LOG"
 
 chroot chroot apt-get autoremove --purge --yes >/dev/null 2>&1 || true
 echo "TESTIGO: huerfanos del estrato barridos tras PUERTA-3" | tee -a "$LOG"
+N_CIN=$(chroot chroot dpkg-query -W -f='${Package} ${Status}\n' 2>/dev/null | grep -cE "[^ ]*(cinnamon|muffin|nemo)[^ ]* install ok installed" || true)
+echo "PUERTA: residuos cinnamon=$N_CIN" | tee -a "$LOG"
+[ "$N_CIN" -eq 0 ] || { echo "PUERTA: residuos cinnamon" | tee -a "$LOG"; FAIL=1; }
 
 # === PUERTA-2: registro de puerta, ultima escritura gana ===
 if chroot chroot dpkg -s lightdm >/dev/null 2>&1; then
