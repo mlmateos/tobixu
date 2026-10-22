@@ -138,8 +138,8 @@ if [ -d config/includes.chroot/opt/tobixu-debs ]; then
   cp config/includes.chroot/opt/tobixu-debs/*.deb chroot/tmp/ 2>/dev/null || true
   if ls chroot/tmp/*.deb >/dev/null 2>&1; then
     chroot chroot sh -c 'dpkg -i /tmp/*.deb' 2>&1 | tee -a "$LOG" | tail -n 4
-    chroot chroot sh -c 'apt-get install -y xfce4-notifyd policykit-1-gnome' 2>&1 | tail -n 3 | tee -a "$LOG" || true
-    chroot chroot sh -c 'apt-get install -y xfce4-notifyd policykit-1-gnome' 2>&1 | tail -n 3 | tee -a "$LOG" || true
+    chroot chroot sh -c 'apt-get install -y xfce4-notifyd || true; apt-get install -y network-manager-applet nm-connection-editor || { apt-get purge -y network-manager-applet nm-connection-editor; apt-get install -y network-manager-applet nm-connection-editor || true; }' 2>&1 | tail -n 4 | tee -a "$LOG"
+    echo "TESTIGO: F100bis rotos reconciliados tras purgas" | tee -a "$LOG"
     chroot chroot sh -c 'rm -f /tmp/*.deb'
     echo "TESTIGO: PUERTA-3 identidad re-sembrada y reconciliada" | tee -a "$LOG"
   else
@@ -344,3 +344,4 @@ echo "COPIA: ISO en /home/manuel/projects/tobixu-isos/xfce/build/" | tee -a "$LO
 else
 echo "BAUTIZO ABORTADO" | tee -a "$LOG"; exit 1
 fi
+
