@@ -1,3 +1,5 @@
 #!/bin/sh
-# JUBILADO v4.8: delega en la cadena probada (calamares-settings-debian)
+# v0.3d: fuerza XCB para que Qt reciba eventos de teclado en Calamares
+export QT_QPA_PLATFORM=xcb
+export QT_AUTO_SCREEN_SCALE_FACTOR=1
 exec calamares-install-debian "$@"
