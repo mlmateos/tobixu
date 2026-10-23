@@ -1,4 +1,6 @@
-tobixu-xfce-look (0.1.2) sid; urgency=medium
+tobixu-xfce-look (0.2.0) sid; urgency=medium
+  * Siembra default xfconf sistémico con backdrop orbita-noche (cura fondo negro).
+
 
   * Retira xfwm4-themes de Depends: fantasma en sid (apt-cache policy vacio).
 

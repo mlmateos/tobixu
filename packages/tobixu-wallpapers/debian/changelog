@@ -1,4 +1,6 @@
-tobixu-wallpapers (0.1.0) sicaru; urgency=low
+tobixu-wallpapers (0.1.1) sicaru; urgency=low
+  * Instala wallpaper en /usr/share/xfce4/backdrops/ (ruta XFCE, no solo KDE).
+
 
   * Primer empaquetado: orbita-noche (svg + paquete de wallpaper Plasma).
 
