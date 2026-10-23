@@ -1,0 +1,13 @@
+#!/bin/sh
+# TobiXu v0.3e: siembra el backdrop por monitor RANDR real (live e instalado)
+IMG=/usr/share/xfce4/backdrops/orbita-noche.png
+[ -f "$IMG" ] || exit 0
+command -v xrandr >/dev/null 2>&1 || exit 0
+command -v xfconf-query >/dev/null 2>&1 || exit 0
+for mon in $(xrandr 2>/dev/null | awk '/ connected/ {print $1}'); do
+  base="/backdrop/screen0/monitor$mon/workspace0"
+  xfconf-query -c xfce4-desktop -p "$base/last-image" -t string -s "$IMG" --create 2>/dev/null
+  xfconf-query -c xfce4-desktop -p "$base/image-style" -t int -s 5 --create 2>/dev/null
+  xfconf-query -c xfce4-desktop -p "$base/color-style" -t int -s 0 --create 2>/dev/null
+done
+exit 0

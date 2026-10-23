@@ -1,4 +1,6 @@
-tobixu-xfce-look (0.2.0) sid; urgency=medium
+tobixu-xfce-look (0.2.1) sid; urgency=medium
+  * Autostart siembra backdrop por monitor RANDR real (cura fondo negro live e instalado).
+
   * Siembra default xfconf sistémico con backdrop orbita-noche (cura fondo negro).
 
 

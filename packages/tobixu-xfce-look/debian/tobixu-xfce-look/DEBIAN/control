@@ -1,8 +1,8 @@
 Package: tobixu-xfce-look
-Version: 0.2.0
+Version: 0.2.1
 Architecture: all
 Maintainer: Manuel Lopez Mateos <mlmateos@tobixu.xyz>
-Installed-Size: 34
+Installed-Size: 38
 Depends: tobixu-wallpapers, papirus-icon-theme, xfce4-panel
 Section: metapackages
 Priority: optional
