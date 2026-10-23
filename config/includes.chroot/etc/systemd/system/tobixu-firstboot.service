@@ -6,6 +6,8 @@ Before=display-manager.service
 [Service]
 Type=oneshot
 ExecStart=/usr/local/sbin/tobixu-firstboot.sh
+StandardOutput=journal
+StandardError=journal
 
 [Install]
 WantedBy=multi-user.target

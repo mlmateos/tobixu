@@ -1,43 +1,55 @@
 #!/bin/sh
-# TobiXu v0.2: identidad de primer arranque en el sistema instalado
+# TobiXu v0.3d: identidad de primer arranque con voz
 set -e
-grep -q "boot=live" /proc/cmdline && exit 0
+echo "TRIGGER: inicio de misiones"
+grep -q "boot=live" /proc/cmdline && { echo "TRIGGER: live detectado, salgo"; exit 0; }
+
+# Misión 1: Icono de usuario
 if [ -f /usr/share/tobixu/glyph.png ]; then
-mkdir -p /var/lib/AccountsService/users
-for u in $(awk -F: '$3>=1000 && $3<60000 {print $1}' /etc/passwd); do
-printf '[User]\nIcon=/usr/share/tobixu/glyph.png\n' > "/var/lib/AccountsService/users/$u"
-done
+  mkdir -p /var/lib/AccountsService/users
+  for u in $(awk -F: '$3>=1000 && $3<60000 {print $1}' /etc/passwd); do
+    printf '[User]\nIcon=/usr/share/tobixu/glyph.png\n' > "/var/lib/AccountsService/users/$u"
+  done
+  echo "TRIGGER: misión 1 completada (icono de usuario)"
 fi
-# === RIO v0.2.1: fuentes firmadas y alineadas a sid (solo instalado) ===
+
+# Misión 2: Río (fuentes firmadas)
 if [ ! -f /etc/tobixu-river-done ]; then
-if [ -f /etc/apt/sources.list ]; then
-mv /etc/apt/sources.list /etc/apt/sources.list.tobixu-pre-river
-fi
-cat > /etc/apt/sources.list.d/debian.sources << 'DEB822'
+  if [ -f /etc/apt/sources.list ]; then
+    mv /etc/apt/sources.list /etc/apt/sources.list.tobixu-pre-river
+  fi
+  cat > /etc/apt/sources.list.d/debian.sources << 'DEB822'
 Types: deb
 URIs: http://deb.debian.org/debian
 Suites: sid
 Components: main contrib non-free non-free-firmware
 Signed-By: /usr/share/keyrings/debian-archive-keyring.gpg
 DEB822
-if [ -f /usr/share/tobixu/tobixu.list ]; then
-cp /usr/share/tobixu/tobixu.list /etc/apt/sources.list.d/tobixu.list
+  if [ -f /usr/share/tobixu/tobixu.list ]; then
+    cp /usr/share/tobixu/tobixu.list /etc/apt/sources.list.d/tobixu.list
+  fi
+  if command -v gtk-update-icon-cache >/dev/null 2>&1; then
+    for theme in /usr/share/icons/*; do
+      [ -d "$theme" ] && gtk-update-icon-cache -f "$theme" 2>/dev/null || true
+    done
+  fi
+  touch /etc/tobixu-river-done
+  echo "TRIGGER: misión 2 completada (río sid)"
 fi
+
+# Misión 3: Cache de iconos (sin duplicar)
 if command -v gtk-update-icon-cache >/dev/null 2>&1; then
-for theme in /usr/share/icons/*; do
-[ -d "$theme" ] && gtk-update-icon-cache -f "$theme" 2>/dev/null || true
-done
+  for theme in /usr/share/icons/*; do
+    [ -d "$theme" ] && gtk-update-icon-cache -f "$theme" 2>/dev/null || true
+  done
+  echo "TRIGGER: misión 3 completada (cache de iconos)"
 fi
-# === Cache de iconos (cura cosmética): asegurar que GTK/GNOME vea los iconos ya presentes
-if command -v gtk-update-icon-cache >/dev/null 2>&1; then
-for theme in /usr/share/icons/*; do
-[ -d "$theme" ] && gtk-update-icon-cache -f "$theme" 2>/dev/null || true
-done
-fi
-touch /etc/tobixu-river-done
-fi
-touch /etc/tobixu-firstboot-done
-# --- Mision 4: sesion por escritorio (F86) ---
+
+# Misión 4: Sesión XFCE
 if [ -f /etc/lightdm/lightdm.conf ] && dpkg -s lightdm >/dev/null 2>&1 && dpkg -s tobixu-desktop-xfce >/dev/null 2>&1; then
   sed -i "s|^user-session=.*|user-session=xfce|" /etc/lightdm/lightdm.conf
+  echo "TRIGGER: misión 4 completada (sesión xfce)"
 fi
+
+touch /etc/tobixu-firstboot-done
+echo "TRIGGER: todas las misiones completadas"
