@@ -1,4 +1,6 @@
-tobixu-desktop-xfce (0.1.3) sid; urgency=medium
+tobixu-desktop-xfce (0.1.4) sid; urgency=medium
+  * Extirpa xfce4-goodies de Depends: cadena rota en sid 2026.
+
 
   * Base pura publicada: el 0.1.2 del aire arrastraba texstudio/texlive/
     frescobaldi/lilypond/libreoffice en Depends y stem/arts + desktop-plasma/
