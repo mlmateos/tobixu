@@ -3,7 +3,7 @@ Version: 0.1.3
 Architecture: all
 Maintainer: Manuel Lopez Mateos <mlmateos@tobixu.xyz>
 Installed-Size: 7
-Depends: xfce4, xfce4-goodies, accountsservice, tobixu-xfce-look, tobixu-wallpapers, tobixu-keyboard, firefox-esr, thunderbird, vlc, papirus-icon-theme
+Depends: xfce4, accountsservice, tobixu-xfce-look, tobixu-wallpapers, tobixu-keyboard, firefox-esr, thunderbird, vlc, papirus-icon-theme
 Section: metapackages
 Priority: optional
 Description: TobiXu XFCE desktop (slim rolling release)
