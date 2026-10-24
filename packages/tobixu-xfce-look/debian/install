@@ -2,3 +2,4 @@ usr/share/tobixu/glyph.png
 etc/xdg/xfce4/xfconf/xfce-perchannel-xml/xfce4-desktop.xml etc/xdg/xfce4/xfconf/xfce-perchannel-xml/
 usr/bin/tobixu-backdrop-apply usr/bin/
 etc/xdg/autostart/tobixu-backdrop.desktop etc/xdg/autostart/
+usr/share/tobixu/tobixu-emblem-256.png usr/share/tobixu/

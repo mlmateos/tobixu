@@ -7,3 +7,4 @@ xserver-xorg-core
 xserver-xorg-input-libinput
 xfce4-notifyd
 polkitd
+libnotify-bin
