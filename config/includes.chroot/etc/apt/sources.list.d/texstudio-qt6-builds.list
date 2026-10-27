@@ -1,1 +1,0 @@
-deb [arch=amd64 signed-by=/etc/apt/keyrings/texstudio-qt6-key.gpg] https://mlmateos.github.io/texstudio-qt6-builds stable main

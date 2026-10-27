@@ -1,1 +1,0 @@
-deb [arch=amd64 signed-by=/etc/apt/keyrings/frescobaldi-qt6-key.gpg] https://mlmateos.github.io/frescobaldi-qt6-builds stable main

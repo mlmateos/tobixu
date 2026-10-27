@@ -25,6 +25,9 @@ Suites: sid
 Components: main contrib non-free non-free-firmware
 Signed-By: /usr/share/keyrings/debian-archive-keyring.gpg
 DEB822
+  if [ -f /usr/share/tobixu/tobixu.list ]; then
+    cp /usr/share/tobixu/tobixu.list /etc/apt/sources.list.d/tobixu.list
+  fi
   for river in /usr/share/tobixu/*.list; do
     [ -f "$river" ] && cp "$river" /etc/apt/sources.list.d/
   done
