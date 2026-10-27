@@ -25,9 +25,9 @@ Suites: sid
 Components: main contrib non-free non-free-firmware
 Signed-By: /usr/share/keyrings/debian-archive-keyring.gpg
 DEB822
-  if [ -f /usr/share/tobixu/tobixu.list ]; then
-    cp /usr/share/tobixu/tobixu.list /etc/apt/sources.list.d/tobixu.list
-  fi
+  for river in /usr/share/tobixu/*.list; do
+    [ -f "$river" ] && cp "$river" /etc/apt/sources.list.d/
+  done
   if command -v gtk-update-icon-cache >/dev/null 2>&1; then
     for theme in /usr/share/icons/*; do
       [ -d "$theme" ] && gtk-update-icon-cache -f "$theme" 2>/dev/null || true
