@@ -54,5 +54,11 @@ if [ -f /etc/lightdm/lightdm.conf ] && dpkg -s lightdm >/dev/null 2>&1 && dpkg -
   echo "TRIGGER: misión 4 completada (sesión xfce)"
 fi
 
+# Mision 5: SSH habilitado solo en instalado
+if dpkg -s openssh-server >/dev/null 2>&1; then
+  systemctl unmask ssh.service ssh.socket 2>/dev/null || true
+  systemctl enable ssh.service 2>/dev/null || true
+  echo "TRIGGER: mision 5 completada (sshd habilitado)"
+fi
 touch /etc/tobixu-firstboot-done
 echo "TRIGGER: todas las misiones completadas"

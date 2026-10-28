@@ -8,3 +8,4 @@ xserver-xorg-input-libinput
 xfce4-notifyd
 polkitd
 libnotify-bin
+openssh-server

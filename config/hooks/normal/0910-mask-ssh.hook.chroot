@@ -1,0 +1,4 @@
+#!/bin/sh
+set -e
+systemctl mask ssh.service ssh.socket 2>/dev/null || true
+echo "HOOK: ssh enmascarado de fabrica (live seguro)"
