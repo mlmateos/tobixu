@@ -2,6 +2,10 @@
 # TobiXu v0.4d: SSH solo en instalado, tras network-online, sin mascaras
 set -e
 grep -q "boot=live" /proc/cmdline && exit 0
+# Recomendados vivos en el instalado (idempotente; el 90 gana al 00 de live-build)
+mkdir -p /etc/apt/apt.conf.d
+printf 'APT::Install-Recommends "true";\nAPT::Install-Suggests "false";\n' > /etc/apt/apt.conf.d/90tobixu-recommends
+echo "TRIGGER-SSH: recomendados encendidos en instalado"
 [ -f /etc/tobixu-ssh-done ] && exit 0
 if ! dpkg -s openssh-server >/dev/null 2>&1; then
   for i in 1 2 3 4 5 6; do getent hosts deb.debian.org >/dev/null 2>&1 && break; sleep 5; done
