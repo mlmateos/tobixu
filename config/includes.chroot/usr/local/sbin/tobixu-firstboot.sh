@@ -5,10 +5,12 @@ echo "TRIGGER: inicio de misiones"
 grep -q "boot=live" /proc/cmdline && { echo "TRIGGER: live detectado, salgo"; exit 0; }
 
 # Misión 1: Icono de usuario
-if [ -f /usr/share/tobixu/glyph.png ]; then
+AVATAR=/usr/share/tobixu/glyph.png
+[ -f /usr/share/tobixu/tobixu-emblem-256.png ] && AVATAR=/usr/share/tobixu/tobixu-emblem-256.png
+if [ -f "$AVATAR" ]; then
   mkdir -p /var/lib/AccountsService/users
   for u in $(awk -F: '$3>=1000 && $3<60000 {print $1}' /etc/passwd); do
-    printf '[User]\nIcon=/usr/share/tobixu/glyph.png\n' > "/var/lib/AccountsService/users/$u"
+    printf '[User]\nIcon=%s\n' "$AVATAR" > "/var/lib/AccountsService/users/$u"
   done
   echo "TRIGGER: misión 1 completada (icono de usuario)"
 fi
@@ -57,8 +59,9 @@ fi
 # Mision 5: SSH habilitado solo en instalado
 if dpkg -s openssh-server >/dev/null 2>&1; then
   systemctl unmask ssh.service ssh.socket 2>/dev/null || true
-  systemctl enable ssh.service 2>/dev/null || true
-  echo "TRIGGER: mision 5 completada (sshd habilitado)"
+  systemctl daemon-reload 2>/dev/null || true
+  systemctl enable --now ssh.service 2>/dev/null || true
+  echo "TRIGGER: mision 5 completada (sshd habilitado y corriendo)"
 fi
 touch /etc/tobixu-firstboot-done
 echo "TRIGGER: todas las misiones completadas"
