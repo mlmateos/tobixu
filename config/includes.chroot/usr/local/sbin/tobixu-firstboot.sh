@@ -56,12 +56,20 @@ if [ -f /etc/lightdm/lightdm.conf ] && dpkg -s lightdm >/dev/null 2>&1 && dpkg -
   echo "TRIGGER: misión 4 completada (sesión xfce)"
 fi
 
-# Mision 5: SSH habilitado solo en instalado
+# Mision 5: SSH habilitado solo en instalado (con testigo verdadero)
 if dpkg -s openssh-server >/dev/null 2>&1; then
-  systemctl unmask ssh.service ssh.socket 2>/dev/null || true
-  systemctl daemon-reload 2>/dev/null || true
-  systemctl enable --now ssh.service 2>/dev/null || true
-  echo "TRIGGER: mision 5 completada (sshd habilitado y corriendo)"
+  # Unmask robusto: eliminar symlinks a /dev/null por si systemctl unmask falla
+  rm -f /etc/systemd/system/ssh.service /etc/systemd/system/ssh.socket
+  systemctl daemon-reload
+  systemctl disable ssh.socket 2>/dev/null || true
+  systemctl enable ssh.service
+  systemctl start ssh.service
+  # Testigo verdadero: puerto 22 escuchando
+  if ss -tln 2>/dev/null | grep -q ':22 '; then
+    echo "TRIGGER: mision 5 completada (sshd escuchando en puerto 22)"
+  else
+    echo "TRIGGER: mision 5 FALLIDA (sshd no escucha)"
+  fi
 fi
 touch /etc/tobixu-firstboot-done
 echo "TRIGGER: todas las misiones completadas"
