@@ -1,0 +1,14 @@
+[Unit]
+Description=TobiXu: SSH solo en instalado (tras red en linea)
+After=network-online.target
+Wants=network-online.target
+ConditionPathExists=!/etc/tobixu-ssh-done
+
+[Service]
+Type=oneshot
+ExecStart=/usr/local/sbin/tobixu-ssh-setup.sh
+StandardOutput=journal
+StandardError=journal
+
+[Install]
+WantedBy=multi-user.target

@@ -184,9 +184,8 @@ echo "TESTIGO: paquetes rotos en chroot=$N_ROT" | tee -a "$LOG"
 
 GLYPH=$(chroot chroot sh -c 'dpkg -L tobixu-xfce-look tobixu-wallpapers 2>/dev/null | grep -m1 -iE "(glyph|glifo|logo).*\.(png|svg)$"' || true)
 if [ -n "$GLYPH" ]; then
-mkdir -p chroot/usr/share/tobixu chroot/var/lib/AccountsService/users
+mkdir -p chroot/usr/share/tobixu
 cp "chroot$GLYPH" chroot/usr/share/tobixu/glyph.png 2>/dev/null || true
-printf '[User]\nIcon=/usr/share/tobixu/glyph.png\n' > chroot/var/lib/AccountsService/users/user
 echo "TESTIGO: glifo sembrado desde $GLYPH" | tee -a "$LOG"
 else
 echo "AVISO: glifo no encontrado en paquetes de identidad" | tee -a "$LOG"

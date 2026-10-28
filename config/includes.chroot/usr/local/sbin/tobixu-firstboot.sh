@@ -5,15 +5,6 @@ echo "TRIGGER: inicio de misiones"
 grep -q "boot=live" /proc/cmdline && { echo "TRIGGER: live detectado, salgo"; exit 0; }
 
 # Misión 1: Icono de usuario
-AVATAR=/usr/share/tobixu/glyph.png
-[ -f /usr/share/tobixu/tobixu-emblem-256.png ] && AVATAR=/usr/share/tobixu/tobixu-emblem-256.png
-if [ -f "$AVATAR" ]; then
-  mkdir -p /var/lib/AccountsService/users
-  for u in $(awk -F: '$3>=1000 && $3<60000 {print $1}' /etc/passwd); do
-    printf '[User]\nIcon=%s\n' "$AVATAR" > "/var/lib/AccountsService/users/$u"
-  done
-  echo "TRIGGER: misión 1 completada (icono de usuario)"
-fi
 
 # Misión 2: Río (fuentes firmadas)
 if [ ! -f /etc/tobixu-river-done ]; then
