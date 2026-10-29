@@ -902,6 +902,14 @@ Sixteen bakes (v03e → v04e) to consolidate the third shore (XFCE). Each death 
 
 ---
 
+2026-10-29 — v04f: texlive sellado en letter (cierre de F86)
+ES
+v04f horneada y probada: `libpaper-utils` en lista + hook `0920-texlive-paper` siembran `/etc/papersize=Letter` de fábrica. Testigos en txv04f: SSH entra sin intervención; `libpaper-utils 2.3.0-0.3` ii; `apt install texstudio` trae texlive-* (recomendados vivos) y configura sin `paperconf: not found`; TeXstudio compila un documento (`Process exited normally`). SHA256: `9a4b71e1d6d2e8feab4d28b9a08938b2dba17c2aea25a401db61ba53104ac4fa`. F86 cerrada con cura preventiva; bug upstream #1152376 queda documentado.
+EN
+v04f baked and proven: `libpaper-utils` in list + hook `0920-texlive-paper` seed factory `/etc/papersize=Letter`. Witnesses on txv04f: SSH enters without intervention; `libpaper-utils 2.3.0-0.3` ii; `apt install texstudio` pulls texlive-* (live recommends) and configures without `paperconf: not found`; TeXstudio compiles a document (`Process exited normally`). SHA256: `9a4b71e1d6d2e8feab4d28b9a08938b2dba17c2aea25a401db61ba53104ac4fa`. F86 closed with preventive cure; upstream bug #1152376 documented.
+ZH
+v04f 已烘焙并验证：列表中的 `libpaper-utils` + 钩子 `0920-texlive-paper` 出厂播种 `/etc/papersize=Letter`。txv04f 证人：SSH 无干预进入；`libpaper-utils 2.3.0-0.3` ii；`apt install texstudio` 拉取 texlive-*（推荐存活）且配置无 `paperconf: not found`；TeXstudio 编译文档（`Process exited normally`）。SHA256：`9a4b71e1d6d2e8feab4d28b9a08938b2dba17c2aea25a401db61ba53104ac4fa`。F86 以预防性疗法结案；上游 bug #1152376 已记录。
+
 📎 Apéndice / Appendix / 附录: Trigger `tobi-xu-core 0.1.2`
 
 Diseño listo para integrar en el paquete. Dos archivos:
