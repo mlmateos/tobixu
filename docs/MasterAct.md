@@ -20,7 +20,7 @@
 | **VM de horneado** / Bake VM / 烘焙虚拟机 | `forja` (80G virtuales, writethrough, unmap) |
 | **Repo firmado** / Signed repo / 签名仓库 | `https://mlmateos.github.io/tobixu/apt sid main` |
 | **Estado del smoke** / Smoke status / 烟雾状态 | ✅ 11/11 puntos verdes (live + instalado) |
-| **Familias cerradas** / Closed families / 已结族群 | F1 – F11 (con testigos / with witnesses / 有证人) |
+| **Familias cerradas** / Closed families / 已结族群 | F1 – F86 (con testigos / with witnesses / 有证人) |
 | **Próxima tarea fría** / Next cold task / 下一个冷任务 | Renombrar disco-rc42.qcow2 a disco-rc45-smoke.qcow2 (con acta) | `tobi-xu-core 0.1.2` (ver apéndice / see appendix / 见附录) |
 
 ---
@@ -50,6 +50,12 @@
 10. **La muralla de la despensa vive en el primer arranque, no en el horno**. Calamares reescribe `sources.list` y locales al instalar (F11). La defensa es un trigger post-install, no un hook de build.
 11. **Cuando dos autoridades se contradicen, se opera con la que no miente** (`dpkg` sobre apt, el kernel sobre systemd, el check de qcow2 sobre el df).
 12. **El `mtime` es metadato, no testigo**. Los bautizos de ISO se firman por contenido (`sha256sum`), no por fecha de archivo.
+13. **Los defaults son semillas, no cadenas**. El sistema siembra una vez; el usuario cosecha (`plasma-localerc`, `localectl`) o re-siembra.
+14. **Toda escritura lleva `mkdir -p` delante y `ls` detrás**. Un heredoc sin testigo de directorio es un testigo falso. Los archivos nacen con `mkdir -p` del directorio padre y `ls` que confirma la escritura.
+15. **Toda victoria lleva testigo verdadero en la misma línea**. Si imprimo "✓ completada", hay un `grep`, `ss`, o `ls` que lo confirma. Ningún eco de éxito sin evidencia.
+16. **Forensia antes que cura**. Cuando algo falla, primero los testigos del ISO o del instalado, luego la cura. Nunca al revés.
+17. **Ver el bosque, no solo el árbol**. Cuando extirpo algo, busco en TODO el árbol (trigger + horno + hooks + listas), no solo en un archivo.
+
 
 ### Familias de cicatrices (F1 – F11)
 
@@ -134,6 +140,12 @@ Ordenadas por prioridad. Todas se hacen **en frío**, con la VM apagada y con ac
 10. **The pantry wall lives at first boot, not at bake time**. Calamares rewrites `sources.list` and locales on install (F11). The defense is a post-install trigger, not a build hook.
 11. **When two authorities contradict, operate on the one that doesn't lie** (`dpkg` over apt, the kernel over systemd, qcow2 check over df).
 12. **`mtime` is metadata, not witness**. ISO baptisms are signed by content (`sha256sum`), never by file date.
+13. **Defaults are seeds, not chains**. The system seeds once; the user harvests (`plasma-localerc`, `localectl`) or re-seeds.
+14. **Every write carries `mkdir -p` before and `ls` after**. A heredoc without directory witness is a false witness. Files are born with `mkdir -p` of the parent directory and `ls` confirming the write.
+15. **Every victory carries a true witness on the same line**. If I print "✓ completed", there's a `grep`, `ss`, or `ls` confirming it. No success echo without evidence.
+16. **Forensics before cure**. When something fails, first the witnesses from the ISO or the installed system, then the cure. Never the other way around.
+17. **See the forest, not just the tree**. When I extirpate something, I search the ENTIRE tree (trigger + oven + hooks + lists), not just one file.
+
 
 ### Scar families (F1 – F11)
 
@@ -218,6 +230,12 @@ Ordered by priority. All done **cold**, with the VM off and with acta.
 10. **粮仓之墙立于首次启动，不在烘焙时**。Calamares 会在安装时重写 `sources.list` 与区域设置（F11）。防线是安装后触发器，而非构建钩子。
 11. **两权相悖时，取不说谎者**（`dpkg` 优先于 apt，内核优先于 systemd，qcow2 检查优先于 df）。
 12. **`mtime` 是元数据，不是证人**。ISO 洗礼以内容（`sha256sum`）为凭，不以文件日期为凭。
+13. **默认即种籽，非锁链**。系统播种一次；用户收割（`plasma-localerc`、`localectl`）或重新播种。
+14. **每次写入前带 `mkdir -p`，后带 `ls`**。无目录证人的 heredoc 是伪证人。文件以父目录的 `mkdir -p` 诞生，以 `ls` 确认写入。
+15. **每次胜利都在同一行携带真实证人**。若我打印「✓ 完成」，则有 `grep`、`ss` 或 `ls` 确认。无证据不报成功。
+16. **取证先于疗法**。故障时先取 ISO 或已装系统的证人，再疗法。绝不反之。
+17. **见林而非仅见树**。切除时搜索整棵树（触发器 + 烤箱 + 钩子 + 列表），而非仅一文件。
+
 
 ### 伤疤族群（F1 – F11）
 
