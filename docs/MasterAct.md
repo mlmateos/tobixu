@@ -910,6 +910,16 @@ v04f baked and proven: `libpaper-utils` in list + hook `0920-texlive-paper` seed
 ZH
 v04f 已烘焙并验证：列表中的 `libpaper-utils` + 钩子 `0920-texlive-paper` 出厂播种 `/etc/papersize=Letter`。txv04f 证人：SSH 无干预进入；`libpaper-utils 2.3.0-0.3` ii；`apt install texstudio` 拉取 texlive-*（推荐存活）且配置无 `paperconf: not found`；TeXstudio 编译文档（`Process exited normally`）。SHA256：`9a4b71e1d6d2e8feab4d28b9a08938b2dba17c2aea25a401db61ba53104ac4fa`。F86 以预防性疗法结案；上游 bug #1152376 已记录。
 
+2026-10-29 (tarde) — v04f: deuda L&F dark mode
+ES
+v04f horneada y probada funcionalmente (texlive en letter, SSH, ríos triples), pero **apariencia no está en dark mode** y no hay manera de cambiarla. TobiXu por default debe estar en dark style. Deuda v0.5: configurar tema GTK dark, esquema de colores dark, y posiblemente `xfce4-appearance-settings` o configuración en skel/includes.chroot para que XFCE nazca en dark de fábrica.
+
+EN
+v04f baked and functionally proven (texlive in letter, SSH, triple rivers), but **appearance is not in dark mode** and there's no way to change it. TobiXu by default must be in dark style. v0.5 debt: configure GTK dark theme, dark color scheme, and possibly `xfce4-appearance-settings` or configuration in skel/includes.chroot so XFCE is born dark from factory.
+
+ZH
+v04f 已烘焙并通过功能验证（texlive letter、SSH、三重河流），但**外观未处于暗色模式**且无法更改。TobiXu 默认应为暗色风格。v0.5 债务：配置 GTK 暗色主题、暗色配色方案，可能在 skel/includes.chroot 中配置 `xfce4-appearance-settings`，使 XFCE 出厂即为暗色。
+
 📎 Apéndice / Appendix / 附录: Trigger `tobi-xu-core 0.1.2`
 
 Diseño listo para integrar en el paquete. Dos archivos:
