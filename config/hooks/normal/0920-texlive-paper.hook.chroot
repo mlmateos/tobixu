@@ -1,0 +1,7 @@
+#!/bin/sh
+set -e
+# Configurar tamaño de papel letter para texlive (evita pregunta debconf)
+if command -v paperconfig >/dev/null 2>&1; then
+  paperconfig -p letter
+  echo "HOOK: tamano de papel configurado a letter"
+fi
