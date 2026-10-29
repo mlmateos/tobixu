@@ -12,8 +12,8 @@
 
 | Campo / Field / 字段 | Valor / Value / 值 |
 |---|---|
-| **Última actualización** / Last updated / 最后更新 | 2026-09-23 |
-| **Versión ISO** / ISO version / ISO 版本 | 0.1 "Sicaru" (`tobixu-0.1-sicaru-20260923-amd64.iso`) |
+| **Última actualización** / Last updated / 最后更新 | 2026-10-28 |
+| **Versión ISO** / ISO version / ISO 版本 | 0.4e (`tobixu-xfce-rolling-2026.10.28-amd64.iso`) |
 | **Snapshot base** / Base snapshot / 基础快照 | `20260920T000000Z` (congelado con acta / frozen with acta / 以纪事冻结) |
 | **Horno** / Oven / 炉火 | `hornear.sh` v7.2 — commit `abb2b2e` (caja negra F9 / F9 black box / F9 黑匣) |
 | **Host de horneado** / Bake …1) |
@@ -822,7 +822,69 @@ AD896D6B738B45D9 签名；滚动已在实际使用中验证（apt upgrade 无 40
 
 * * *
 
-# 📎 Apéndice / Appendix / 附录: Trigger `tobi-xu-core 0.1.2`
+# 
+## 2026-10-27/28 — Saga v04: ríos triples, firma única, SSH por ausencia (F80–F85)
+
+### ES
+Dieciséis horneadas (v03e → v04e) para consolidar la tercera orilla (XFCE). Cada muerte dejó doctrina:
+
+**F80 "El avatar que ocupaba el slot indebido"**: el trigger sembraba `Icon=/usr/share/tobixu/glyph.png` en AccountsService; el greeter lo estiraba al círculo del avatar → deformación. Cura (v04d): extirpar la siembra del trigger **y** del horno; el glifo solo aparece arriba del cuadro del greeter (compuesto en el fondo). Testigo: `grep -c AccountsService` = 0 en trigger y horno.
+
+**F81 "La máscara que dormía al servicio"**: el hook 0910 enmascaraba `ssh.service` en el chroot; el trigger hacía `unmask` con `|| true` que tragaba errores silenciosamente. Systemd veía la unidad como masked y no arrancaba. Cura (v04d): SSH **ausente** en el live (seguro sin máscaras); instalado con unidad `tobixu-ssh-setup.service` tras network-online y testigo de puerto 22. Testigo: `ss -tlnp | grep :22` escucha.
+
+**F82 "El InRelease sin Suite"**: el repo `tobixu-apt-repo` tenía InRelease firmado pero sin cabecera completa (faltaba `Suite: stable`). Apt cantaba `W: Conflicting distribution (expected stable but got )`. Cura (v04): regenerar Release con `apt-ftparchive release` incluyendo `Origin`, `Label`, `Suite`, `Codename`. Testigo: `apt-get update` sin warnings.
+
+**F83 "La firma equivocada"**: al re-firmar el InRelease, usé la clave personal en vez de la clave del repo (`AD896D6B738B45D9`). Los instalados con el keyring viejo rechazaban el repo. Cura (v04): unificar firma con clave personal única `783C12B9E7463154`; borrar la clave vieja del anillo; actualizar keyrings sembrados. Testigo: `gpg --verify` contra keyring sembrado.
+
+**F84 "El heredoc sin directorio"**: escribí `90tobixu-recommends` en `config/includes.chroot/etc/apt/apt.conf.d/` sin `mkdir -p` del directorio. El heredoc falló en silencio; el archivo nunca nació. Cura (v04e): sembrar recomendados en **runtime** (inmune a podas del build) con `mkdir -p` delante y `ls` testigo detrás. Testigo: `apt-config dump | grep Install-Recommends` = `"true"`.
+
+**F85 "El testigo falso"**: imprimí `✓ Misión 1 eliminada` cuando mi regex no encontró nada por falta de acento (`Mision 1` vs `Misión 1`). Declaré victoria sin evidencia. Doctrina reforzada: **toda victoria lleva testigo verdadero en la misma línea**; `grep -c` antes y después; `ls` tras `mkdir`.
+
+**F86 "El bug upstream de texlive-base"**: Debian bug #1152376 (Helmut Grohne, 2026-10-28): `texlive-base` falla en postinst porque `libpaper-utils 2.3.0-0.2` eliminó `paperconf` sin wrapper. Fix upstream en `2.3.0-0.3` (reintroducido el mismo día). Cura: actualizar `libpaper-utils` en el instalado. Testigo: `which paperconf` existe; `dpkg --configure -a` sin errores.
+
+**v04e sellada**: estructura probada con ríos triples firmados (tobixu + texstudio + frescobaldi), SSH por ausencia, recomendados vivos, avatar limpio, glifo en su lugar. Pendiente: plymouth, L&F (jalar de gnome), Enter de Calamares (upstream).
+
+### EN
+Sixteen bakes (v03e → v04e) to consolidate the third shore (XFCE). Each death left doctrine:
+
+**F80 "The avatar that occupied the wrong slot"**: the trigger seeded `Icon=/usr/share/tobixu/glyph.png` in AccountsService; the greeter stretched it to the avatar circle → deformation. Cure (v04d): extirpate seeding from trigger **and** oven; glyph only appears above the greeter box (composited in background). Witness: `grep -c AccountsService` = 0 in trigger and oven.
+
+**F81 "The mask that put the service to sleep"**: hook 0910 masked `ssh.service` in the chroot; the trigger did `unmask` with `|| true` that swallowed errors silently. Systemd saw the unit as masked and didn't start it. Cure (v04d): SSH **absent** in live (secure without masks); installed with `tobixu-ssh-setup.service` after network-online and port 22 witness. Witness: `ss -tlnp | grep :22` listening.
+
+**F82 "The InRelease without Suite"**: the `tobixu-apt-repo` had a signed InRelease but without complete header (missing `Suite: stable`). Apt sang `W: Conflicting distribution (expected stable but got )`. Cure (v04): regenerate Release with `apt-ftparchive release` including `Origin`, `Label`, `Suite`, `Codename`. Witness: `apt-get update` without warnings.
+
+**F83 "The wrong signature"**: when re-signing the InRelease, I used the personal key instead of the repo key (`AD896D6B738B45D9`). Installs with the old keyring rejected the repo. Cure (v04): unify signature with single personal key `783C12B9E7463154`; delete old key from keyring; update seeded keyrings. Witness: `gpg --verify` against seeded keyring.
+
+**F84 "The heredoc without directory"**: I wrote `90tobixu-recommends` to `config/includes.chroot/etc/apt/apt.conf.d/` without `mkdir -p` of the directory. The heredoc failed silently; the file was never born. Cure (v04e): seed recommends at **runtime** (immune to build prunes) with `mkdir -p` before and `ls` witness after. Witness: `apt-config dump | grep Install-Recommends` = `"true"`.
+
+**F85 "The false witness"**: I printed `✓ Misión 1 eliminada` when my regex found nothing due to missing accent (`Mision 1` vs `Misión 1`). I declared victory without evidence. Reinforced doctrine: **every victory carries a true witness on the same line**; `grep -c` before and after; `ls` after `mkdir`.
+
+**F86 "The texlive-base upstream bug"**: Debian bug #1152376 (Helmut Grohne, 2026-10-28): `texlive-base` fails in postinst because `libpaper-utils 2.3.0-0.2` removed `paperconf` without wrapper. Upstream fix in `2.3.0-0.3` (reintroduced same day). Cure: update `libpaper-utils` in the installed system. Witness: `which paperconf` exists; `dpkg --configure -a` without errors.
+
+**v04e sealed**: proven structure with triple signed rivers (tobixu + texstudio + frescobaldi), SSH by absence, live recommends, clean avatar, glyph in place. Pending: plymouth, L&F (pull from gnome), Calamares Enter (upstream).
+
+### ZH
+十六次烘焙（v03e → v04e）以巩固第三岸（XFCE）。每次死亡都留下准则：
+
+**F80「占据错误槽位的头像」**：触发器在 AccountsService 中播种 `Icon=/usr/share/tobixu/glyph.png`；greeter 将其拉伸到头像圆圈 → 变形。疗法（v04d）：从触发器**和**烤箱中切除播种；字形仅出现在 greeter 框上方（在背景中合成）。证人：触发器和烤箱中 `grep -c AccountsService` = 0。
+
+**F81「使服务休眠的掩码」**：hook 0910 在 chroot 中掩码 `ssh.service`；触发器执行 `unmask` 时带 `|| true` 静默吞下错误。Systemd 将单元视为 masked 而不启动。疗法（v04d）：live 中 SSH **缺席**（无掩码即安全）；已安装系统在 network-online 后运行 `tobixu-ssh-setup.service` 并以端口 22 为证人。证人：`ss -tlnp | grep :22` 正在监听。
+
+**F82「无 Suite 的 InRelease」**：`tobixu-apt-repo` 有签名的 InRelease 但缺少完整头部（缺少 `Suite: stable`）。Apt 报 `W: Conflicting distribution (expected stable but got )`。疗法（v04）：用 `apt-ftparchive release` 重新生成 Release，包含 `Origin`、`Label`、`Suite`、`Codename`。证人：`apt-get update` 无警告。
+
+**F83「错误的签名」**：重新签名 InRelease 时，我使用了个人密钥而非仓库密钥（`AD896D6B738B45D9`）。旧密钥环的安装拒绝了该仓库。疗法（v04）：统一使用单一人员密钥 `783C12B9E7463154` 签名；从密钥环删除旧密钥；更新已播种的密钥环。证人：针对已播种密钥环的 `gpg --verify`。
+
+**F84「无目录的 heredoc」**：我将 `90tobixu-recommends` 写入 `config/includes.chroot/etc/apt/apt.conf.d/` 但未对该目录执行 `mkdir -p`。heredoc 静默失败；文件从未诞生。疗法（v04e）：在**运行时**播种推荐（不受构建裁剪影响），先 `mkdir -p` 后 `ls` 证人。证人：`apt-config dump | grep Install-Recommends` = `"true"`。
+
+**F85「伪证人」**：我的正则表达式因缺少重音（`Mision 1` vs `Misión 1`）未找到任何内容，却打印了 `✓ Misión 1 eliminada`。我在无证据的情况下宣布胜利。强化准则：**每次胜利都在同一行携带真实证人**；前后 `grep -c`；`mkdir` 后 `ls`。
+
+**F86「texlive-base 上游 bug」**：Debian bug #1152376（Helmut Grohne，2026-10-28）：`texlive-base` 在 postinst 中失败，因为 `libpaper-utils 2.3.0-0.2` 移除了 `paperconf` 而无包装器。上游修复于 `2.3.0-0.3`（同一天重新引入）。疗法：在已安装系统中更新 `libpaper-utils`。证人：`which paperconf` 存在；`dpkg --configure -a` 无错误。
+
+**v04e 封印**：经验证的结构，含三重签名河流（tobixu + texstudio + frescobaldi）、缺席 SSH、live 推荐、干净头像、字形就位。待办：plymouth、L&F（从 gnome 拉取）、Calamares Enter（上游）。
+
+---
+
+📎 Apéndice / Appendix / 附录: Trigger `tobi-xu-core 0.1.2`
 
 Diseño listo para integrar en el paquete. Dos archivos:
 
