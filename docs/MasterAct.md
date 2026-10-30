@@ -12,7 +12,7 @@
 
 | Campo / Field / 字段 | Valor / Value / 值 |
 |---|---|
-| **Última actualización** / Last updated / 最后更新 | 2026-10-28 |
+| **Última actualización** / Last updated / 最后更新 | 2026-10-29 |
 | **Versión ISO** / ISO version / ISO 版本 | 0.4e (`tobixu-xfce-rolling-2026.10.28-amd64.iso`) |
 | **Snapshot base** / Base snapshot / 基础快照 | `20260920T000000Z` (congelado con acta / frozen with acta / 以纪事冻结) |
 | **Horno** / Oven / 炉火 | `hornear.sh` v7.2 — commit `abb2b2e` (caja negra F9 / F9 black box / F9 黑匣) |
@@ -20,7 +20,7 @@
 | **VM de horneado** / Bake VM / 烘焙虚拟机 | `forja` (80G virtuales, writethrough, unmap) |
 | **Repo firmado** / Signed repo / 签名仓库 | `https://mlmateos.github.io/tobixu/apt sid main` |
 | **Estado del smoke** / Smoke status / 烟雾状态 | ✅ 11/11 puntos verdes (live + instalado) |
-| **Familias cerradas** / Closed families / 已结族群 | F1 – F86 (con testigos / with witnesses / 有证人) |
+| **Familias cerradas** / Closed families / 已结族群 | F1 – F88 (con testigos / with witnesses / 有证人) |
 | **Próxima tarea fría** / Next cold task / 下一个冷任务 | Renombrar disco-rc42.qcow2 a disco-rc45-smoke.qcow2 (con acta) | `tobi-xu-core 0.1.2` (ver apéndice / see appendix / 见附录) |
 
 ---
@@ -52,9 +52,10 @@
 12. **El `mtime` es metadato, no testigo**. Los bautizos de ISO se firman por contenido (`sha256sum`), no por fecha de archivo.
 13. **Los defaults son semillas, no cadenas**. El sistema siembra una vez; el usuario cosecha (`plasma-localerc`, `localectl`) o re-siembra.
 14. **Toda escritura lleva `mkdir -p` delante y `ls` detrás**. Un heredoc sin testigo de directorio es un testigo falso. Los archivos nacen con `mkdir -p` del directorio padre y `ls` que confirma la escritura.
-15. **Toda victoria lleva testigo verdadero en la misma línea**. Si imprimo "✓ completada", hay un `grep`, `ss`, o `ls` que lo confirma. Ningún eco de éxito sin evidencia.
+15. **Toda victoria lleva testigo verdadero en la misma línea**: un `grep`, `ss` o `ls` que afirme **contenido positivo esperado**; `grep … || echo LIMPIO` no es testigo: es esperanza (F88).
 16. **Forensia antes que cura**. Cuando algo falla, primero los testigos del ISO o del instalado, luego la cura. Nunca al revés.
 17. **Ver el bosque, no solo el árbol**. Cuando extirpo algo, busco en TODO el árbol (trigger + horno + hooks + listas), no solo en un archivo.
+18. **Cuando la firma cambia, las hermanas viejas beben de un río seco**: toda ISO publicada antes del cambio lleva el keyring viejo; cura: re-hornear con el keyring actualizado y documentar el one-liner de refresco para las instaladas (F87).
 
 
 ### Familias de cicatrices (F1 – F11)
@@ -142,9 +143,10 @@ Ordenadas por prioridad. Todas se hacen **en frío**, con la VM apagada y con ac
 12. **`mtime` is metadata, not witness**. ISO baptisms are signed by content (`sha256sum`), never by file date.
 13. **Defaults are seeds, not chains**. The system seeds once; the user harvests (`plasma-localerc`, `localectl`) or re-seeds.
 14. **Every write carries `mkdir -p` before and `ls` after**. A heredoc without directory witness is a false witness. Files are born with `mkdir -p` of the parent directory and `ls` confirming the write.
-15. **Every victory carries a true witness on the same line**. If I print "✓ completed", there's a `grep`, `ss`, or `ls` confirming it. No success echo without evidence.
+15. **Every victory carries a true witness on the same line**: a `grep`, `ss`, or `ls` affirming **expected positive content**; `grep … || echo CLEAN` is not a witness: it is hope (F88).
 16. **Forensics before cure**. When something fails, first the witnesses from the ISO or the installed system, then the cure. Never the other way around.
 17. **See the forest, not just the tree**. When I extirpate something, I search the ENTIRE tree (trigger + oven + hooks + lists), not just one file.
+18. **When the signature changes, the old sisters drink from a dry river**: every ISO published before the change carries the old keyring; cure: re-bake with the updated keyring and document the refresh one-liner for installed systems (F87).
 
 
 ### Scar families (F1 – F11)
@@ -232,9 +234,10 @@ Ordered by priority. All done **cold**, with the VM off and with acta.
 12. **`mtime` 是元数据，不是证人**。ISO 洗礼以内容（`sha256sum`）为凭，不以文件日期为凭。
 13. **默认即种籽，非锁链**。系统播种一次；用户收割（`plasma-localerc`、`localectl`）或重新播种。
 14. **每次写入前带 `mkdir -p`，后带 `ls`**。无目录证人的 heredoc 是伪证人。文件以父目录的 `mkdir -p` 诞生，以 `ls` 确认写入。
-15. **每次胜利都在同一行携带真实证人**。若我打印「✓ 完成」，则有 `grep`、`ss` 或 `ls` 确认。无证据不报成功。
+15. **每次胜利都在同一行携带真实证人**：以 `grep`、`ss` 或 `ls` 确认**预期的正面内容**；`grep … || echo 干净` 不是证人：是侥幸（F88）。
 16. **取证先于疗法**。故障时先取 ISO 或已装系统的证人，再疗法。绝不反之。
 17. **见林而非仅见树**。切除时搜索整棵树（触发器 + 烤箱 + 钩子 + 列表），而非仅一文件。
+18. **签名一变，旧姐妹便饮干河**：变更前发布的每个 ISO 都带旧密钥环；疗法：以更新后的密钥环重新烘焙，并为已装系统记录刷新单行命令（F87）。
 
 
 ### 伤疤族群（F1 – F11）
@@ -919,6 +922,16 @@ v04f baked and functionally proven (texlive in letter, SSH, triple rivers), but 
 
 ZH
 v04f 已烘焙并通过功能验证（texlive letter、SSH、三重河流），但**外观未处于暗色模式**且无法更改。TobiXu 默认应为暗色风格。v0.5 债务：配置 GTK 暗色主题、暗色配色方案，可能在 skel/includes.chroot 中配置 `xfce4-appearance-settings`，使 XFCE 出厂即为暗色。
+
+2026-10-29 (tarde) — v04f: deuda L&F dark mode (XFCE)
+ES: v04f funcional pero XFCE no nace en dark ni ofrece cambio; TobiXu es dark por default. Deuda v0.5: tema GTK dark + esquema xfconf de fábrica. Capturas de txgr confirman GNOME ya oscuro de fábrica: deuda acotada a XFCE.
+EN: v04f functional but XFCE is not born dark and offers no switch; TobiXu is dark by default. v0.5 debt: factory GTK dark theme + xfconf scheme. txgr screenshots confirm GNOME already dark from factory: debt scoped to XFCE.
+ZH: v04f 功能正常但 XFCE 出厂非暗色且无切换；TobiXu 默认暗色。v0.5 债务：出厂 GTK 暗色主题 + xfconf 方案。txgr 截图证实 GNOME 出厂即暗色：债务限于 XFCE。
+
+2026-10-29 (noche) — F87 y F88: hermanas huérfanas de llave y el limpio que no fue; re-horneado gnome 20261029
+ES: F87 "Las hermanas huérfanas de llave": la unificación de firma (2026-10-28, clave personal 7E69…3154) dejó a las ISOs publicadas antes (gnome 20261019, plasma 20261005, xfce pre-v04) con el keyring viejo AD89…45D9; instalados y VMs nuevas fallan apt update con "Missing key 7E69…". Forensia en VM nueva desde la ISO pública gnome (txgr): el río apunta a /usr/share/keyrings/tobixu-archive-keyring.gpg con la clave jubilada. Cura acordada: no parchar instalaciones sueltas, re-hornear: tobixu-gnome-rolling-20261029 reemplaza 20261019 en archive.org (item tobixu-gnome) con aclaración en el sitio; instaladas viejas se refrescan con el one-liner derivado de signed-by (tr -d '[]'). F88 "El limpio que no fue": en txgr la primera corrida cantó UPDATE-LIMPIO porque apt reusó lists cacheados del horneado y nuestro grep‖echo convirtió silencio en victoria. Doctrina 15 enmendada: el testigo afirma contenido positivo (Hit:/Get: del río) y ausencia de Err:/W:, nunca silencio interpretado. Plan de tres fases: (1) MasterAct al día, (2) hornear gnome 20261029 con keyring 7E69…3154 y vigilia de río verificado, (3) archive.org + aclaración en tobixu.xyz.
+EN: F87 "The sisters orphaned of key": signature unification (2026-10-28, personal key 7E69…3154) left ISOs published earlier (gnome 20261019, plasma 20261005, xfce pre-v04) with the old keyring AD89…45D9; installed systems and fresh VMs fail apt update with "Missing key 7E69…". Forensics on a fresh VM from the public gnome ISO (txgr): the river points to /usr/share/keyrings/tobixu-archive-keyring.gpg with the retired key. Agreed cure: do not patch lone installs, re-bake: tobixu-gnome-rolling-20261029 replaces 20261019 on archive.org (item tobixu-gnome) with a note on the site; old installed systems refresh with the signed-by-derived one-liner (tr -d '[]'). F88 "The clean that wasn't": on txgr the first run sang UPDATE-LIMPIO because apt reused bake-cached lists and our grep‖echo turned silence into victory. Doctrine 15 amended: the witness affirms positive content (Hit:/Get: from the river) and absence of Err:/W:, never interpreted silence. Three-phase plan: (1) MasterAct up to date, (2) bake gnome 20261029 with keyring 7E69…3154 and verified-river vigil, (3) archive.org + note on tobixu.xyz.
+ZH: F87「无钥的姐妹」：签名统一（2026-10-28，人员密钥 7E69…3154）使此前发布的 ISO（gnome 20261019、plasma 20261005、v04 前 xfce）携带旧密钥环 AD89…45D9；已装系统与新 VM 的 apt update 报 "Missing key 7E69…"。在公开 gnome ISO 的新 VM（txgr）取证：河流指向 /usr/share/keyrings/tobixu-archive-keyring.gpg 且为退休密钥。商定疗法：不单独修补安装，而是重新烘焙：tobixu-gnome-rolling-20261029 替换 archive.org 上的 20261019（item tobixu-gnome）并在网站注明；旧已装系统以 signed-by 派生的单行命令刷新（tr -d '[]'）。F88「并非干净的干净」：txgr 首次运行报 UPDATE-LIMPIO，因 apt 复用烘焙缓存列表，而我们的 grep‖echo 将沉默化为胜利。准则 15 修订：证人须 affirm 正面内容（河流的 Hit:/Get:）且无 Err:/W:，绝不解读沉默。三阶段计划：(1) MasterAct 更新，(2) 以密钥环 7E69…3154 烘焙 gnome 20261029 并行验证之河守夜，(3) archive.org + tobixu.xyz 说明。
 
 📎 Apéndice / Appendix / 附录: Trigger `tobi-xu-core 0.1.2`
 
