@@ -1,0 +1,28 @@
+Format: 1.8
+Date: Wed, 21 Oct 2026 12:36:20 -0600
+Source: tobixu-xfce-look
+Binary: tobixu-xfce-look
+Architecture: all
+Version: 0.2.0
+Distribution: sid
+Urgency: medium
+Maintainer: Manuel Lopez Mateos <mlmateos@tobixu.xyz>
+Changed-By: Manuel Lopez Mateos <mlmateos@tobixu.xyz>
+Description:
+ tobixu-xfce-look - TobiXu XFCE identity — system seeds
+Changes:
+ tobixu-xfce-look (0.2.0) sid; urgency=medium
+ .
+   * Siembra default xfconf sistémico con backdrop orbita-noche (cura fondo negro).
+ .
+ .
+   * Retira xfwm4-themes de Depends: fantasma en sid (apt-cache policy vacio).
+Checksums-Sha1:
+ db06bd7b72ab8170d1527cdf27d8c593a7622223 20336 tobixu-xfce-look_0.2.0_all.deb
+ fe94aaba740f002386894fa86d16e94a3b1385eb 5197 tobixu-xfce-look_0.2.0_amd64.buildinfo
+Checksums-Sha256:
+ d8bd3904aea995dd09ad968f077c79112b508e572a0a060156854ef6f7427b43 20336 tobixu-xfce-look_0.2.0_all.deb
+ bc71e717ea9ab524ec1f5982fed1e87a0b75f173bb6df41bbfa265c58bf925dd 5197 tobixu-xfce-look_0.2.0_amd64.buildinfo
+Files:
+ 69bf097cdb1024017c8919cdeefbf778 20336 metapackages optional tobixu-xfce-look_0.2.0_all.deb
+ cc93417b91cc6a9aeca7fa4bdf8fee64 5197 metapackages optional tobixu-xfce-look_0.2.0_amd64.buildinfo

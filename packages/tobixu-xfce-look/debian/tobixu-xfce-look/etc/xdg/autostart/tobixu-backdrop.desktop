@@ -1,8 +1,0 @@
-[Desktop Entry]
-Type=Application
-Name=TobiXu Backdrop Apply
-Comment=Siembra el backdrop TobiXu por monitor RANDR real
-Exec=/usr/bin/tobixu-backdrop-apply
-Terminal=false
-OnlyShowIn=XFCE;
-NoDisplay=true

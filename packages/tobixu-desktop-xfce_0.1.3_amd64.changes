@@ -18,11 +18,11 @@ Changes:
      desktop-lxqt en Recommends (fosil pre-contrato). El control maestro ya era
      limpio; 0.1.3 lo pone en el aire.
 Checksums-Sha1:
- 5329678f31429916dbba0da2df07f5c5bef20e9e 1852 tobixu-desktop-xfce_0.1.3_all.deb
- c680f530c22beaa6a4b1fe02d2545cad30c620fe 5209 tobixu-desktop-xfce_0.1.3_amd64.buildinfo
+ 1779cbf5b50c32c81a1e5f610ee2c515b5247d8b 1848 tobixu-desktop-xfce_0.1.3_all.deb
+ 0e12c8947c1182f5933c4737f16437eda68954a9 5209 tobixu-desktop-xfce_0.1.3_amd64.buildinfo
 Checksums-Sha256:
- dff88608f4bc7167923faf00fbe92004f41ab2a8ffb95c6f4b6f577da972f491 1852 tobixu-desktop-xfce_0.1.3_all.deb
- 5ddf65f1e96384ee5f150a169517460def0c4f1be4b22d66325cc0dda52529f3 5209 tobixu-desktop-xfce_0.1.3_amd64.buildinfo
+ a997728cced8c5bc24325f84d920c6a0af8bd7cc22ed148321c6ee6e133e0a34 1848 tobixu-desktop-xfce_0.1.3_all.deb
+ e705426bbf7f7fe6f5eb6ed23b2caa552fd1aef9b07093c68440c0eff9efaaa3 5209 tobixu-desktop-xfce_0.1.3_amd64.buildinfo
 Files:
- 9f3b3f85798541d323467d96eb34d5f3 1852 metapackages optional tobixu-desktop-xfce_0.1.3_all.deb
- 74d5dfbd47258648c68a1b8a4ad1e752 5209 metapackages optional tobixu-desktop-xfce_0.1.3_amd64.buildinfo
+ 829404da43fa122fb411e3e18b0cbd68 1848 metapackages optional tobixu-desktop-xfce_0.1.3_all.deb
+ e17255e4cbf4e5f04bb39d209a2964ef 5209 metapackages optional tobixu-desktop-xfce_0.1.3_amd64.buildinfo

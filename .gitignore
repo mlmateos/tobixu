@@ -1,3 +1,9 @@
-build/
-apt/db/
-meta/*/usr/
+*.qcow2
+packages/*/*.deb
+packages/*/*.buildinfo
+packages/*/*.changes
+packages/*/debian/*/
+build-*.log
+caja-negra.log
+*.iso
+SHA256SUMS-*

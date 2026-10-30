@@ -1,0 +1,28 @@
+Format: 1.8
+Date: Mon, 28 Sep 2026 18:38:00 -0600
+Source: tobixu-wallpapers
+Binary: tobixu-wallpapers
+Architecture: all
+Version: 0.1.1
+Distribution: sicaru
+Urgency: low
+Maintainer: Manuel Lopez Mateos <mlmateos@tobixu.org>
+Changed-By: Manuel Lopez Mateos <mlmateos@tobixu.org>
+Description:
+ tobixu-wallpapers - Fondos de pantalla TobiXu (orbita-noche)
+Changes:
+ tobixu-wallpapers (0.1.1) sicaru; urgency=low
+ .
+   * Instala wallpaper en /usr/share/xfce4/backdrops/ (ruta XFCE, no solo KDE).
+ .
+ .
+   * Primer empaquetado: orbita-noche (svg + paquete de wallpaper Plasma).
+Checksums-Sha1:
+ 637e61118dea9b38640081c16aa328dcdd16eb2f 2555028 tobixu-wallpapers_0.1.1_all.deb
+ 3445e0466f00973c65377442b445d64d2316dbef 5208 tobixu-wallpapers_0.1.1_amd64.buildinfo
+Checksums-Sha256:
+ 0df5613d9334ee0d8851078ce42d30d5769385c0b6ba1b3e071712df54f403b7 2555028 tobixu-wallpapers_0.1.1_all.deb
+ 14264630a6320d91a5a98f34e993af0ae48922b4c29f9575ed04a5d1d0a50b14 5208 tobixu-wallpapers_0.1.1_amd64.buildinfo
+Files:
+ 653845a5ca1cbab96656d7c3e5d27a84 2555028 graphics optional tobixu-wallpapers_0.1.1_all.deb
+ d4d002f4419b890a5bdc84f463ce3891 5208 graphics optional tobixu-wallpapers_0.1.1_amd64.buildinfo

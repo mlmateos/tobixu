@@ -33,3 +33,4 @@ gnome-software
 fonts-noto-core
 fonts-noto-cjk
 bash-completion
+libpaper-utils

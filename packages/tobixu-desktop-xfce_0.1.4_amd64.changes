@@ -1,0 +1,31 @@
+Format: 1.8
+Date: Wed, 21 Oct 2026 15:02:49 -0600
+Source: tobixu-desktop-xfce
+Binary: tobixu-desktop-xfce
+Architecture: all
+Version: 0.1.4
+Distribution: sid
+Urgency: medium
+Maintainer: Manuel Lopez Mateos <mlmateos@tobixu.xyz>
+Changed-By: Manuel Lopez Mateos <mlmateos@tobixu.xyz>
+Description:
+ tobixu-desktop-xfce - TobiXu XFCE desktop (slim rolling release)
+Changes:
+ tobixu-desktop-xfce (0.1.4) sid; urgency=medium
+ .
+   * Extirpa xfce4-goodies de Depends: cadena rota en sid 2026.
+ .
+ .
+   * Base pura publicada: el 0.1.2 del aire arrastraba texstudio/texlive/
+     frescobaldi/lilypond/libreoffice en Depends y stem/arts + desktop-plasma/
+     desktop-lxqt en Recommends (fosil pre-contrato). El control maestro ya era
+     limpio; 0.1.3 lo pone en el aire.
+Checksums-Sha1:
+ efa58dbd2523433eabb2dc1e7aef6ed551baf740 1876 tobixu-desktop-xfce_0.1.4_all.deb
+ bf9a39824a2ea12a96f42c2c04aaaab7041049b7 5209 tobixu-desktop-xfce_0.1.4_amd64.buildinfo
+Checksums-Sha256:
+ 14fe33f42c0e15e1b119bf739d9da4ec12b11e0db1c24fb62529c9f42ec9a804 1876 tobixu-desktop-xfce_0.1.4_all.deb
+ d709f7dfcec3a620f57f22ed9b425f5535ac1c0533c18c86866678b47751546b 5209 tobixu-desktop-xfce_0.1.4_amd64.buildinfo
+Files:
+ f6f70905f88961e086bdc133c9a4f525 1876 metapackages optional tobixu-desktop-xfce_0.1.4_all.deb
+ 44eac786a6301ef9f5746bac99023273 5209 metapackages optional tobixu-desktop-xfce_0.1.4_amd64.buildinfo
