@@ -43,7 +43,6 @@ for f in etc/environment etc/apt/sources.list \
 etc/gdm3/custom.conf \
 etc/sudoers.d/tobixu-live \
 etc/systemd/system/tobixu-live-user.service \
-etc/skel/Desktop/tobixu-install.desktop \
 etc/xdg/autostart/tobixu-live-desktop.desktop \
 usr/local/bin/tobixu-live-user-create \
 usr/local/bin/tobixu-live-desktop-setup \
