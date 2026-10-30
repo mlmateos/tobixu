@@ -20,7 +20,7 @@
 | **VM de horneado** / Bake VM / 烘焙虚拟机 | `forja` (80G virtuales, writethrough, unmap) |
 | **Repo firmado** / Signed repo / 签名仓库 | `https://mlmateos.github.io/tobixu/apt sid main` |
 | **Estado del smoke** / Smoke status / 烟雾状态 | ✅ 11/11 puntos verdes (live + instalado) |
-| **Familias cerradas** / Closed families / 已结族群 | F1 – F88 (con testigos / with witnesses / 有证人) |
+| **Familias cerradas** / Closed families / 已结族群 | F1 – F90 (con testigos / with witnesses / 有证人) |
 | **Próxima tarea fría** / Next cold task / 下一个冷任务 | Renombrar disco-rc42.qcow2 a disco-rc45-smoke.qcow2 (con acta) | `tobi-xu-core 0.1.2` (ver apéndice / see appendix / 见附录) |
 
 ---
@@ -56,6 +56,8 @@
 16. **Forensia antes que cura**. Cuando algo falla, primero los testigos del ISO o del instalado, luego la cura. Nunca al revés.
 17. **Ver el bosque, no solo el árbol**. Cuando extirpo algo, busco en TODO el árbol (trigger + horno + hooks + listas), no solo en un archivo.
 18. **Cuando la firma cambia, las hermanas viejas beben de un río seco**: toda ISO publicada antes del cambio lleva el keyring viejo; cura: re-hornear con el keyring actualizado y documentar el one-liner de refresco para las instaladas (F87).
+19. **Un centinela que falla se investiga, nunca se silencia**: cuando una verificación del PREFLIGHT o la PUERTA falla, se investiga la causa raíz antes de hornear; eliminar la línea del centinela es cegar al guardián (F89).
+20. **Las variantes son dato, no cimiento**: hornear una variante de escritorio es conmutar listas y archivos específicos dentro del mismo árbol; `tools/listas/<dm>/` se copia a `config/package-lists/` y los includes específicos a `config/includes.chroot/` antes del horno (F90).
 
 
 ### Familias de cicatrices (F1 – F11)
@@ -147,6 +149,8 @@ Ordenadas por prioridad. Todas se hacen **en frío**, con la VM apagada y con ac
 16. **Forensics before cure**. When something fails, first the witnesses from the ISO or the installed system, then the cure. Never the other way around.
 17. **See the forest, not just the tree**. When I extirpate something, I search the ENTIRE tree (trigger + oven + hooks + lists), not just one file.
 18. **When the signature changes, the old sisters drink from a dry river**: every ISO published before the change carries the old keyring; cure: re-bake with the updated keyring and document the refresh one-liner for installed systems (F87).
+19. **A failing sentinel is investigated, never silenced**: when a PREFLIGHT or DOOR verification fails, the root cause is investigated before baking; removing the sentinel line is blinding the guardian (F89).
+20. **Variants are data, not foundation**: baking a desktop variant is switching lists and specific files within the same tree; `tools/listas/<dm>/` is copied to `config/package-lists/` and specific includes to `config/includes.chroot/` before the oven (F90).
 
 
 ### Scar families (F1 – F11)
@@ -238,6 +242,8 @@ Ordered by priority. All done **cold**, with the VM off and with acta.
 16. **取证先于疗法**。故障时先取 ISO 或已装系统的证人，再疗法。绝不反之。
 17. **见林而非仅见树**。切除时搜索整棵树（触发器 + 烤箱 + 钩子 + 列表），而非仅一文件。
 18. **签名一变，旧姐妹便饮干河**：变更前发布的每个 ISO 都带旧密钥环；疗法：以更新后的密钥环重新烘焙，并为已装系统记录刷新单行命令（F87）。
+19. **失败的哨兵须调查，绝不沉默**：当 PREFLIGHT 或 PUERTA 验证失败时，在烘焙前调查根因；删除哨兵行即蒙蔽守护者（F89）。
+20. **变体是数据，非根基**：烘焙桌面变体是在同一树内切换列表与特定文件；烘焙前将 `tools/listas/<dm>/` 复制到 `config/package-lists/`，将特定 includes 复制到 `config/includes.chroot/`（F90）。
 
 
 ### 伤疤族群（F1 – F11）
@@ -932,6 +938,14 @@ ZH: v04f 功能正常但 XFCE 出厂非暗色且无切换；TobiXu 默认暗色�
 ES: F87 "Las hermanas huérfanas de llave": la unificación de firma (2026-10-28, clave personal 7E69…3154) dejó a las ISOs publicadas antes (gnome 20261019, plasma 20261005, xfce pre-v04) con el keyring viejo AD89…45D9; instalados y VMs nuevas fallan apt update con "Missing key 7E69…". Forensia en VM nueva desde la ISO pública gnome (txgr): el río apunta a /usr/share/keyrings/tobixu-archive-keyring.gpg con la clave jubilada. Cura acordada: no parchar instalaciones sueltas, re-hornear: tobixu-gnome-rolling-20261029 reemplaza 20261019 en archive.org (item tobixu-gnome) con aclaración en el sitio; instaladas viejas se refrescan con el one-liner derivado de signed-by (tr -d '[]'). F88 "El limpio que no fue": en txgr la primera corrida cantó UPDATE-LIMPIO porque apt reusó lists cacheados del horneado y nuestro grep‖echo convirtió silencio en victoria. Doctrina 15 enmendada: el testigo afirma contenido positivo (Hit:/Get: del río) y ausencia de Err:/W:, nunca silencio interpretado. Plan de tres fases: (1) MasterAct al día, (2) hornear gnome 20261029 con keyring 7E69…3154 y vigilia de río verificado, (3) archive.org + aclaración en tobixu.xyz.
 EN: F87 "The sisters orphaned of key": signature unification (2026-10-28, personal key 7E69…3154) left ISOs published earlier (gnome 20261019, plasma 20261005, xfce pre-v04) with the old keyring AD89…45D9; installed systems and fresh VMs fail apt update with "Missing key 7E69…". Forensics on a fresh VM from the public gnome ISO (txgr): the river points to /usr/share/keyrings/tobixu-archive-keyring.gpg with the retired key. Agreed cure: do not patch lone installs, re-bake: tobixu-gnome-rolling-20261029 replaces 20261019 on archive.org (item tobixu-gnome) with a note on the site; old installed systems refresh with the signed-by-derived one-liner (tr -d '[]'). F88 "The clean that wasn't": on txgr the first run sang UPDATE-LIMPIO because apt reused bake-cached lists and our grep‖echo turned silence into victory. Doctrine 15 amended: the witness affirms positive content (Hit:/Get: from the river) and absence of Err:/W:, never interpreted silence. Three-phase plan: (1) MasterAct up to date, (2) bake gnome 20261029 with keyring 7E69…3154 and verified-river vigil, (3) archive.org + note on tobixu.xyz.
 ZH: F87「无钥的姐妹」：签名统一（2026-10-28，人员密钥 7E69…3154）使此前发布的 ISO（gnome 20261019、plasma 20261005、v04 前 xfce）携带旧密钥环 AD89…45D9；已装系统与新 VM 的 apt update 报 "Missing key 7E69…"。在公开 gnome ISO 的新 VM（txgr）取证：河流指向 /usr/share/keyrings/tobixu-archive-keyring.gpg 且为退休密钥。商定疗法：不单独修补安装，而是重新烘焙：tobixu-gnome-rolling-20261029 替换 archive.org 上的 20261019（item tobixu-gnome）并在网站注明；旧已装系统以 signed-by 派生的单行命令刷新（tr -d '[]'）。F88「并非干净的干净」：txgr 首次运行报 UPDATE-LIMPIO，因 apt 复用烘焙缓存列表，而我们的 grep‖echo 将沉默化为胜利。准则 15 修订：证人须 affirm 正面内容（河流的 Hit:/Get:）且无 Err:/W:，绝不解读沉默。三阶段计划：(1) MasterAct 更新，(2) 以密钥环 7E69…3154 烘焙 gnome 20261029 并行验证之河守夜，(3) archive.org + tobixu.xyz 说明。
+
+2026-10-29 (noche, continuación) — F89 centinela silenciado + F90 árbol conmutado
+ES
+F89 "El centinela silenciado": al fallar el PREFLIGHT de v02n por `etc/skel/Desktop/tobixu-install.desktop` ausente, apliqué `sed` para eliminar la línea en lugar de investigar la causa raíz. El horno avanzó hasta la PUERTA, donde la verdad salió completa: el árbol estaba en modo XFCE (faltaban paquetes gnome, ptyxis, apps GNOME, glifo). Cura: revertir el `sed`, conmutar el árbol a modo gnome (copiar `tools/listas/gnome/*` a `config/package-lists/` y archivos específicos a `config/includes.chroot/`), y hornear de nuevo. Lección: un centinela que falla se investiga, nunca se silencia.
+EN
+F89 "The silenced sentinel": when v02n's PREFLIGHT failed on missing `etc/skel/Desktop/tobixu-install.desktop`, I applied `sed` to remove the line instead of investigating the root cause. The oven advanced to the DOOR, where the full truth emerged: the tree was in XFCE mode (missing gnome packages, ptyxis, GNOME apps, glyph). Cure: revert the `sed`, switch the tree to gnome mode (copy `tools/listas/gnome/*` to `config/package-lists/` and specific files to `config/includes.chroot/`), and rebake. Lesson: a failing sentinel is investigated, never silenced.
+ZH
+F89「沉默的哨兵」：v02n 的 PREFLIGHT 因缺少 `etc/skel/Desktop/tobixu-install.desktop` 失败时，我用 `sed` 删除该行而非调查根因。烤箱推进至 PUERTA，真相完全浮现：树处于 XFCE 模式（缺少 gnome 包、ptyxis、GNOME 应用、字形）。疗法：撤销 `sed`，将树切换至 gnome 模式（将 `tools/listas/gnome/*` 复制到 `config/package-lists/`，将特定文件复制到 `config/includes.chroot/`），然后重新烘焙。教训：失败的哨兵须调查，绝不沉默。
 
 📎 Apéndice / Appendix / 附录: Trigger `tobi-xu-core 0.1.2`
 
