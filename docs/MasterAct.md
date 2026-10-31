@@ -20,7 +20,7 @@
 | **VM de horneado** / Bake VM / 烘焙虚拟机 | `forja` (80G virtuales, writethrough, unmap) |
 | **Repo firmado** / Signed repo / 签名仓库 | `https://mlmateos.github.io/tobixu/apt sid main` |
 | **Estado del smoke** / Smoke status / 烟雾状态 | ✅ 11/11 puntos verdes (live + instalado) |
-| **Familias cerradas** / Closed families / 已结族群 | F1 – F90 (con testigos / with witnesses / 有证人) |
+| **Familias cerradas** / Closed families / 已结族群 | F1 – F95 (con testigos / with witnesses / 有证人) |
 | **Próxima tarea fría** / Next cold task / 下一个冷任务 | Renombrar disco-rc42.qcow2 a disco-rc45-smoke.qcow2 (con acta) | `tobi-xu-core 0.1.2` (ver apéndice / see appendix / 见附录) |
 
 ---
@@ -58,6 +58,7 @@
 18. **Cuando la firma cambia, las hermanas viejas beben de un río seco**: toda ISO publicada antes del cambio lleva el keyring viejo; cura: re-hornear con el keyring actualizado y documentar el one-liner de refresco para las instaladas (F87).
 19. **Un centinela que falla se investiga, nunca se silencia**: cuando una verificación del PREFLIGHT o la PUERTA falla, se investiga la causa raíz antes de hornear; eliminar la línea del centinela es cegar al guardián (F89).
 20. **Las variantes son dato, no cimiento**: hornear una variante de escritorio es conmutar listas y archivos específicos dentro del mismo árbol; `tools/listas/<dm>/` se copia a `config/package-lists/` y los includes específicos a `config/includes.chroot/` antes del horno (F90).
+21. **Una cura a mano sin acta no existe**: vuelve como herida abierta con amnesia (F54→F95). / **A hand cure without acta does not exist**: it returns as an open wound with amnesia (F54→F95). / **无纪要的手工疗法不存在**：它将作为失忆的开放伤口归来（F54→F95）。
 
 
 ### Familias de cicatrices (F1 – F11)
@@ -947,6 +948,18 @@ F89 "The silenced sentinel": when v02n's PREFLIGHT failed on missing `etc/skel/D
 ZH
 F89「沉默的哨兵」：v02n 的 PREFLIGHT 因缺少 `etc/skel/Desktop/tobixu-install.desktop` 失败时，我用 `sed` 删除该行而非调查根因。烤箱推进至 PUERTA，真相完全浮现：树处于 XFCE 模式（缺少 gnome 包、ptyxis、GNOME 应用、字形）。疗法：撤销 `sed`，将树切换至 gnome 模式（将 `tools/listas/gnome/*` 复制到 `config/package-lists/`，将特定文件复制到 `config/includes.chroot/`），然后重新烘焙。教训：失败的哨兵须调查，绝不沉默。
 
+2026-10-29 (noche, cont.) — F89 centinela silenciado + F90 arbol conmutado
+ES: F89: eliminé con sed una linea fallida del PREFLIGHT en vez de investigar; la PUERTA confesó la causa real (arbol en modo XFCE). Cura: restaurar el centinela y conmutar el arbol. F90: las variantes son dato, no cimiento; arboles separados por DM (tobixu-gnome), con deuda v0.6 de migrar a subdirectorios de un solo repo.
+EN: F89: I sed-removed a failing PREFLIGHT line instead of investigating; the DOOR confessed the real cause (tree in XFCE mode). Cure: restore the sentinel and switch the tree. F90: variants are data, not foundation; separate trees per DM (tobixu-gnome), with v0.6 debt to migrate to single-repo subdirectories.
+ZH: F89：我用 sed 删除失败的 PREFLIGHT 行而非调查；PUERTA  confess 真实原因（树处于 XFCE 模式）。疗法：恢复哨兵并切换树。F90：变体是数据非根基；每 DM 独立树（tobixu-gnome），v0.6 债务迁移至单仓子目录。
+2026-10-30 — F91 glifo cuadrado + F93 hook sin herramienta + F94 rio que envenena (vg2d publicada)
+ES: F91: arte fuente 256×143 rectangular se deformaba en slots cuadrados; cura cuadrado 256×256 (trim→extent→resize) sembrado en seis asientos de ambos arboles. F93: hook 0920 corria sin paperconfig (libpaper-utils ausente de lista gnome); cura: añadirlo a la lista y renombrar hook a 0980. F94: fabrica 0.1.2 con glifo cuadrado vs rio 0.1.2 rectangular; el empate envenenó instalados; cura bump 0.1.3 (vg2d) y republish del rio. vg2d publicada en archive.org reemplazando 20261019, con nota trilingue en tobixu.xyz.
+EN: F91: rectangular 256×143 source art deformed in square slots; cure square 256×256 (trim→extent→resize) seeded in six seats of both trees. F93: hook 0920 ran without paperconfig (libpaper-utils missing from gnome list); cure: add to list and rename hook to 0980. F94: factory 0.1.2 with square glyph vs river 0.1.2 rectangular; the tie poisoned installed systems; cure bump 0.1.3 (vg2d) and river republish. vg2d published on archive.org replacing 20261019, with trilingual note on tobixu.xyz.
+ZH: F91：256×143 矩形源艺术在方形槽位变形；疗法 256×256 方形（trim→extent→resize）播种于两树六座位。F93：hook 0920 无 paperconfig 运行（gnome 列表缺 libpaper-utils）；疗法：加入列表并将 hook 更名 0980。F94：工厂 0.1.2 带方形字形 vs 河流 0.1.2 矩形；平局毒害已安装；疗法 bump 0.1.3（vg2d）并重发布河流。vg2d 已发布于 archive.org 替换 20261019，tobixu.xyz 附三语说明。
+2026-10-31 — F95 (abierta) la particion que kpmcore niega al Mac 2008
+ES: En MacBook Air 2008 (APPLE SSD TS128C), el erase-disk de Calamares muere en jobs de kpmcore (create/label/type ESP), mientras sfdisk manual sobre el mismo disco canta rc=0 y re-lecturas limpias; dmesg sin I/O errors. Arqueologia: ninguna cura de particionado Mac fue jamas commiteada; F54 (Mac 2008 se traba, sospecha EFI32/CPU64) sigue abierta de eras viejas; sin pin de kpmcore en listas → nada se perdio en la extraccion rc23. El "se corrigio" recordado = paso manual sin acta (doctrina 21). Cura pendiente: captura calamares -d para el stderr de kpmcore; ruta soportada Macs pre-2010: particionado manual con sgdisk + Calamares manual sin re-formatear.
+EN: On MacBook Air 2008 (APPLE SSD TS128C), Calamares erase-disk dies in kpmcore jobs (create/label/type ESP), while manual sfdisk on the same disk sings rc=0 and clean re-reads; dmesg without I/O errors. Archaeology: no Mac partitioning cure was ever committed; F54 (Mac 2008 stalls, EFI32/CPU64 suspicion) remains open from old eras; no kpmcore pin in lists → nothing was lost in the rc23 extraction. The remembered "it was fixed" = manual step without acta (doctrine 21). Pending cure: calamares -d capture for kpmcore stderr; supported route for pre-2010 Macs: manual sgdisk partitioning + Calamares manual without reformat.
+ZH: 在 MacBook Air 2008（APPLE SSD TS128C）上，Calamares 的 erase-disk 死于 kpmcore 作业（create/label/type ESP），而同一磁盘上手动 sfdisk 唱 rc=0 且重读干净；dmesg 无 I/O 错误。考古：从未提交过 Mac 分区疗法；F54（Mac 2008 卡顿，疑似 EFI32/CPU64）自旧时代仍开放；列表无 kpmcore 固定 → rc23 提取未丢失任何东西。记忆中的"已修复" = 无纪要的手工步骤（教义 21）。待疗法：calamares -d 捕获 kpmcore stderr；2010 前 Mac 支持路线：sgdisk 手动分区 + Calamares 手动不重格式化。
 📎 Apéndice / Appendix / 附录: Trigger `tobi-xu-core 0.1.2`
 
 Diseño listo para integrar en el paquete. Dos archivos:
