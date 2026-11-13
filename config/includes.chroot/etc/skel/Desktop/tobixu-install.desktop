@@ -1,0 +1,12 @@
+[Desktop Entry]
+Type=Application
+Name=Install Tobi Xu
+Name[es]=Instalar Tobi Xu
+Name[zh]=安装 Tobi Xu
+Comment=Install TobiXu to this computer
+Comment[es]=Instalar TobiXu en este equipo
+Comment[zh]=将 TobiXu 安装到本机
+Exec=/usr/bin/tobixu-install
+Icon=install-debian
+Terminal=false
+Categories=System;

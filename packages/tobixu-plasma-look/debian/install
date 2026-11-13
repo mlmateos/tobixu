@@ -6,3 +6,4 @@ skel/.config/kscreenlockerrc etc/skel/.config/
 skel/.config/Kvantum/kvantum.kvconfig etc/skel/.config/Kvantum/
 skel/.config/plasmarc etc/skel/.config/
 splash/org.tobixu.selva.desktop usr/share/plasma/look-and-feel/
+etc/udev/rules.d/90-tobixu-kbd-backlight.rules etc/udev/rules.d/

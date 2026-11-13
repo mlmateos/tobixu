@@ -7,10 +7,10 @@ LB_IMAGE_TYPE="iso-hybrid"
 LB_BINARY_FILESYSTEM="fat32"
 
 # Set apt/aptitude generic indices
-LB_APT_INDICES="true"
+LB_APT_INDICES="false"
 
 # Set boot parameters
-LB_BOOTAPPEND_LIVE="boot=live components locales=en_US.UTF-8 keyboard-layouts=us timezone=America/Mexico_City"
+LB_BOOTAPPEND_LIVE="boot=live components username=user locales=en_US.UTF-8 keyboard-layouts=us timezone=America/Mexico_City"
 
 # Set boot parameters
 LB_BOOTAPPEND_INSTALL=""
@@ -71,16 +71,16 @@ LB_HDD_SIZE="8000"
 LB_HDD_PARTITION_START=""
 
 # Set iso author
-LB_ISO_APPLICATION="Tobi Xu sicaru Live"
+LB_ISO_APPLICATION="TobiXu Rolling v0.2"
 
 # Set iso preparer
 LB_ISO_PREPARER="Manuel Lopez Mateos"
 
 # Set iso publisher
-LB_ISO_PUBLISHER="Tobi Xu - STEM & Arts = STEAM"
+LB_ISO_PUBLISHER="TobiXu"
 
 # Set iso volume (max 32 chars)
-LB_ISO_VOLUME="TOBIXU_SICARU"
+LB_ISO_VOLUME="TOBIXU_ROLLING"
 
 # Set jffs2 eraseblock size
 LB_JFFS2_ERASEBLOCK=""
@@ -104,10 +104,10 @@ LB_ONIE="false"
 LB_ONIE_KERNEL_CMDLINE=""
 
 # Set inclusion of firmware packages in debian-installer
-LB_FIRMWARE_BINARY="true"
+LB_FIRMWARE_BINARY="false"
 
 # Set inclusion of firmware packages in the live image
-LB_FIRMWARE_CHROOT="true"
+LB_FIRMWARE_CHROOT="false"
 
 # Set swap file path
 LB_SWAP_FILE_PATH=""

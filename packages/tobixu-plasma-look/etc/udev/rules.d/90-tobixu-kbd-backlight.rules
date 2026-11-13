@@ -1,0 +1,2 @@
+# TobiXu: sembrar iluminacion de teclado Mac (applesmc) en cada arranque (F97)
+ACTION=="add", SUBSYSTEM=="leds", KERNEL=="smc::kbd_backlight", RUN+="/bin/sh -c 'cat /sys/class/leds/smc::kbd_backlight/max_brightness > /sys/class/leds/smc::kbd_backlight/brightness'"

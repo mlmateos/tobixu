@@ -1,0 +1,7 @@
+Package: texstudio
+Pin: origin mlmateos.github.io
+Pin-Priority: 1001
+
+Package: frescobaldi
+Pin: origin mlmateos.github.io
+Pin-Priority: 1001

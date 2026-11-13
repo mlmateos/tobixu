@@ -1,0 +1,12 @@
+#!/bin/bash
+# TobiXu: wrapper para invocar Calamares con privilegios
+set -e
+
+# Verificar que Calamares existe
+if ! command -v calamares >/dev/null 2>&1; then
+    zenity --error --text="Calamares no está instalado" 2>/dev/null || echo "ERROR: Calamares no está instalado"
+    exit 1
+fi
+
+# Invocar Calamares con pkexec (requiere polkit)
+pkexec calamares

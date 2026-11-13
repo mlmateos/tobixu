@@ -1,3 +1,10 @@
+tobixu-desktop-plasma (0.1.1) unstable; urgency=low
+
+  * Paridad con plasma-look 0.3.3
+
+ -- Manuel Lopez Mateos <mlmateos@tobixu.xyz>  Tue, 03 Nov 2026 09:44:40 -0600
+
+
 tobixu-desktop-plasma (0.1.0) unstable; urgency=low
 
   * Metapaquete para instalación opcional vía apt (no en ISO base)

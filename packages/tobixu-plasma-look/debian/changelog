@@ -1,3 +1,10 @@
+tobixu-plasma-look (0.3.3) unstable; urgency=low
+
+  * Glifos cuadrados (F91) + udev kbd-backlight (F97)
+
+ -- Manuel Lopez Mateos <mlmateos@tobixu.xyz>  Tue, 03 Nov 2026 09:44:40 -0600
+
+
 tobixu-plasma-look (0.3.2) sicaru; urgency=low
 
   * Cierre pragmatico v0.1: KSplash cae al stock de Plasma (F42 documentado como semilla v0.2).

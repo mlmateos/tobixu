@@ -1,3 +1,10 @@
+tobixu-sddm-theme (0.5.1) unstable; urgency=low
+
+  * Glifo cuadrado en greeter (F91)
+
+ -- Manuel Lopez Mateos <mlmateos@tobixu.xyz>  Tue, 03 Nov 2026 09:44:40 -0600
+
+
 tobixu-sddm-theme (0.5.0) sicaru; urgency=low
 
   * Greeter trilingue EN/ES/ZH con selector en la puerta.
