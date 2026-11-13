@@ -20,3 +20,5 @@ live-task-recommended
 fonts-noto-core
 fonts-noto-cjk
 bash-completion
+dosfstools
+gdisk

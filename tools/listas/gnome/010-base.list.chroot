@@ -34,3 +34,6 @@ fonts-noto-core
 fonts-noto-cjk
 bash-completion
 libpaper-utils
+dosfstools
+gdisk
+firmware-brcm80211

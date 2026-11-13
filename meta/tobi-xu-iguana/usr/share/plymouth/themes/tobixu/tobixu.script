@@ -1,0 +1,16 @@
+# tobixu.script v0.1 — la noche de Tobi Xu al arrancar
+# Degradado: esmeralda honda arriba, selva abajo.
+# Los hex de Iguana convertidos a flotantes 0-1 para Plymouth.
+
+Window.SetBackgroundTopColor (0.0235, 0.1569, 0.1176);   # #06281E esmeralda honda
+Window.SetBackgroundBottomColor (0.0549, 0.3020, 0.2275); # #0E4D3A selva
+
+# Ganchos para v0.2: aqui viviran el glifo 1 Xoo en piedra
+# y la barra de progreso de siete tonos.
+fun refresh_callback () {}
+fun boot_progress_callback (progress) {}
+fun quit_callback (duration) {}
+
+Plymouth.SetRefreshFunction (refresh_callback);
+Plymouth.SetBootProgressFunction (boot_progress_callback);
+Plymouth.SetQuitFunction (quit_callback);
