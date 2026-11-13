@@ -7,3 +7,4 @@ build-*.log
 caja-negra.log
 *.iso
 SHA256SUMS-*
+apt/db/

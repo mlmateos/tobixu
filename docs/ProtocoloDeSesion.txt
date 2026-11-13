@@ -1,0 +1,3 @@
+Retomamos TobiXu. Lee docs/ESTADO.md y el issue #N.
+Objetivo de esta sesión: <uno solo>.
+Al cerrar: actualiza ESTADO.md, commit firmado (-S), issue al día.
